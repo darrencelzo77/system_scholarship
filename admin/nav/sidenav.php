@@ -22,12 +22,29 @@
                 echo $current_page;
                 $dashboard_active = '';
                 $registration_active = '';
+                $scholarship_ative = '';
+                $report_active = '';
+                $account_active = '';
+                $requirement_active = '';
+                $category_active = '';
+
 
                 if ($current_page == 'dashboard') { 
                     $dashboard_active = 'class="active"';
                 } else if ($current_page == 'registration') {
                     $registration_active = 'class="active"';
+                }else if ($current_page == 'scholarship') {
+                    $scholarship_active = 'class="active"';
+                }else if ($current_page == 'report') {
+                    $report_active = 'class="active"';
+                }else if ($current_page == 'account') {
+                    $account_active = 'class="active"';
+                }else if ($current_page == 'requirement') {
+                    $requirement_active = 'class="active"';
+                }else if ($current_page == 'category') {
+                    $category_active = 'class="active"';
                 }
+
 
                 ?> 
                 <li>
@@ -58,7 +75,7 @@
                 </li>
 
                 <li>
-                    <a href="comments.html">
+                    <a <?=$scholarship_active?>  href="../scholarship">
                         <span class="icon message" aria-hidden="true"></span>
                         Scholarship List
                     </a>
@@ -66,7 +83,7 @@
                 </li>
 
                 <li>
-                    <a href="comments.html">
+                    <a <?=$report_active?>  href="../report">
                         <span class="icon message" aria-hidden="true"></span>
                         Reports
                     </a>
@@ -78,15 +95,15 @@
             <span class="system-menu__title">Setup Manager</span>
             <ul class="sidebar-body-menu">
                 <li>
-                    <a href="appearance.html"><span class="icon edit" aria-hidden="true"></span>Account Setup</a>
+                    <a <?=$account_active?> href="../account"><span class="icon edit" aria-hidden="true"></span>Account Setup</a>
                 </li>
 
                 <li>
-                    <a href="##"><span class="icon setting" aria-hidden="true"></span>Requirements Setup</a>
+                    <a <?=$requirement_active?>  href="../requirement"><span class="icon setting" aria-hidden="true"></span>Requirements Setup</a>
                 </li>
 
                 <li>
-                    <a href="##"><span class="icon setting" aria-hidden="true"></span>Category Setup</a>
+                    <a <?=$category_active?>  href="../category"><span class="icon setting" aria-hidden="true"></span>Category Setup</a>
                 </li>
 
 
