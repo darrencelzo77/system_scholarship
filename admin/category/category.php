@@ -30,9 +30,9 @@ if(isset($_POST['edit'])){
         <h4>Category</h4>
       </div>
       <div align="right">
-        <button onclick="ajax_new('category_add.php','maincontent');">Add New</button>
+        <button class="btn btn-dark btn-sm" onclick="ajax_new('category_add.php','maincontent');">Add New</button>
       </div>
-      <table class="table table-sm table-bordered table-striped">
+      <table class="table table-sm table-striped">
         <thead>
           <tr>
             <th>Category</th>
