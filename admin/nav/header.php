@@ -1,0 +1,33 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Panel</title>
+  <!-- <link rel="shortcut icon" href="./img/svg/logo.svg" type="image/x-icon"> -->
+  <link rel="stylesheet" href="../css/style.min.css">
+  <script src="../js/my_script.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/tinybox.js"></script>
+  
+  <style>
+    .tbox {position:absolute;  display:none; padding:14px 17px; z-index:900}
+    .tinner {padding:15px; -moz-border-radius:5px; border-radius:5px; background:#fff url(images/preload.gif) no-repeat 50% 50%; border-right:1px solid #333; border-bottom:1px solid #333;}
+    .tmask {position:absolute; display:none; top:0px; left:0px; height:100%; width:100%; background:#000; z-index:800}
+    .tclose {position:absolute; top:0px; right:0px; width:30px; height:30px; cursor:pointer; background:url(images/close.png) no-repeat}
+    .tclose:hover {background-position:0 -30px}
+
+    #error {background:#ff6969; color:#fff; text-shadow:1px 1px #cf5454; border-right:1px solid #000; border-bottom:1px solid #000; padding:0}
+    #error .tcontent {padding:10px 14px 11px; border:1px solid #ffb8b8; -moz-border-radius:5px; border-radius:5px}
+    #success {background:#2ea125; color:#fff; text-shadow:1px 1px #1b6116; border-right:1px solid #000; border-bottom:1px solid #000; padding:10; -moz-border-radius:0; border-radius:0}
+    #bluemask {background:#4195aa}
+    #frameless {padding:0}
+    #frameless .tclose {left:6px}
+
+    #body-overlay { text-align:center; background-color: rgba(0, 0, 0, 0.6);z-index: 99999;position:fixed;left: 0;top: 0;width: 100%;height: 100%; display:none; }
+    #body-overlay div {position:absolute;left:40%;top:20%;} 
+
+    .main-sidebar {
+      background-color: #0B274E;
+    }
+  </style>
+</head>

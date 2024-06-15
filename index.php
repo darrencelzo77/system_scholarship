@@ -31,10 +31,7 @@
 						<a href="#application" class="nav-link">Application</a>
 					</li>
 					<li class="nav-item">
-						<a href="#about" class="nav-link">About</a>
-					</li>
-					<li class="nav-item">
-						<a href="#contact" class="nav-link">Contact</a>
+						<a href="#about" class="nav-link">Contact</a>
 					</li>
 				</ul>
 
@@ -53,7 +50,7 @@
 			 
 			<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
 				<!-- Notifications Dropdown Menu -->
-				<li class="nav-item dropdown">
+				<li hidden class="nav-item dropdown">
 					<a class="nav-link" data-toggle="dropdown" href="#">
 						<i class="far fa-bell"></i>
 						<span class="badge badge-warning navbar-badge">15</span>
@@ -71,7 +68,7 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#" role="button">
+					<a class="nav-link" href="admin" role="button">
 						Login
 					</a>
 				</li>
@@ -183,29 +180,14 @@
 					<div class="col-lg-6">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">About</h5>
-							</div>
-						</div>
-					</div>
-				</div>	
-				
-				
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				
-				
-				<div class="row">
-					<span id="contact" style="margin-top:-70px;"></span>
-					<div class="col-lg-6">
-						<div class="card">
-							<div class="card-body">
 								<h5 class="card-title">Contact</h5>
 							</div>
 						</div>
 					</div>
 				</div>	
-				
+				<br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br>
 				
 				<br><br><br><br><br><br><br>
 				<br><br><br><br><br><br><br>

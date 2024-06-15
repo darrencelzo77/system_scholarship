@@ -1,14 +1,14 @@
+
 <aside class="sidebar">
     <div class="sidebar-start">
         <div class="sidebar-head">
-            <a href="home" class="logo-wrapper" title="Home">
+            <a href="#" class="logo-wrapper" title="Home">
                 <span class="sr-only">Home</span>
-                <!-- <span class="icon logo" aria-hidden="true"></span> -->
+                <!-- <span hidden class="icon logo" aria-hidden="false"></span> -->
                 <div class="logo-text">
                     <span class="logo-title">Admin</span>
                     <span class="logo-subtitle">Dashboard</span>
                 </div>
-
             </a>
             <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
                 <span class="sr-only">Toggle menu</span>
@@ -17,37 +17,110 @@
         </div>
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
-                <span hidden class="system-menu__title">Menu</span>
+                <?
+                $current_page = basename($_SERVER['REQUEST_URI'], ".php");
+                echo $current_page;
+                $dashboard_active = '';
+                $registration_active = '';
+
+                if ($current_page == 'dashboard') { 
+                    $dashboard_active = 'class="active"';
+                } else if ($current_page == 'registration') {
+                    $registration_active = 'class="active"';
+                }
+
+                ?> 
                 <li>
-                    <a class="active" href="/"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
+                    <a <?=$dashboard_active?> href="../dashboard"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
                 </li>
                 <li>
-                    <a href="comments.html">
+                    <a <?=$registration_active?> href="../registration">
                         <span class="icon message" aria-hidden="true"></span>
                         Registration
                     </a>
-                    <span hidden class="msg-counter">7</span>
+                    <span class="msg-counter">7</span>
                 </li>
+
+                <li hidden>
+                    <a href="comments.html">
+                        <span class="icon message" aria-hidden="true"></span>
+                        Application
+                    </a>
+                    <span class="msg-counter">7</span>
+                </li>
+
+                <li hidden>
+                    <a href="comments.html">
+                        <span class="icon message" aria-hidden="true"></span>
+                        Slots
+                    </a>
+                    <span class="msg-counter">7</span>
+                </li>
+
                 <li>
                     <a href="comments.html">
                         <span class="icon message" aria-hidden="true"></span>
                         Scholarship List
                     </a>
-                    <span hidden class="msg-counter">7</span>
+                    <span class="msg-counter">7</span>
                 </li>
+
                 <li>
                     <a href="comments.html">
                         <span class="icon message" aria-hidden="true"></span>
-                        User
+                        Reports
                     </a>
+                    <span class="msg-counter">7</span>
                 </li>
-                 <li>
-                    <a href="comments.html">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Category
+            </ul>
+
+
+            <span class="system-menu__title">Setup Manager</span>
+            <ul class="sidebar-body-menu">
+                <li>
+                    <a href="appearance.html"><span class="icon edit" aria-hidden="true"></span>Account Setup</a>
+                </li>
+
+                <li>
+                    <a href="##"><span class="icon setting" aria-hidden="true"></span>Requirements Setup</a>
+                </li>
+
+                <li>
+                    <a href="##"><span class="icon setting" aria-hidden="true"></span>Category Setup</a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Do not displace this code -->
+                <!-- Do not displace this code -->
+                <li hidden>
+                    <a class="show-cat-btn" href="##">
+                        <span class="icon user-3" aria-hidden="true"></span>Users
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
                     </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="users-01.html">Users-01</a>
+                        </li>
+                        <li>
+                            <a href="users-02.html">Users-02</a>
+                        </li>
+                    </ul>
                 </li>
+                <!-- Do not displace this code -->
+                <!-- Do not displace this code -->
             </ul>
         </div>
     </div>
-</aside>    
+</aside>
