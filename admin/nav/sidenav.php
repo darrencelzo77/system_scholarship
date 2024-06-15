@@ -22,7 +22,7 @@
                 echo $current_page;
                 $dashboard_active = '';
                 $registration_active = '';
-                $scholarship_ative = '';
+                $scholarship_active = '';
                 $report_active = '';
                 $account_active = '';
                 $requirement_active = '';
