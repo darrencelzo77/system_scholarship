@@ -55,22 +55,31 @@ function fillSubContent(loc,eid) {
 		myWindow=window.open(url,'mywin',param(w,h));
 		myWindow.focus();
 	}
+
+	/*
+	swal({
+		title: "Logout",
+		text: "Are you sure to Logout?",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+	*/
+
 	function logout() {
-		Swal.fire({
+		swal({
 			title: "Logout",
-			text: "Are you sure you want to logout?",
+			text: "Are you sure to logout?",
 			icon: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#3085d6",
-			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, logout",
-			cancelButtonText: "Cancel"
-		}).then((result) => {
-			if (result.isConfirmed) {
-				window.location.href = 'pages/logout.php';
+			buttons: true,
+			dangerMode: true,
+		}).then((willSave) => {
+			if (willSave) {
+				window.location.href = '../dashboard/logout.php';
 			}
 		});
 	}
+	
 
 	function SampleAjaxtoLoadDataTable() {
 		$.ajax({

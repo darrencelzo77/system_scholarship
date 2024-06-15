@@ -1,4 +1,13 @@
-
+<?php
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+} else {
+    header('location: ../'); exit(0); 
+}
+?>
 <aside class="sidebar">
     <div class="sidebar-start">
         <div class="sidebar-head">
@@ -6,8 +15,8 @@
                 <span class="sr-only">Home</span>
                 <!-- <span hidden class="icon logo" aria-hidden="false"></span> -->
                 <div class="logo-text">
-                    <span class="logo-title">Admin</span>
-                    <span class="logo-subtitle">Dashboard</span>
+                    <span class="logo-title"><?=Type($_SESSION['typeid'])?></span>
+                    <span class="logo-subtitle"><?=Username($_SESSION['accountid'])?></span>
                 </div>
             </a>
             <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
@@ -19,7 +28,7 @@
             <ul class="sidebar-body-menu">
                 <?
                 $current_page = basename($_SERVER['REQUEST_URI'], ".php");
-                echo $current_page;
+                //echo $current_page;
                 $dashboard_active = '';
                 $registration_active = '';
                 $scholarship_active = '';

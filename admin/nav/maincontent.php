@@ -1,3 +1,13 @@
+<?php
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+} else {
+    header('location: ../'); exit(0); 
+}
+?>
 <h2 class="main-title">Dashboard</h2>
         <div class="row stat-cards">
           <div class="col-md-6 col-xl-3">

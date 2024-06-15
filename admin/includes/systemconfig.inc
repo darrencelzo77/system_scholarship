@@ -1,8 +1,8 @@
 <?php
-echo $_SERVER['REQUEST_URI']; 
+//echo $_SERVER['REQUEST_URI']; 
 error_reporting(0);
 $hostname = 'localhost'; 
-$dbname   = 'carwash';
+$dbname   = 'system_scholarship';
 $username = 'root';
 $password = ''; 
 global $db_connection;
