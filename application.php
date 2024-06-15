@@ -10,7 +10,7 @@
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
-	<nav class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
+	<nav hidden class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
 		<div class="container">
 			<a href="javascript:void();" onclick="window.location.href='?';" class="navbar-brand">
 				<span>Insert Logo Here</span>
@@ -100,24 +100,31 @@
 						<div class="card">
 							<div class="card-body">
 								<!-- <h5 class="card-title">Home</h5><br> -->
-								<h4 class="card-title">Welcome to _____ Scholarship Program!</h4>
-								
-								<div class="card-text mt-5">
-									<p>_____ Scholarship Program is dedicated to supporting students who demonstrate academic excellence, leadership potential, and a commitment to their communities. Our mission is to provide financial assistance to help you achieve your educational goals and make a positive impact on the world.</p><br>
-								
-									<h6><strong>Scholarship Amount: </strong>10,000 pesos per semsester.</h6>
-									<h6><strong>Available slots: </strong>30 per semester.</h6>
-									<h6><strong>Application Deadline: </strong>July 30, 2024.</h6>
-								</div>
+								<h4 class="card-title">Scholarship Application Form</h4>
 
 								<div class="mt-5">
-									<h5>Eligibility Criteria</h5>
-									<h6>Are you eligible for the ___ Scholarship? Review the criteria below:</h6>
+                                    <form action="">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="student_number">Student No.:</label>
+                                                <input type="text" id="student_number" class="form-control">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="firstname">Firstname:</label>
+                                                <input type="text" id="firstname" class="form-control">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="lastname">Lastname:</label>
+                                                <input type="text" id="lastname" class="form-control">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="email">Email Address:</label>
+                                                <input type="text" id="email" class="form-control">
+                                            </div>
+                                        </div>
 
-									<h6 class="mt-5"><strong>Academic Achievement: </strong>Minimum GPA of 3.5.</h6>
-									<h6><strong>Community Involvement: </strong>Demonstrated commitment to community service.</h6>
-									<h6><strong>Enrollment Status: </strong>Must be a undergraduate student (minimum of 30 units).</h6>
-									<h6><strong>Residency: </strong>Must be a Filipino citizen.</h6>
+                                        <button class="btn btn-primary btn-sm float-right mb-3">Submit</button>
+                                    </form>
 
 								</div>
 							</div>
@@ -130,63 +137,6 @@
 				<br><br><br><br><br><br><br>
 				<!-- <br><br><br><br><br><br><br>
 				<br><br><br><br><br><br><br> -->
-				
-				
-				<div class="row">
-					<span id="application" style="margin-top:-70px;"></span>
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Application</h5>
-
-								<div class="card-text mt-5">
-									<h6>Applying for the _____ Scholarship. Follow these steps:</h6>
-
-									<h6 class="mt-5"><strong>1. Register an account: </strong>Create an account to start your application.</h6>
-									<h6><strong>1. Complete the application form: </strong>Fill out your personal, academic, and extracurricular details.</h6>
-									<h6><strong>1. Submit Required Documents: </strong>Upload your transcripts, letters of recommendation, and a personal statement.</h6>
-									<h6><strong>1. Review your information and documents: </strong>Make sure that your information is correct and submit your application.</h6>
-
-								</div>
-
-								<div class="mt-5">
-									<h6>Required Documents:</h6>
-
-									<h6 class="mt-5"><strong>Certificate of Registration (COR) and Certificate of Grades (COG): </strong>Current Certificate of Registration and Last Semester's Certificate of Grades.</h6>
-									<h6><strong>Letters of Recommendation: </strong>Two letters from instructors or community leaders.</h6>
-									<h6><strong>Personal Statement: </strong>A 500-word essay on your academic and career goals, and how this scholarship will help you achieve them.</h6>
-
-								</div>
-
-								<a href="application" class="btn btn-primary btn-sm mt-2">Apply Now!</a>
-							</div>
-						</div>
-					</div>
-				</div>	
-				
-				
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				
-				
-				<div class="row">
-					<span id="about" style="margin-top:-70px;"></span>
-					<div class="col-lg-6">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Contact</h5>
-							</div>
-						</div>
-					</div>
-				</div>	
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
 			<!----END----->
 			</div>
 		</div>
