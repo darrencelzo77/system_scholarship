@@ -1,3 +1,28 @@
+
+<?
+if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+if (file_exists('admin/includes/systemconfig.inc')) {include_once('admin/includes/systemconfig.inc'); }
+if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/includes/systemconfig.inc'); }
+
+if(isset($_POST['register'])){
+	$category = $_POST['category'];
+	$studentnum = $_POST['studentnum'];
+	$firstname = $_POST['firstname'];
+	$lastname = $_POST['lastname'];
+	$email = $_POST['email'];
+
+	//echo $category, $studentnum, $firstname, $lastname, $email;
+
+	mysqli_query($db_connection, "INSERT INTO tblregistrations SET 
+								  categoryid='$category', studentnumber='$studentnum', 
+								  firstname='$firstname', lastname='$lastname', emailaddress='$email'");
+
+	$regid = mysqli_insert_id($db_connection);
+	mysqli_query($db_connection, "INSERT INTO tblregistrations_requirements SET regid='$regid'");
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
