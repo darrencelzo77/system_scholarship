@@ -1,81 +1,94 @@
 <?php
-if(session_id()==''){session_start();} 
-if (isset($_SESSION['accountid'])){ 
-    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-} else {
-    header('location: ../'); exit(0); 
-}
+// if(session_id()==''){session_start();} 
+// if (isset($_SESSION['accountid'])){ 
+//     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+//     if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+//     if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+// } else {
+//     header('location: ../'); exit(0); 
+// }
 ?>
-<h2 class="main-title">Dashboard</h2>
-        <div class="row stat-cards">
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon primary">
-                <i data-feather="bar-chart-2" aria-hidden="true"></i>
+          
+            <!-- Quick Action Toolbar Starts-->
+            <div class="row quick-action-toolbar">
+              <div class="col-md-12 grid-margin">
+                <div class="card">
+                  <div class="card-header d-block d-md-flex">
+                    <h5 class="mb-0">Quick Actions</h5>
+                    <p class="ml-auto mb-0">How are your active users trending overtime?<i class="icon-bulb"></i></p>
+                  </div>
+                  <div class="d-md-flex row m-0 quick-action-btns" role="group" aria-label="Quick action buttons">
+                    <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
+                      <button type="button" class="btn px-0"> <i class="icon-user mr-2"></i> Add Client</button>
+                    </div>
+                    <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
+                      <button type="button" class="btn px-0"><i class="icon-docs mr-2"></i> Create Quote</button>
+                    </div>
+                    <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
+                      <button type="button" class="btn px-0"><i class="icon-folder mr-2"></i> Enter Payment</button>
+                    </div>
+                    <div class="col-sm-6 col-md-3 p-3 text-center btn-wrapper">
+                      <button type="button" class="btn px-0"><i class="icon-book-open mr-2"></i>Create Invoice</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit success">
-                    <i data-feather="trending-up" aria-hidden="true"></i>4.07%
-                  </span>
-                  Last month
-                </p>
+            </div>
+            <!-- Quick Action Toolbar Ends-->
+            <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="d-sm-flex align-items-baseline report-summary-header">
+                          <h5 class="font-weight-semibold">Report Summary</h5> <span class="ml-auto">Updated Report</span> <button class="btn btn-icons border-0 p-2"><i class="icon-refresh"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row report-inner-cards-wrapper">
+                      <div class=" col-md -6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">EXPENSE</span>
+                          <h4>$32123</h4>
+                          <span class="report-count"> 2 Reports</span>
+                        </div>
+                        <div class="inner-card-icon bg-success">
+                          <i class="icon-rocket"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">PURCHASE</span>
+                          <h4>95,458</h4>
+                          <span class="report-count"> 3 Reports</span>
+                        </div>
+                        <div class="inner-card-icon bg-danger">
+                          <i class="icon-briefcase"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">QUANTITY</span>
+                          <h4>2650</h4>
+                          <span class="report-count"> 5 Reports</span>
+                        </div>
+                        <div class="inner-card-icon bg-warning">
+                          <i class="icon-globe-alt"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-xl report-inner-card">
+                        <div class="inner-card-text">
+                          <span class="report-title">RETURN</span>
+                          <h4>25,542</h4>
+                          <span class="report-count"> 9 Reports</span>
+                        </div>
+                        <div class="inner-card-icon bg-primary">
+                          <i class="icon-diamond"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon warning">
-                <i data-feather="file" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit success">
-                    <i data-feather="trending-up" aria-hidden="true"></i>0.24%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon purple">
-                <i data-feather="file" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit danger">
-                    <i data-feather="trending-down" aria-hidden="true"></i>1.64%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="stat-cards-item">
-              <div class="stat-cards-icon success">
-                <i data-feather="feather" aria-hidden="true"></i>
-              </div>
-              <div class="stat-cards-info">
-                <p class="stat-cards-info__num">1478 286</p>
-                <p class="stat-cards-info__title">Total visits</p>
-                <p class="stat-cards-info__progress">
-                  <span class="stat-cards-info__profit warning">
-                    <i data-feather="trending-up" aria-hidden="true"></i>0.00%
-                  </span>
-                  Last month
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
+            </div>

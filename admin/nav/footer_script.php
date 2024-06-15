@@ -1,13 +1,18 @@
 <?php
-if(session_id()==''){session_start();} 
-if (isset($_SESSION['accountid'])){ 
-    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-} else {
-    header('location: ../'); exit(0); 
-}
+// if(session_id()==''){session_start();} 
+// if (isset($_SESSION['accountid'])){ 
+//     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+//     if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+//     if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+// } else {
+//     header('location: ../'); exit(0); 
+// }
 ?>
-<script src="../plugins/chart.min.js"></script>
-<script src="../plugins/feather.min.js"></script>
-<script src="../js/script.js"></script>
+<script src="../vendors/js/vendor.bundle.base.js"></script>
+<script src="../vendors/chart.js/Chart.min.js"></script>
+<script src="../vendors/moment/moment.min.js"></script>
+<script src="../vendors/daterangepicker/daterangepicker.js"></script>
+<script src="../vendors/chartist/chartist.min.js"></script>
+<script src="../js/off-canvas.js"></script>
+<script src="../js/misc.js"></script>
+<script src="../js/dashboard.js"></script>

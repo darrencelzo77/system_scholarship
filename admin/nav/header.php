@@ -1,24 +1,29 @@
 <?php
-if(session_id()==''){session_start();} 
-if (isset($_SESSION['accountid'])){ 
-    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-} else {
-    header('location: ../'); exit(0); 
-}
+// if(session_id()==''){session_start();} 
+// if (isset($_SESSION['accountid'])){ 
+//   if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+//   if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+//   if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+// } else {
+//   header('location: ../'); exit(0); 
+// }
 ?>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Admin | Panel</title>
-  <!-- <link rel="shortcut icon" href="./img/svg/logo.svg" type="image/x-icon"> -->
-  <link rel="stylesheet" href="../css/style.min.css">
+  <link rel="stylesheet" href="../vendors/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="../vendors/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../vendors/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../vendors/chartist/chartist.min.css">
+  <!-- <link rel="stylesheet" href="../css/style.css"> -->
+  <link rel="stylesheet" href="../css/style_d.css">
+
+  <link rel="shortcut icon" href="../images/favicon.png" />
   <script src="../js/my_script.js"></script>
   <script src="../js/sweetalert.min.js"></script>
   <script src="../js/tinybox.js"></script>
-  
   <style>
     .tbox {position:absolute;  display:none; padding:14px 17px; z-index:900}
     .tinner {padding:15px; -moz-border-radius:5px; border-radius:5px; background:#fff url(images/preload.gif) no-repeat 50% 50%; border-right:1px solid #333; border-bottom:1px solid #333;}
@@ -41,3 +46,4 @@ if (isset($_SESSION['accountid'])){
     }
   </style>
 </head>
+

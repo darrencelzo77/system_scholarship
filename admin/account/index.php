@@ -10,24 +10,22 @@ if (isset($_SESSION['accountid'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<? include('../nav/header.php'); ?>
-<body>
-  <div class="layer"></div>
-  <a class="skip-link sr-only" href="#skip-target">Skip to content</a>
-  <div class="page-flex">
-    <? include('../nav/sidenav.php'); ?>
-    <div class="main-wrapper">
+  <? include('../nav/header.php'); ?>
+  <body>
+    <div class="container-scroller">
       <? include('../nav/topnav.php'); ?>
-      <main class="main users chart-page" id="skip-target">
-        <div class="container">
-          <div id="maincontent">
-            account
+      <div class="container-fluid page-body-wrapper">
+        <? include('../nav/sidenav.php'); ?>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div id="maincontent">
+             account
+            </div>
           </div>
+          <? include('../nav/footer.php'); ?>
         </div>
-      </main>
-      <? include('../nav/footer.php'); ?>
+      </div>
     </div>
-  </div>
-  <? include('../nav/footer_script.php'); ?>
-</body>
+    <? include('../nav/footer_script.php'); ?>
+  </body>
 </html>

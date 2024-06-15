@@ -94,7 +94,7 @@ function fillSubContent(loc,eid) {
 	}
 	
 	function ajax_new(url_, tmp_container) {
-		$('#' + tmp_container).html("<div align='center'><img src='images/ajax-loader3.gif' width='15px' /></div>");
+		$('#' + tmp_container).html("<div align='center'><img src='../images/tar.gif' width='40px' /></div>");
 
 		$.ajax({
 			url: url_,

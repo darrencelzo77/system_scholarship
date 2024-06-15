@@ -1,152 +1,99 @@
 <?php
-if(session_id()==''){session_start();} 
-if (isset($_SESSION['accountid'])){ 
-    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-} else {
-    header('location: ../'); exit(0); 
-}
+// if(session_id()==''){session_start();} 
+// if (isset($_SESSION['accountid'])){ 
+//     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+//     if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+//     if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+// } else {
+//     header('location: ../'); exit(0); 
+// }
 ?>
-<aside class="sidebar">
-    <div class="sidebar-start">
-        <div class="sidebar-head">
-            <a href="#" class="logo-wrapper" title="Home">
-                <span class="sr-only">Home</span>
-                <!-- <span hidden class="icon logo" aria-hidden="false"></span> -->
-                <div class="logo-text">
-                    <span class="logo-title"><?=Type($_SESSION['typeid'])?></span>
-                    <span class="logo-subtitle"><?=Username($_SESSION['accountid'])?></span>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+                <div hidden class="profile-image">
+                    <img hidden class="img-xs rounded-circle" src="../images/faces/face8.jpg" alt="profile image">
+                    <div hidden class="dot-indicator bg-success"></div>
+                </div>
+                <div class="text-wrapper">
+                    <p class="profile-name"><?=Type($_SESSION['accountid']);?></p>
+                    <p class="designation"><?=Username($_SESSION['accountid'])?></p>
+                </div>
+                <div hidden class="icon-container">
+                    <i class="icon-bubbles"></i>
+                    <div class="dot-indicator bg-danger"></div>
                 </div>
             </a>
-            <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
-                <span class="sr-only">Toggle menu</span>
-                <span class="icon menu-toggle" aria-hidden="true"></span>
-            </button>
-        </div>
-        <div class="sidebar-body">
-            <ul class="sidebar-body-menu">
-                <?
-                $current_page = basename($_SERVER['REQUEST_URI'], ".php");
-                //echo $current_page;
-                $dashboard_active = '';
-                $registration_active = '';
-                $scholarship_active = '';
-                $report_active = '';
-                $account_active = '';
-                $requirement_active = '';
-                $category_active = '';
+        </li>
+
+        <?
+        $current_page = basename($_SERVER['REQUEST_URI'], ".php");
+
+        $dashboard = '';
+        $registration = '';
+        $scholarship = '';
+        $report = '';
+        $category = '';
+        $account = '';
+
+        if ($current_page == 'dashboard') { 
+            $dashboard = 'active';
+        } else if ($current_page == 'registration') {
+            $registration = 'active';
+        } else if ($current_page == 'scholarship') {
+            $scholarship = 'active';
+        } else if ($current_page == 'report') {
+            $report = 'active';
+        } else if ($current_page == 'category') {
+            $category = 'active';
+        } else if ($current_page == 'account') {
+            $account = 'active';
+        }
+        ?>
+
+        <li class="nav-item <?=$dashboard?>">
+            <a class="nav-link" href="../dashboard">
+                <span class="menu-title">Dashboard</span>
+                <i hidden class="icon-screen-desktop menu-icon"></i>
+            </a>
+        </li>
+        
 
 
-                if ($current_page == 'dashboard') { 
-                    $dashboard_active = 'class="active"';
-                } else if ($current_page == 'registration') {
-                    $registration_active = 'class="active"';
-                }else if ($current_page == 'scholarship') {
-                    $scholarship_active = 'class="active"';
-                }else if ($current_page == 'report') {
-                    $report_active = 'class="active"';
-                }else if ($current_page == 'account') {
-                    $account_active = 'class="active"';
-                }else if ($current_page == 'requirement') {
-                    $requirement_active = 'class="active"';
-                }else if ($current_page == 'category') {
-                    $category_active = 'class="active"';
-                }
+        <li class="nav-item <?=$registration?>">
+            <a class="nav-link" href="../registration">
+                <span class="menu-title">Registration</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
 
+          <li class="nav-item <?=$scholarship?>">
+            <a class="nav-link" href="../scholarship">
+                <span class="menu-title">Scholarship List</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
 
-                ?> 
-                <li>
-                    <a <?=$dashboard_active?> href="../dashboard"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
-                </li>
-                <li>
-                    <a <?=$registration_active?> href="../registration">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Registration
-                    </a>
-                    <span class="msg-counter">7</span>
-                </li>
+        <li class="nav-item <?=$report?>">
+            <a class="nav-link" href="../report">
+                <span class="menu-title">Reports</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item <?=$category?>">
+            <a class="nav-link" href="../category">
+                <span class="menu-title">Category Setup</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
 
-                <li hidden>
-                    <a href="comments.html">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Application
-                    </a>
-                    <span class="msg-counter">7</span>
-                </li>
+        <li class="nav-item <?=$account?>">
+            <a class="nav-link" href="../account">
+                <span class="menu-title">Account Setup</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
 
-                <li hidden>
-                    <a href="comments.html">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Slots
-                    </a>
-                    <span class="msg-counter">7</span>
-                </li>
-
-                <li>
-                    <a <?=$scholarship_active?>  href="../scholarship">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Scholarship List
-                    </a>
-                    <span class="msg-counter">7</span>
-                </li>
-
-                <li>
-                    <a <?=$report_active?>  href="../report">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Reports
-                    </a>
-                    <span class="msg-counter">7</span>
-                </li>
-            </ul>
-
-
-            <span class="system-menu__title">Setup Manager</span>
-            <ul class="sidebar-body-menu">
-                <li>
-                    <a <?=$account_active?> href="../account"><span class="icon edit" aria-hidden="true"></span>Account Setup</a>
-                </li>
-
-                <li>
-                    <a <?=$requirement_active?>  href="../requirement"><span class="icon setting" aria-hidden="true"></span>Requirements Setup</a>
-                </li>
-
-                <li>
-                    <a <?=$category_active?>  href="../category"><span class="icon setting" aria-hidden="true"></span>Category Setup</a>
-                </li>
-
-
-
-
-
-
-
-
-
-
-
-                <!-- Do not displace this code -->
-                <!-- Do not displace this code -->
-                <li hidden>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon user-3" aria-hidden="true"></span>Users
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="users-01.html">Users-01</a>
-                        </li>
-                        <li>
-                            <a href="users-02.html">Users-02</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- Do not displace this code -->
-                <!-- Do not displace this code -->
-            </ul>
-        </div>
-    </div>
-</aside>
+    </ul>
+</nav>

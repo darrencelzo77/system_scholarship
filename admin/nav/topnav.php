@@ -1,110 +1,44 @@
 <?php
-if(session_id()==''){session_start();} 
-if (isset($_SESSION['accountid'])){ 
-    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-} else {
-    header('location: ../'); exit(0); 
-}
+// if(session_id()==''){session_start();} 
+// if (isset($_SESSION['accountid'])){ 
+//     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+//     if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+//     if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+// } else {
+//     header('location: ../'); exit(0); 
+// }
 ?>
-<nav class="main-nav--bg">
-  <div class="container main-nav">
-    <div class="main-nav-start">
-      <div hidden class="search-wrapper">
-        <i data-feather="search" aria-hidden="true"></i>
-        <input type="text" placeholder="Enter keywords ..." required>
-      </div>
-    </div>
-    <div class="main-nav-end">
-      <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
-        <span class="sr-only">Toggle menu</span>
-        <span class="icon menu-toggle--gray" aria-hidden="true"></span>
+<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  <div class="navbar-brand-wrapper d-flex align-items-center">
+    <a class="navbar-brand brand-logo" href="index.html">
+      <img hidden src="../images/logo.svg" alt="logo" class="logo-dark" />
+    </a>
+    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+  </div>
+  <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+    <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Scholarship Management System</h5>
+    <ul class="navbar-nav navbar-nav-right ml-auto">
+      <form class="search-form d-none d-md-block" action="#">
+        <i class="icon-magnifier"></i>
+        <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+      </form>
+      <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
+        <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+          <img hidden class="img-xs rounded-circle ml-2" src="images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal"> <?=Name($_SESSION['accountid'])?> </span></a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+            <div class="dropdown-header text-center">
+              <img hidden class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
+              <p hidden class="mb-1 mt-3"></p>
+              <p class="font-weight-light text-muted mb-0"><?=Username($_SESSION['accountid'])?></p>
+            </div>
+            <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+            <a class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Audit Trail</a>
+            <a class="dropdown-item" href="javascript:void();" onclick="logout();"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
+          </div>
+        </li>
+      </ul>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+        <span class="icon-menu"></span>
       </button>
-      <div hidden class="lang-switcher-wrapper">
-        <button class="lang-switcher transparent-btn" type="button">
-          EN
-          <i data-feather="chevron-down" aria-hidden="true"></i>
-        </button>
-        <ul class="lang-menu dropdown">
-          <li><a href="##">English</a></li>
-          <li><a href="##">French</a></li>
-          <li><a href="##">Uzbek</a></li>
-        </ul>
-      </div>
-      <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
-        <span class="sr-only">Switch theme</span>
-        <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
-        <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
-      </button>
-      <div hidden class="notification-wrapper">
-        <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
-          <span class="sr-only">To messages</span>
-          <span class="icon notification active" aria-hidden="true"></span>
-        </button>
-        <ul class="users-item-dropdown notification-dropdown dropdown">
-          <li>
-            <a href="##">
-              <div class="notification-dropdown-icon info">
-                <i data-feather="check"></i>
-              </div>
-              <div class="notification-dropdown-text">
-                <span class="notification-dropdown__title">System just updated</span>
-                <span class="notification-dropdown__subtitle">The system has been successfully upgraded. Read more
-                here.</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="##">
-              <div class="notification-dropdown-icon danger">
-                <i data-feather="info" aria-hidden="true"></i>
-              </div>
-              <div class="notification-dropdown-text">
-                <span class="notification-dropdown__title">The cache is full!</span>
-                <span class="notification-dropdown__subtitle">Unnecessary caches take up a lot of memory space and
-                interfere ...</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="##">
-              <div class="notification-dropdown-icon info">
-                <i data-feather="check" aria-hidden="true"></i>
-              </div>
-              <div class="notification-dropdown-text">
-                <span class="notification-dropdown__title">New Subscriber here!</span>
-                <span class="notification-dropdown__subtitle">A new subscriber has subscribed.</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a class="link-to-page" href="##">Go to Notifications page</a>
-          </li>
-        </ul>
-      </div>
-      <div class="nav-user-wrapper">
-        <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
-          <span class="sr-only">My profile</span>
-          <span class="nav-user-img">
-            <picture><source srcset="./img/avatar/avatar-illustrated-02.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
-            </span>
-          </button>
-          <ul class="users-item-dropdown nav-user-dropdown dropdown">
-            <li><a href="##">
-              <i data-feather="user" aria-hidden="true"></i>
-              <span>Profile</span>
-            </a></li>
-            <li><a href="##">
-              <i data-feather="settings" aria-hidden="true"></i>
-              <span>Account settings</span>
-            </a></li>
-            <li><a class="danger" href="javascript:void();" onclick="logout();">
-              <i data-feather="log-out" aria-hidden="true"></i>
-              <span>Log out</span>
-            </a></li>
-          </ul>
-        </div>
-      </div>
     </div>
   </nav>

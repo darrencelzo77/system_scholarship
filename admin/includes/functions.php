@@ -107,6 +107,11 @@ function Username($id){ global $db_connection;
 	return GetData('SELECT username FROM tblaccount WHERE accountid='.$id);
 }
 
+function Name($id){ global $db_connection;
+	return GetData('SELECT concat(firstname,\' \',lastname) as name FROM tblaccount WHERE accountid='.$id);
+}
+
+
 
 
 
