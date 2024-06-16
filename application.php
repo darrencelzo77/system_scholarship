@@ -91,10 +91,7 @@ if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/i
 			<div class="collapse navbar-collapse order-3" id="navbarCollapse">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a href="#home" class="nav-link">Home</a>
-					</li>
-					<li class="nav-item">
-						<a href="#application" class="nav-link">Application</a>
+						<a href="system_scholarship/" class="nav-link">Home</a>
 					</li>
 					<li class="nav-item">
 						<a href="#about" class="nav-link">Contact</a>
@@ -146,8 +143,7 @@ if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/i
 					</div>
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="#home">Home</a></li>
-							<li class="breadcrumb-item"><a href="#application">Application</a></li>
+							<li class="breadcrumb-item"><a href="../system_scholarship/">Home</a></li>
 							<li class="breadcrumb-item active">Menu</li>
 						</ol>
 					</div>
