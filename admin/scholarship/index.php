@@ -19,7 +19,7 @@ if (isset($_SESSION['accountid'])){
         <div class="main-panel">
           <div class="content-wrapper">
             <div id="maincontent">
-             scholarship
+              <?include('scholarship.php')?>
             </div>
           </div>
           <? include('../nav/footer.php'); ?>

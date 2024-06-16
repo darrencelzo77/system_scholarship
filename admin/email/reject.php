@@ -9,7 +9,8 @@
       header('location: ../'); exit(0); 
     }
 
-    $email = GetData('select emailaddress from tblregistrations where regid='.$_POST['regid']);
+    $reason = $_POST['reason'];
+    $email = GetData('select emailaddress from tblregistrations where regid='.$_POST['reject_a']);
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
@@ -33,11 +34,11 @@
         $mail->Subject = 'Accept';
 
 
-        $mail->Body = 'Your Application for Scholarhip is accepted.';
+        $mail->Body = "Your Application for Scholarhip is rejected because of the following reason: <br> $reason";
         
         try {
             $mail->send();
-            mysqli_query($db_connection, 'UPDATE tblregistrations SET is_accept=1 WHERE regid='.$_POST['regid']);
+            mysqli_query($db_connection, 'UPDATE tblregistrations SET is_reject=1 WHERE regid='.$_POST['reject_a']);
 			echo '';
 			
 			echo '<span style="color:green;">Email Sent</span>';

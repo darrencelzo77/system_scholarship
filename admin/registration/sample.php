@@ -9,7 +9,10 @@ if (isset($_SESSION['accountid'])){
 }
 
 if(isset($_POST['regid'])){
-    //include('../email/accept.php');
-    echo'senn';
+  include('../email/accept.php');
+}
+
+if(isset($_POST['reject_a'])){
+  include('../email/reject.php');
 }
 ?>
