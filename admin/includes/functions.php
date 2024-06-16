@@ -111,6 +111,14 @@ function Name($id){ global $db_connection;
 	return GetData('SELECT concat(firstname,\' \',lastname) as name FROM tblaccount WHERE accountid='.$id);
 }
 
+function Email($id){ global $db_connection;
+	return GetData('SELECT email FROM tblaccount WHERE accountid='.$id);
+}
+
+function Pass($id){ global $db_connection;
+	return GetData('SELECT accountpassword FROM tblaccount WHERE accountid='.$id);
+}
+
 
 
 
