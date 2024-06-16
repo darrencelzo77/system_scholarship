@@ -57,11 +57,11 @@ if (isset($_SESSION['accountid'])){
 
 	function reject_application(rejectid) {
     var reject_a = document.getElementById('reject_a' + rejectid).value;
-	var reason = document.getElementById('reason').value;
+	  var reason = document.getElementById('reason').value;
     let myForm = new FormData();
     myForm.append('firstname', reject_a);
     myForm.append('reject_a', rejectid);
-	myForm.append('reason', reason);
+	  myForm.append('reason', reason);
     
     swal({
         title: "Application",

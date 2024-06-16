@@ -45,7 +45,7 @@ if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/i
 			myForm.append('register', 1);
 			swal({
 				title: "Basic Information",
-				text: "Are you sure want to update your information?",
+				text: "Are you sure that all your information are correct?",
 				icon: "info",
 				buttons: true,
 				dangerMode: true,

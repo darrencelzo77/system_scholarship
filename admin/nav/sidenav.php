@@ -36,6 +36,7 @@
         $report = '';
         $category = '';
         $account = '';
+        $schedule = '';
 
         if ($current_page == 'dashboard') { 
             $dashboard = 'active';
@@ -49,6 +50,8 @@
             $category = 'active';
         } else if ($current_page == 'account') {
             $account = 'active';
+        }else if ($current_page == 'schedule') {
+            $schedule = 'active';
         }
         ?>
 
@@ -64,6 +67,13 @@
         <li class="nav-item <?=$registration?>">
             <a class="nav-link" href="../registration">
                 <span class="menu-title">Registration</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
+        
+        <li class="nav-item <?=$schedule?>">
+            <a class="nav-link" href="../schedule">
+                <span class="menu-title">Schedule</span>
                 <i hidden class="icon-chart menu-icon"></i>
             </a>
         </li>
@@ -94,6 +104,7 @@
                 <i hidden class="icon-chart menu-icon"></i>
             </a>
         </li>
+
 
     </ul>
 </nav>

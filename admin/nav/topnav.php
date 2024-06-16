@@ -31,8 +31,8 @@
               <p hidden class="mb-1 mt-3"></p>
               <p class="font-weight-light text-muted mb-0"><?=Username($_SESSION['accountid'])?></p>
             </div>
-            <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-            <a class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Audit Trail</a>
+            <a href="javascript:void(0);" onclick="ajax_new('../profile/index.php','maincontent')" class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary" ></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+            <a href="javascript:void(0);" onclick="ajax_new('../trail/index.php','maincontent')" class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Audit Trail</a>
             <a class="dropdown-item" href="javascript:void();" onclick="logout();"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
           </div>
         </li>

@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="../vendors/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../vendors/chartist/chartist.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- <link rel="stylesheet" href="../css/style.css"> -->
   <link rel="stylesheet" href="../css/style_d.css">
 
