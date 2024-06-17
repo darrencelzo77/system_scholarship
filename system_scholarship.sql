@@ -31,11 +31,11 @@ CREATE TABLE `tblaccount` (
   `typeid` tinyint(1) DEFAULT 0,
   `branchid` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`accountid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `tblaccount` */
 
-insert  into `tblaccount`(`accountid`,`username`,`firstname`,`middlename`,`lastname`,`email`,`accountpassword`,`typeid`,`branchid`) values (1,'darren','darren','darren','darren','darrencelzo77@gmail.com','darren',1,1),(2,'allen','allen','allen','allen','allen@gmail.com','social',1,1);
+insert  into `tblaccount`(`accountid`,`username`,`firstname`,`middlename`,`lastname`,`email`,`accountpassword`,`typeid`,`branchid`) values (1,'admin','Darren','Sebastian','Acuna','darrencelzo77@gmail.com','darren',1,1),(2,'allen','allen','allen','allen','allen@gmail.com','social',1,1),(3,'asdf','as','dfas','dfasd','fs','fasfd',2,0),(4,'','darrre','','','','',0,0),(5,'Darren','Sebastian','alkjsdkjlasfd','','darren@gmail.co','mdarren',2,1),(6,'','','','','','',0,0),(7,'','','','','','',0,0),(8,'darreasdf','asdf','asdfa','','asfdasdf','asfdasdf',0,0),(9,'kelly','klley','kklafsdklh','klhkhasdfkhakjlsdfk','darren','jdafsdf',3,0);
 
 /*Table structure for table `tblacctype` */
 
@@ -49,7 +49,23 @@ CREATE TABLE `tblacctype` (
 
 /*Data for the table `tblacctype` */
 
-insert  into `tblacctype`(`typeid`,`type`) values (1,'Super Admin'),(2,'Admin'),(3,'Staff'),(4,'Student');
+insert  into `tblacctype`(`typeid`,`type`) values (1,'Super Admin'),(2,'Admin'),(3,'Staff');
+
+/*Table structure for table `tblactivity` */
+
+DROP TABLE IF EXISTS `tblactivity`;
+
+CREATE TABLE `tblactivity` (
+  `activityid` int(11) NOT NULL AUTO_INCREMENT,
+  `accountid` int(11) DEFAULT 0,
+  `activitydate` datetime DEFAULT NULL,
+  `activity` varchar(128) DEFAULT '',
+  PRIMARY KEY (`activityid`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tblactivity` */
+
+insert  into `tblactivity`(`activityid`,`accountid`,`activitydate`,`activity`) values (1,1,NULL,''),(2,1,NULL,''),(3,1,'2024-06-16 16:22:16',''),(4,1,'2024-06-16 16:25:36','Login'),(5,1,'2024-06-16 16:25:44','Login'),(6,1,'2024-06-16 16:26:49','Logout'),(7,1,'2024-06-16 16:26:59','Login'),(8,1,'2024-06-16 16:27:05','Login'),(9,1,'2024-06-16 16:30:50','Login'),(10,1,'2024-06-16 16:30:55','Logout'),(11,1,'2024-06-16 16:31:01','Login'),(12,1,'2024-06-16 16:38:49','Login'),(13,1,'2024-06-16 16:38:49','Login'),(14,1,'2024-06-17 19:21:06','Logout');
 
 /*Table structure for table `tblbranch` */
 
@@ -71,13 +87,14 @@ DROP TABLE IF EXISTS `tblcategory`;
 
 CREATE TABLE `tblcategory` (
   `categoryid` int(11) NOT NULL AUTO_INCREMENT,
+  `cat` varchar(128) DEFAULT '',
   `category` longtext DEFAULT NULL,
   PRIMARY KEY (`categoryid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblcategory` */
 
-insert  into `tblcategory`(`categoryid`,`category`) values (1,'Category 1. From Family of Indigent, Working Student, Income is not enough, Coverage from G7 to College and Vocational 1 to 2 years. Except Tesda.'),(2,'Category 2. ALS enrollees with in Municipality of San Jose, Any Age Must ALS Enrollees.'),(3,'Category 3. Solo Parent in Schooling, Must be a Registered as a Solo Parent Covered Elementary to College.'),(4,'Category 4. PWD Penitentiary Applicant or part of the family with Relative of PWD Must be Registered As PWD with ID and must the ID Issued by LGU of Municipal of San Jose Covered Elementary to College.'),(5,'Category 5. An orphan a child whose parents have died, are unknown or have permanently abandoned them (with Actual Validation).'),(6,'Category 6. Barangay Functionary Beneficiaries, Must have Certification from Barangay or DILG if a Part of Barangay Functionary, G7 to college.'),(7,'Category 7. Senior Citizen Beneficiary, Son or Grandson non Pensioner G7 to College.'),(8,'Category 8. LGBTQ+, Must be a Registered or Member as a LGBTQ+ of San Jose.');
+insert  into `tblcategory`(`categoryid`,`cat`,`category`) values (1,'Category 1','Category 1. From Family of Indigent, Working Student, Income is not enough, Coverage from G7 to College and Vocational 1 to 2 years. Except Tesda.'),(2,'Category 2','Category 2. ALS enrollees with in Municipality of San Jose, Any Age Must ALS Enrollees.'),(3,'Category 3','Category 3. Solo Parent in Schooling, Must be a Registered as a Solo Parent Covered Elementary to College.'),(4,'Category 4','Category 4. PWD Penitentiary Applicant or part of the family with Relative of PWD Must be Registered As PWD with ID and must the ID Issued by LGU of Municipal of San Jose Covered Elementary to College.'),(5,'Category 5','Category 5. An orphan a child whose parents have died, are unknown or have permanently abandoned them (with Actual Validation).'),(6,'Category 6','Category 6. Barangay Functionary Beneficiaries, Must have Certification from Barangay or DILG if a Part of Barangay Functionary, G7 to college.'),(7,'Category 7','Category 7. Senior Citizen Beneficiary, Son or Grandson non Pensioner G7 to College.'),(8,'Category 8','Category 8. LGBTQ+, Must be a Registered or Member as a LGBTQ+ of San Jose.');
 
 /*Table structure for table `tblcivil` */
 
@@ -156,16 +173,23 @@ DROP TABLE IF EXISTS `tblregistrations`;
 
 CREATE TABLE `tblregistrations` (
   `regid` int(11) NOT NULL AUTO_INCREMENT,
+  `trackingnumber` varchar(128) DEFAULT '',
+  `regdate` datetime DEFAULT current_timestamp(),
   `categoryid` int(11) DEFAULT 0,
   `studentnumber` varchar(128) DEFAULT '',
   `firstname` varchar(128) DEFAULT '',
   `lastname` varchar(128) DEFAULT '',
+  `dob` date DEFAULT NULL,
   `emailaddress` varchar(128) DEFAULT '',
-  `is_reject` tinyint(11) DEFAULT 0,
+  `is_reject` tinyint(1) DEFAULT 0,
+  `is_accept` tinyint(1) DEFAULT 0,
+  `is_online` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`regid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblregistrations` */
+
+insert  into `tblregistrations`(`regid`,`trackingnumber`,`regdate`,`categoryid`,`studentnumber`,`firstname`,`lastname`,`dob`,`emailaddress`,`is_reject`,`is_accept`,`is_online`) values (1,'','2024-06-16 10:23:08',1,'2022003207','Jonh Allen','Mendoza',NULL,'jonhallenmendoza567@gmail.com',1,0,0),(2,'','2024-06-16 10:23:08',2,'202211111','Darren','Acuna',NULL,'darren@gmail.com',0,1,0),(3,'','2024-06-16 10:23:08',3,'202222222','Jose','Rizal',NULL,'joserizal@gmail.com',0,1,0),(4,'','2024-06-16 10:23:08',2,'2022003207','Jonh Allen','Mendoza',NULL,'jonhallenmendoza.basc@gmail.com',0,0,0),(5,'','2024-06-16 13:40:56',1,'8383','Clarence','Flores',NULL,'clarenceflores987@gmail.com',0,1,0),(6,'','2024-06-17 16:32:47',0,'','','',NULL,'',0,0,0),(7,'','2024-06-17 16:34:02',0,'','','',NULL,'',0,0,0),(8,'','2024-06-17 16:34:03',0,'','','',NULL,'',0,0,0),(9,'','2024-06-17 16:34:03',0,'','','',NULL,'',0,0,0),(10,'','2024-06-17 16:34:04',0,'','','',NULL,'',0,0,0),(11,'','2024-06-17 16:34:04',0,'','','',NULL,'',0,0,0),(12,'','2024-06-17 16:34:05',0,'','','',NULL,'',0,0,0);
 
 /*Table structure for table `tblregistrations_requirements` */
 
@@ -179,9 +203,26 @@ CREATE TABLE `tblregistrations_requirements` (
   `idofstudent` varchar(256) DEFAULT '',
   `is_reject` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`requirementid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblregistrations_requirements` */
+
+insert  into `tblregistrations_requirements`(`requirementid`,`regid`,`cor`,`indigency`,`idofstudent`,`is_reject`) values (1,9,'','','',0),(2,1,'','','',0),(3,2,'','','',0),(4,3,'','','',0),(5,4,'','','',0),(6,5,'','','',0);
+
+/*Table structure for table `tblschedule` */
+
+DROP TABLE IF EXISTS `tblschedule`;
+
+CREATE TABLE `tblschedule` (
+  `schedid` int(11) NOT NULL AUTO_INCREMENT,
+  `entrydate` datetime DEFAULT NULL,
+  `scheddate` datetime DEFAULT NULL,
+  `regid` int(11) DEFAULT 0,
+  `status` int(11) DEFAULT 0,
+  PRIMARY KEY (`schedid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tblschedule` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

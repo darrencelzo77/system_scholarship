@@ -20,9 +20,26 @@ if(isset($_POST['add_account_a'])){
     $branchid = $_POST['branchid'];
 
     mysqli_query($db_connection, "INSERT INTO tblaccount SET username='$username', 
-                            firstname='$middlename', middlename='$lastname',
+                            firstname='$firstname', middlename='$middlename',lastname='$lastname',
                           email='$email', accountpassword='$password', 
                           typeid='$typeid'");
+}
+
+
+if(isset($_POST['edit'])){
+    $username = $_POST['username'];
+    $firstname = $_POST['firstname'];
+    $middlename = $_POST['middlename'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $typeid = $_POST['typeid'];
+
+    mysqli_query($db_connection, 'update tblaccount SET username=\''.$username.'\', 
+                            firstname=\''.$firstname.'\', middlename=\''.$middlename.'\',
+                            lastname=\''.$lastname.'\',
+                          email=\''.$email.'\', accountpassword=\''.$password.'\', 
+                          typeid=\''.$typeid.'\' where accountid='.$_POST['edit']);
 }
 ?>
 
@@ -36,7 +53,7 @@ if(isset($_POST['add_account_a'])){
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped">
                 <tr>
                     <thead>
                         <th>#</th>
@@ -44,6 +61,7 @@ if(isset($_POST['add_account_a'])){
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Usertype</th>
+                        <th>Edit</th>
                     </thead>
 
                     <tbody>
@@ -64,6 +82,8 @@ if(isset($_POST['add_account_a'])){
                                 echo '<td>'.ucwords($rw['firstname']. ' '.$rw['middlename']. ' '. $rw['lastname']).'</td>';
                                 echo '<td>'.$rw['email'].'</td>';
                                 echo '<td>'.Type($rw['typeid']).'</td>';
+                                  echo '<td style="cursor:pointer;" 
+                                  onclick="TINY.box.show({url: \'add_account.php?toedit='.$rw['accountid'].'\',width:400,height:520})">Edit</td>';
                                 echo '</tr>';
                             }
                         ?>

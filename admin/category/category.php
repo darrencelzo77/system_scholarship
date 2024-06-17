@@ -24,16 +24,16 @@ if(isset($_POST['edit'])){
   <h3>Category</h3>
 </div>
 <div align="right">
-  <button class="btn btn-dark btn-sm mb-3" onclick="ajax_new('category_add.php','maincontent');">Add New</button>
+  <button hidden class="btn btn-dark btn-sm mb-3" onclick="ajax_new('category_add.php','maincontent');">Add New</button>
 </div>
 <div class="card">
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-hover table-sm">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>Category</th>
-            <th>Action</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -47,11 +47,9 @@ if(isset($_POST['edit'])){
               $rw[$key] = htmlspecialchars($value);
             }
             echo'<tr>';
-            echo'<td>'.substr($rw['category'], 0,70).'</td>'; 
+            echo'<td>'.$rw['category'].'</td>'; 
             // echo'<td><button onclick="view_registration('.$rw['intakeid'].');" class="btn btn-primary btn-sm">VIEW</button>
-            echo '<td>
-            <a href="javascript:void(0);" style="color:black" title="Edit" data-toggle="tooltip" onclick="TINY.box.show({url: \'category_edit.php?categoryid='.secureData($rw['categoryid']).'\',width:700,height:150})"><i class="material-icons">&#xE254;</i></a>
-            </td>'; 
+           
             echo'</tr>';
           }
           ?>  

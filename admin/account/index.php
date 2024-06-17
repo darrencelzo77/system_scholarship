@@ -63,6 +63,61 @@ if (isset($_SESSION['accountid'])){
         });
 
       }
+
+
+      //edit_user
+      function edit_user(accountid){
+        var username = object('username').value;
+        var firstname = object('firstname').value;
+        var middlename = object('middlename').value;
+        var lastname = object('lastname').value;
+        var email = object('email').value;
+        var password = object('password').value;
+        var typeid = object('typeid').value;
+        var add_account_a = object('add_account_a')
+
+        let myForm = new FormData();
+        myForm.append('username', username);
+        myForm.append('firstname', firstname);
+        myForm.append('middlename', middlename);
+        myForm.append('lastname', lastname);
+        myForm.append('email', email);
+        myForm.append('password', password);
+        myForm.append('typeid', typeid);
+        myForm.append('edit', accountid)
+
+        swal({
+        title: "Add New User",
+        text: "Are you sure you to add new account?",
+        icon: "info",
+        buttons: true,
+        dangerMode: true,
+        }).then((willAdd) => {
+            if (willAdd) {
+                $.ajax({
+                    url: 'account.php',
+                    type: "POST",
+                    data: myForm,
+                    beforeSend: function () {
+                        $("#body-overlay").show();
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $("#maincontent").html(data);
+                        $("#body-overlay").hide();
+                        swal('Success', 'Successfully Processed Request', 'success');
+                    },
+                    error: function () {
+              swal('Error', 'Error Processing Request', 'error');
+                    }
+                });
+          TINY.box.hide();
+            }
+        });
+
+      }
+
     </script>
   </head>
   <? include('../nav/header.php'); ?>
