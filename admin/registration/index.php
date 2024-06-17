@@ -110,7 +110,9 @@ if (isset($_SESSION['accountid'])){
            <div id="body-overlay"><div><img src="../images/processing.gif" width="80%" /></div></div>
             <div id="maincontent">
               <? include('registration.php'); ?>
+              <br>
             </div>
+
           <? include('../nav/footer.php'); ?>
         </div>
       </div>

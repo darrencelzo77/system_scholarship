@@ -21,7 +21,7 @@
   <!-- <link rel="stylesheet" href="../css/style.css"> -->
   <link rel="stylesheet" href="../css/style_d.css">
 
-  <link rel="shortcut icon" href="../images/favicon.png" />
+  <link rel="shortcut icon" href="../images/logo_u.png" />
   <script src="../js/my_script.js"></script>
   <script src="../js/sweetalert.min.js"></script>
   <script src="../js/tinybox.js"></script>

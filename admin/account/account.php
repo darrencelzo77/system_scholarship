@@ -19,8 +19,10 @@ if(isset($_POST['add_account_a'])){
     $typeid = $_POST['typeid'];
     $branchid = $_POST['branchid'];
 
-    mysqli_query($db_connection, "INSERT INTO tblaccount SET username='$username', firstname='$middlename', middlename='$lastname',
-                                                              email='$email', accountpassword='$password', typeid='$typeid',branchid='$branchid'");
+    mysqli_query($db_connection, "INSERT INTO tblaccount SET username='$username', 
+                            firstname='$middlename', middlename='$lastname',
+                          email='$email', accountpassword='$password', 
+                          typeid='$typeid'");
 }
 ?>
 

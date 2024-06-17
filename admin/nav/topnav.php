@@ -10,10 +10,8 @@
 ?>
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex align-items-center">
-    <a class="navbar-brand brand-logo" href="index.html">
-      <img hidden src="../images/logo.svg" alt="logo" class="logo-dark" />
-    </a>
-    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+    <img src="../images/logo_u.png" height="50"/>&nbsp;
+    <span class="text-white">San Jose Batangas</span>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
     <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Scholarship Management System</h5>
@@ -31,7 +29,7 @@
               <p hidden class="mb-1 mt-3"></p>
               <p class="font-weight-light text-muted mb-0"><?=Username($_SESSION['accountid'])?></p>
             </div>
-            <a href="javascript:void(0);" onclick="ajax_new('../profile/index.php','maincontent')" class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary" ></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+            <a href="../profile/" class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary" ></i> My Profile <span class="badge badge-pill badge-danger"></span></a>
             <a href="javascript:void(0);" onclick="ajax_new('../trail/index.php','maincontent')" class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Audit Trail</a>
             <a class="dropdown-item" href="javascript:void();" onclick="logout();"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
           </div>

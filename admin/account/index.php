@@ -20,7 +20,6 @@ if (isset($_SESSION['accountid'])){
         var email = object('email').value;
         var password = object('password').value;
         var typeid = object('typeid').value;
-        var branchid = object('branchid').value;
         var add_account_a = object('add_account_a')
 
         let myForm = new FormData();
@@ -31,7 +30,6 @@ if (isset($_SESSION['accountid'])){
         myForm.append('email', email);
         myForm.append('password', password);
         myForm.append('typeid', typeid);
-        myForm.append('branchid', branchid);
         myForm.append('add_account_a', add_account_a)
 
         swal({

@@ -32,15 +32,16 @@ if(isset($_POST['register'])){
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
+	<link rel="shortcut icon" href="admin/images/logo_u.png" />
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
 	<nav class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
 		<div class="container">
 			<a href="javascript:void();" onclick="window.location.href='?';" class="navbar-brand">
-				<span>Insert Logo Here</span>
-				<!--<img src="admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-				<span class="brand-text font-weight-light">Scholarship</span>
+				<!-- <span>Insert Logo Here</span> -->
+				<img style="height:50px" src="admin/images/logo_u.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<span class="brand-text font-weight-light">Educational Assistance for Students</span>
 			</a>
 
 			<button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

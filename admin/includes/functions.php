@@ -121,6 +121,16 @@ function Pass($id){ global $db_connection;
 
 
 
+function Audit($accountid,$activity){ global $db_connection;
+	return mysqli_query($db_connection,'insert into tblactivity set 
+			activitydate=NOW(), accountid='.$accountid.', activity=\''.$activity.'\' ');
+}
+
+function Cat($id){ global $db_connection;
+	return GetData('SELECT cat FROM tblcategory WHERE categoryid='.$id);
+}
+
+		
 
 
 ?>

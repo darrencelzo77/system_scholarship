@@ -49,6 +49,7 @@ if (isset($_SESSION['accountid'])) {
                                 echo '<td>' . $rw['firstname'] . ' ' . $rw['lastname'] . '</td>';
                                 echo '<td>' . $rw['emailaddress'] . '</td>';
                                 echo '<td> 
+                                        <a class="btn btn-success btn-sm">Schedule</a>
                                         <a class="btn btn-success btn-sm">CALL</a>
                                     </td>';
                                 echo '</tr>';

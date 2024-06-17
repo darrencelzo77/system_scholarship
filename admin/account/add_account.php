@@ -50,15 +50,7 @@ if (isset($_SESSION['accountid'])){
             echo '</select>'; ?>
         </div>
 
-        <div class="col-6 mb-3">
-            <?php echo '<select class="form-control" id="branchid">';
-                echo '<option value="0">Select Branch</option>';
-                $rs1 = mysqli_query($db_connection,'SELECT branchid, branchname from tblbranch order by branchid');
-                while ($rw1 = mysqli_fetch_array($rs1)) { $sel = '';
-                    echo '<option value="'.$rw1['branchid'].'" '.$sel.'>'.$rw1['branchname'].'</option>';
-                }
-            echo '</select>'; ?>
-        </div>
+        
     </div>
     <div align="right">
         <a href="javascript:void(0);" class="btn btn-dark btn-sm mt-3" onclick="add_user();">Proceed</a>

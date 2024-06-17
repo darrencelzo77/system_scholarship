@@ -13,6 +13,7 @@ if(isset($_POST['signin']) && isset($_SESSION['token']) && $_SESSION['token']==$
     $_SESSION['accountid'] = $rw['accountid'];
     $_SESSION['typeid'] = GetData('SELECT typeid FROM tblaccount WHERE accountid='.$rw['accountid']);
     header('location: dashboard/');
+    Audit($_SESSION['accountid'],'Login');
     exit(0);
   } else {
     $err =  '<span style="color:red; font-size:16pm;" class="blink">Invalid Username or Password</span>';

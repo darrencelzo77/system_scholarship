@@ -1,28 +1,16 @@
 <?php
-if (session_id() == '') {
-  session_start();
-}
-if (isset($_SESSION['accountid'])) {
-  if (file_exists('systemconfig.inc')) {
-    include_once('systemconfig.inc');
-  }
-  if (file_exists('includes/systemconfig.inc')) {
-    include_once('includes/systemconfig.inc');
-  }
-  if (file_exists('../includes/systemconfig.inc')) {
-    include_once('../includes/systemconfig.inc');
-  }
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
 } else {
-  header('location: ../');
-  exit(0);
+    header('location: ../'); exit(0); 
 }
 
-// if(isset($_POST['regid'])){
-//     //include('../email/accept.php');
-//     echo'senn';
-// }
 
-$jscript = "ajax_new('tmp_registration.php?date1='+object('date1').value
+
+$jscript = "ajax_new_without_reload('tmp_registration.php?date1='+object('date1').value
                                                   +'&date2='+object('date2').value
                                                   +'&src='+object('src').value
                                                   +'&status='+object('status').value,'tmp_tmp');";
@@ -51,11 +39,12 @@ $to = date('Y-m-d');
         <option value="0">Pending</option>
         <option value="1">Accepeted</option>
       </select>
-  
+      &nbsp;&nbsp;
+    <button onclick="alert('if walk in dito mo ikakana');" class="btn btn-sm btn-success" style="width: 150px;" class="mx-2 form-control"> Register New</button>
     </td>
   </tr>
 </table>
-
+<br>
 <div id="tmp_tmp">
   <? include('tmp_registration.php'); ?>
 </div>

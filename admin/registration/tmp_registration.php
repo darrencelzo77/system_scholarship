@@ -1,21 +1,13 @@
 <?php
-if (session_id() == '') {
-  session_start();
-}
-if (isset($_SESSION['accountid'])) {
-  if (file_exists('systemconfig.inc')) {
-    include_once('systemconfig.inc');
-  }
-  if (file_exists('includes/systemconfig.inc')) {
-    include_once('includes/systemconfig.inc');
-  }
-  if (file_exists('../includes/systemconfig.inc')) {
-    include_once('../includes/systemconfig.inc');
-  }
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
 } else {
-  header('location: ../');
-  exit(0);
+    header('location: ../'); exit(0); 
 }
+
 if (!isset($_GET['date1'])) {$from = date('Y-m-d', strtotime('-31 days'));}
 if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
 ?>
@@ -24,10 +16,10 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
   <div class="card-body">
     <div class="table-responsive">
 
-      <table class="table table-hover table-sm">
-        <thead>
+      <table class="table table-hover ">
+        <thead> 
           <tr>
-            <th>Category ID</th>
+            <th>Category</th>
             <th>Student Number</th>
             <th>Fullname</th>
             <th>Email Address</th>
@@ -59,8 +51,9 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
             foreach ($rw as $key => $value) {
               $rw[$key] = htmlspecialchars($value);
             }
+
             echo '<tr>';
-            echo '<td>' . $rw['categoryid'] . '</td>';
+            echo '<td>' . Cat($rw['categoryid']) . '</td>';
             echo '<td>' . $rw['studentnumber'] . '</td>';
             echo '<td>' . $rw['firstname'] . ' ' . $rw['lastname'] . '</td>';
             echo '<td>' . $rw['emailaddress'] . '</td>';
@@ -76,9 +69,11 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
               echo '</span>';
             } else if($rw['is_reject'] == 1 && $rw['is_accept'] == 0){
               echo '<td><label class="badge badge-danger">Rejected</label></td>';
+              echo'<td></td>';
             }
             else {
               echo '<td><label class="badge badge-success">Accepted</label></td>';
+              echo'<td></td>';
             }
             echo '</tr>';
           }
