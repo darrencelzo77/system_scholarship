@@ -50,8 +50,8 @@ if(isset($_POST['register'])){
       <header id="navbar">
     <nav class="navbar-container container">
         <a href="" class="home-link">
-            <img src="../HANA/assets/img/logo.png" alt="" class="navbar-logo">
-			Scholarship
+            <img src="admin/images/logo_u.png" alt="" class="navbar-logo">
+			Educational Assistant for Student
         </a>
 
         <button type="button" id="navbar-toggle" aria-controls="navbar-menu" aria-label="Toggle menu"
@@ -192,9 +192,7 @@ if(isset($_POST['register'])){
 							</div>
 						</div>
         </div>
-		<div class="home-analytics-container">
-    
-	</div>
+
 
         <div class="home-analytics-container">
     
@@ -206,7 +204,7 @@ if(isset($_POST['register'])){
  
         <div class="cus-container">
             <div class="cus-left">
-                <span class="cus1">We welcome your questions, comments, and donations.</span>
+                <span class="cus1">We welcome your questions, and comments.</span>
                
            
             </div>
