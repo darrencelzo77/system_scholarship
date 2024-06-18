@@ -25,6 +25,7 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
             <th>Email Address</th>
             <th>Status</th>
             <th>Action</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -75,6 +76,8 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
               echo '<td><label class="badge badge-success">Accepted</label></td>';
               echo'<td></td>';
             }
+
+            echo'<td><input type="checkbox" id="'.$rw['regid'].'"  name="tosend[]" /></td>';
             echo '</tr>';
           }
           ?>

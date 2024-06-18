@@ -19,6 +19,7 @@ if (isset($_SESSION['accountid'])){
 <? include('../nav/header.php'); ?>
   <script>
     function accept_application(regid){
+      
 	    var regid_x = object('regid_x'+regid).value;
 			let myForm = new FormData();
 			myForm.append('firstname', regid_x);
