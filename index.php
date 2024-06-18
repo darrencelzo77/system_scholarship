@@ -115,7 +115,7 @@ if(isset($_POST['register'])){
 		</div>
 </header>
 
-
+<br>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 	
         <ol class="carousel-indicators">
@@ -127,7 +127,7 @@ if(isset($_POST['register'])){
 			
             <div class="carousel-item active">
                 <div class="home">
-                    <span id="home" style="margin-top:-200px;"></span>
+                    <span id="home" style="margin-top:-100px;"></span>
 					
                     <div class="home-box-info">
                         <span class="hbr-1-lbl">Welcome to _____ Scholarship Program!</span>
