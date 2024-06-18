@@ -24,44 +24,51 @@ if(isset($_POST['register'])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Scholarship | System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
-	<link rel="shortcut icon" href="admin/images/logo_u.png" />
+    <link rel="stylesheet" href="admin/css/index.css">
+	<link rel="stylesheet" href="admin/css/navbar.css">
+	<link rel="stylesheet" href="admin/css/footer.css">
+
+    <link rel="icon" type="image/x-icon" href="../HANA/assets/img/logo.png">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
 </head>
+
 <body class="hold-transition layout-top-nav">
-<div class="wrapper">
-	<nav class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
-		<div class="container">
-			<a href="javascript:void();" onclick="window.location.href='?';" class="navbar-brand">
-				<!-- <span>Insert Logo Here</span> -->
-				<img style="height:50px" src="admin/images/logo_u.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">Educational Assistance for Students</span>
-			</a>
+	
+<div class="main--content">
+      <header id="navbar">
+    <nav class="navbar-container container">
+        <a href="" class="home-link">
+            <img src="../HANA/assets/img/logo.png" alt="" class="navbar-logo">
+			Scholarship
+        </a>
 
-			<button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+        <button type="button" id="navbar-toggle" aria-controls="navbar-menu" aria-label="Toggle menu"
+            aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
 
-			<div class="collapse navbar-collapse order-3" id="navbarCollapse">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a href="#home" class="nav-link">Home</a>
-					</li>
-					<li class="nav-item">
-						<a href="#application" class="nav-link">Application</a>
-					</li>
-					<li class="nav-item">
-						<a href="#about" class="nav-link">Contact</a>
-					</li>
-				</ul>
+        <div id="navbar-menu" aria-labelledby="navbar-toggle">
+            <ul class="navbar-links" id="navbar-links">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#application" class="nav-link">Application</a></li>
+           
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
 
-				<!-- SEARCH FORM -->
+          	<!-- SEARCH FORM -->
 				<form class="form-inline ml-0 ml-md-3">
 					<div class="input-group input-group-sm">
 						<input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -72,39 +79,31 @@ if(isset($_POST['register'])){
 						</div>
 					</div>
 				</form>
-			</div>
-			 
-			<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-				<!-- Notifications Dropdown Menu -->
-				<li hidden class="nav-item dropdown">
-					<a class="nav-link" data-toggle="dropdown" href="#">
-						<i class="far fa-bell"></i>
-						<span class="badge badge-warning navbar-badge">15</span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-						<span class="dropdown-header">15 Notifications</span>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item">
-							<i class="fas fa-envelope mr-2"></i> 4 new messages
-							<span class="float-right text-muted text-sm">3 mins</span>
-						</a>
-						<div class="dropdown-divider"></div>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</nav>
-  
-	<div class="content-wrapper">
+            </ul>
+			
+        </div>
 		<div class="content-header">
 			<div class="container">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0"> Scholarship <small>(Students)</small></h1>
+						
 					</div>
 					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+					
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+    </nav>
+	<div class="content-header">
+			<div class="container">
+				<div class="row mb-2">
+					<div class="col-sm-12">
+						
+					</div>
+					<div class="col-sm-12">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><a href="#home">Home</a></li>
 							<li class="breadcrumb-item"><a href="#application">Application</a></li>
@@ -114,55 +113,60 @@ if(isset($_POST['register'])){
 				</div>
 			</div>
 		</div>
-    
+</header>
 
-		<!-- Main content -->
-		<div class="content">
-			<div class="container">
-			<!----START---->
-				<div class="row">
-					<span id="home" style="margin-top:-200px;"></span>
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="card-body">
-								<!-- <h5 class="card-title">Home</h5><br> -->
-								<h4 class="card-title">Welcome to _____ Scholarship Program!</h4>
-								
-								<div class="card-text mt-5">
-									<p>_____ Scholarship Program is dedicated to supporting students who demonstrate academic excellence, leadership potential, and a commitment to their communities. Our mission is to provide financial assistance to help you achieve your educational goals and make a positive impact on the world.</p><br>
-								
-									<h6><strong>Scholarship Amount: </strong>10,000 pesos per semsester.</h6>
-									<h6><strong>Available slots: </strong>30 per semester.</h6>
-									<h6><strong>Application Deadline: </strong>July 30, 2024.</h6>
-								</div>
 
-								<div class="mt-5">
-									<h5>Eligibility Criteria</h5>
-									<h6>Are you eligible for the ___ Scholarship? Review the criteria below:</h6>
-
-									<h6 class="mt-5"><strong>Academic Achievement: </strong>Minimum GPA of 3.5.</h6>
-									<h6><strong>Community Involvement: </strong>Demonstrated commitment to community service.</h6>
-									<h6><strong>Enrollment Status: </strong>Must be a undergraduate student (minimum of 30 units).</h6>
-									<h6><strong>Residency: </strong>Must be a Filipino citizen.</h6>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+	
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+		
+        <div class="carousel-inner">
+			
+            <div class="carousel-item active">
+                <div class="home">
+                    <span id="home" style="margin-top:-200px;"></span>
 					
-				</div>
-				
-				<br><br><br><br><br><br><br>
-				<!-- <br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br> -->
-				
-				
-				<div class="row">
-					<span id="application" style="margin-top:-70px;"></span>
-					<div class="col-lg-12">
-						<div class="card">
+                    <div class="home-box-info">
+                        <span class="hbr-1-lbl">Welcome to _____ Scholarship Program!</span>
+                        <span class="hbr-2-lbl">What is Scholarship?</span>
+                        <p>_____ Scholarship Program is dedicated to supporting students who demonstrate academic excellence, leadership potential, and a commitment to their communities. Our mission is to provide financial assistance to help you achieve your educational goals and make a positive impact on the world.</p>
+                        <button class="home-btn">
+                            <a href="#application" class="h-help">APPLY NOW!</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="application">
+                    <span id="home" style="margin-top:-200px;"></span>
+                    <div class="home-box-info">
+                        <span class="hbr-1-lbl">Eligibility Criteria</span>
+                        <span class="hbr-2-lbl">Are you eligible for the ___ Scholarship? Review the criteria below:</span>
+                        <h6 class="mt-5"><strong>Academic Achievement: </strong>Minimum GPA of 3.5.</h6>
+                        <h6><strong>Community Involvement: </strong>Demonstrated commitment to community service.</h6>
+                        <h6><strong>Enrollment Status: </strong>Must be a undergraduate student (minimum of 30 units).</h6>
+                        <h6><strong>Residency: </strong>Must be a Filipino citizen.</h6>
+                        <button class="home-btn">
+                            <a href="#application" class="h-help">APPLY NOW!</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<div class="home-analytics-container">
+    
+	</div>
+	<br><br><br>
+	<div class="home-help-container">
+	<span id="application" style="margin-top:-30px;"></span>
+         <div class="card">
 							<div class="card-body">
+							
 								<h5 class="card-title">Application</h5>
 
 								<div class="card-text mt-5">
@@ -187,44 +191,63 @@ if(isset($_POST['register'])){
 								<a href="application" class="btn btn-primary btn-sm mt-2">Apply Now!</a>
 							</div>
 						</div>
-					</div>
-				</div>	
-				
-				
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				
-				
-				<div class="row">
-					<span id="about" style="margin-top:-70px;"></span>
-					<div class="col-lg-6">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Contact</h5>
-							</div>
-						</div>
-					</div>
-				</div>	
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br>
-			<!----END----->
-			</div>
-		</div>
+        </div>
+		<div class="home-analytics-container">
+    
 	</div>
-	<aside class="control-sidebar control-sidebar-dark"></aside>
-	<footer class="main-footer">
+
+        <div class="home-analytics-container">
+    
+        </div>
+
+		<div class="main--contents">
+		<span id="contact" style="margin-top:-200px;"></span>
+
+ 
+        <div class="cus-container">
+            <div class="cus-left">
+                <span class="cus1">We welcome your questions, comments, and donations.</span>
+               
+           
+            </div>
+
+            <div class="cus-right">
+                <span>Required fields are marked *</span>
+                <form action="" method="post" class="cus-fields">
+                    <span>Name*</span>
+                    <input type="text" name="cus-name" class="cus-inputs">
+                    <span>Email*</span>
+                    <input type="text" name="cus-email" class="cus-inputs">
+                    <span>Subject*</span>
+                    <input type="text" name="cus-subj" class="cus-inputs">
+                    <span>Your Email*</span>
+                    <textarea name="cus-msg" id="" cols="30" rows="5" class="cus-inputs"></textarea>
+					<button class="home-btn">
+                            <a href="#contact" class="h-help">Submit</a>
+                        </button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+<div class="footer-containers">
+
+<footer class="main-footer">
 		<div class="float-right d-none d-sm-inline">
 			Scholarship Management System
 		</div>
 		<strong>Clarence & Patrick &copy; 2024 <a href="javascript:void();"></a>.</strong> All rights reserved.
 	</footer>
 </div>
+    </div>
+	
+
 <script src="admin/plugins/jquery/jquery.min.js"></script>
 <script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="admin/dist/js/adminlte.min.js"></script>
@@ -239,5 +262,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 	});
 });
 </script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

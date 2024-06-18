@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap");
+
+.footer-containers {
+  margin-top: 30px;
+}
+
+/* First Footer Section */
+.footer1 {
+  padding: 50px;
+  background-color: #223135;
+  text-align: center;
+  color: #f2f2f2;
+}
+
+.footer1 h2, .footer1 h4 {
+  font-weight: 300;
+}
+
+.f-signup {
+  padding: 10px 40px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 30px;
+  background-color: #F9F6EE;
+  color: #223135;
+  border: none;
+  cursor: pointer;
+}
+
+.f-signup a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.f-signup:hover {
+  background-color: #D9D7CA;
+}
+/* General */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap");
+
+/* First Footer Section */
+.footer1 {
+  padding: 30px 20px; /* Adjusted padding */
+}
+
+/* Second Footer Section */
+.footer2 {
+  background-color: #ecd448;
+  padding: 50px 5%; /* Adjusted padding */
+}
+
+.footer2-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0 20px; /* Adjusted padding */
+}
+
+ul {
+  list-style: none;
+}
+
+.footer2-container ul li a:hover {
+  color: #007bff;
+}
+
+.f3-logo img {
+  max-width: 100px;
+  margin-bottom: 20px;
+}
+
+.f3-takeaction, .f3-learnmore, .f3-followus {
+  flex: 1;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items */
+}
+
+.f3-titles {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.f3-takeaction span, .f3-learnmore span, .f3-followus span {
+  margin-bottom: 8px;
+  cursor: pointer;
+  text-align: center; /* Center align text */
+}
+
+.f3-socials {
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* Center align social links */
+}
+
+/* Third Footer Section */
+.footer3 {
+  padding: 20px;
+  background-color: #f2f2f2;
+  text-align: center;
+  color: #223135a8;
+}
+
+.footer3 p {
+  font-weight: 200;
+  line-height: 2em;
+}
+
+/* General Footer Styling */
+footer {
+  width: 100%;
+  color: #fff;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.footer {
+  background-color: #8ddaeb;
+}
+
+.footer-row {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.footer-col {
+  flex-basis: 25%;
+}
+
+.footer-col:nth-child(2), .footer-col:nth-child(3) {
+  flex-basis: 15%;
+}
+
+@media (max-width: 1200px) {
+  .footer2 {
+    padding: 50px 5%;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer2-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer1, .footer2 {
+    padding: 30px 20px;
+  }
+
+  .f3-takeaction, .f3-learnmore, .f3-followus {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .f3-socials {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .footer2-container {
+    padding: 20px;
+  }
+
+  .footer1 h2, .footer1 h4, .f-signup {
+    font-size: 16px;
+  }
+}
