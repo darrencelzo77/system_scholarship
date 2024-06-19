@@ -35,7 +35,7 @@ CREATE TABLE `tblaccount` (
 
 /*Data for the table `tblaccount` */
 
-insert  into `tblaccount`(`accountid`,`username`,`firstname`,`middlename`,`lastname`,`email`,`accountpassword`,`typeid`,`branchid`) values (1,'admin','Darren','Sebastian','Acuna','darrencelzo77@gmail.com','darren',1,1),(2,'allen','allen','allen','allen','allen@gmail.com','social',1,1),(3,'asdf','as','dfas','dfasd','fs','fasfd',2,0),(4,'','darrre','','','','',0,0),(5,'Darren','Sebastian','alkjsdkjlasfd','','darren@gmail.co','mdarren',2,1),(6,'','','','','','',0,0),(7,'','','','','','',0,0),(8,'darreasdf','asdf','asdfa','','asfdasdf','asfdasdf',0,0),(9,'kelly','klley','kklafsdklh','klhkhasdfkhakjlsdfk','darren','jdafsdf',3,0);
+insert  into `tblaccount`(`accountid`,`username`,`firstname`,`middlename`,`lastname`,`email`,`accountpassword`,`typeid`,`branchid`) values (1,'admin','Darren','Sebastian','Acuna','darrencelzo77@gmail.com','darren',1,1),(2,'allen','allen','allen','allen','allen@gmail.com','social',1,1),(3,'asdf','as','dfas','dfasd','fs','fasfd',2,0),(5,'Darren','Sebastian','alkjsdkjlasfd','','darren@gmail.co','mdarren',2,1),(8,'darreasdf','asdf','asdfa','','asfdasdf','asfdasdf',0,0),(9,'kelly','klley','kklafsdklh','klhkhasdfkhakjlsdfk','darren','jdafsdf',3,0);
 
 /*Table structure for table `tblacctype` */
 
@@ -61,11 +61,11 @@ CREATE TABLE `tblactivity` (
   `activitydate` datetime DEFAULT NULL,
   `activity` varchar(128) DEFAULT '',
   PRIMARY KEY (`activityid`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblactivity` */
 
-insert  into `tblactivity`(`activityid`,`accountid`,`activitydate`,`activity`) values (1,1,NULL,''),(2,1,NULL,''),(3,1,'2024-06-16 16:22:16',''),(4,1,'2024-06-16 16:25:36','Login'),(5,1,'2024-06-16 16:25:44','Login'),(6,1,'2024-06-16 16:26:49','Logout'),(7,1,'2024-06-16 16:26:59','Login'),(8,1,'2024-06-16 16:27:05','Login'),(9,1,'2024-06-16 16:30:50','Login'),(10,1,'2024-06-16 16:30:55','Logout'),(11,1,'2024-06-16 16:31:01','Login'),(12,1,'2024-06-16 16:38:49','Login'),(13,1,'2024-06-16 16:38:49','Login'),(14,1,'2024-06-17 19:21:06','Logout');
+insert  into `tblactivity`(`activityid`,`accountid`,`activitydate`,`activity`) values (1,1,NULL,''),(2,1,NULL,''),(3,1,'2024-06-16 16:22:16',''),(4,1,'2024-06-16 16:25:36','Login'),(5,1,'2024-06-16 16:25:44','Login'),(6,1,'2024-06-16 16:26:49','Logout'),(7,1,'2024-06-16 16:26:59','Login'),(8,1,'2024-06-16 16:27:05','Login'),(9,1,'2024-06-16 16:30:50','Login'),(10,1,'2024-06-16 16:30:55','Logout'),(11,1,'2024-06-16 16:31:01','Login'),(12,1,'2024-06-16 16:38:49','Login'),(13,1,'2024-06-16 16:38:49','Login'),(14,1,'2024-06-17 19:21:06','Logout'),(15,1,'2024-06-18 09:57:21','Login'),(16,1,'2024-06-18 09:58:11','Logout'),(17,1,'2024-06-18 10:40:56','Login'),(18,1,'2024-06-18 10:45:34','Logout'),(19,1,'2024-06-18 20:00:29','Login'),(20,1,'2024-06-18 20:00:36','Logout'),(21,1,'2024-06-19 22:35:18','Login'),(22,1,'2024-06-19 23:11:28','Logout'),(23,4,'2024-06-19 23:11:28','Login'),(24,4,'2024-06-19 23:11:32','Logout'),(25,4,'2024-06-19 23:11:33','Login'),(26,4,'2024-06-19 23:11:39','Logout'),(27,4,'2024-06-19 23:11:41','Login'),(28,4,'2024-06-19 23:13:46','Logout'),(29,4,'2024-06-19 23:13:48','Login'),(30,4,'2024-06-19 23:14:57','Logout'),(31,4,'2024-06-19 23:15:01','Login'),(32,4,'2024-06-19 23:15:37','Logout'),(33,4,'2024-06-19 23:15:39','Login'),(34,4,'2024-06-19 23:15:45','Login'),(35,4,'2024-06-19 23:15:51','Logout'),(36,4,'2024-06-19 23:15:53','Login'),(37,4,'2024-06-19 23:15:55','Logout'),(38,4,'2024-06-19 23:16:18','Login'),(39,4,'2024-06-19 23:16:22','Logout'),(40,4,'2024-06-19 23:17:11','Logout'),(41,1,'2024-06-19 23:18:58','Login'),(42,1,'2024-06-19 23:21:03','Logout');
 
 /*Table structure for table `tblbranch` */
 
@@ -109,6 +109,31 @@ CREATE TABLE `tblcivil` (
 /*Data for the table `tblcivil` */
 
 insert  into `tblcivil`(`civilid`,`status`) values (1,'Single'),(2,'Married'),(3,'Divorced'),(4,'Widowed'),(5,'Separated');
+
+/*Table structure for table `tbleducational_attainment` */
+
+DROP TABLE IF EXISTS `tbleducational_attainment`;
+
+CREATE TABLE `tbleducational_attainment` (
+  `educid` int(11) NOT NULL AUTO_INCREMENT,
+  `educ` varchar(128) DEFAULT '',
+  PRIMARY KEY (`educid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tbleducational_attainment` */
+
+/*Table structure for table `tbllevel` */
+
+DROP TABLE IF EXISTS `tbllevel`;
+
+CREATE TABLE `tbllevel` (
+  `levelid` int(11) DEFAULT 0,
+  `level` varchar(128) DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tbllevel` */
+
+insert  into `tbllevel`(`levelid`,`level`) values (1,'Elem/Higschool'),(2,'College');
 
 /*Table structure for table `tblloc_barangay` */
 
@@ -173,6 +198,7 @@ DROP TABLE IF EXISTS `tblregistrations`;
 
 CREATE TABLE `tblregistrations` (
   `regid` int(11) NOT NULL AUTO_INCREMENT,
+  `levelid` int(11) DEFAULT 0,
   `trackingnumber` varchar(128) DEFAULT '',
   `regdate` datetime DEFAULT current_timestamp(),
   `categoryid` int(11) DEFAULT 0,
@@ -189,7 +215,19 @@ CREATE TABLE `tblregistrations` (
 
 /*Data for the table `tblregistrations` */
 
-insert  into `tblregistrations`(`regid`,`trackingnumber`,`regdate`,`categoryid`,`studentnumber`,`firstname`,`lastname`,`dob`,`emailaddress`,`is_reject`,`is_accept`,`is_online`) values (1,'','2024-06-16 10:23:08',1,'2022003207','Jonh Allen','Mendoza',NULL,'jonhallenmendoza567@gmail.com',1,0,0),(2,'','2024-06-16 10:23:08',2,'202211111','Darren','Acuna',NULL,'darren@gmail.com',0,1,0),(3,'','2024-06-16 10:23:08',3,'202222222','Jose','Rizal',NULL,'joserizal@gmail.com',0,1,0),(4,'','2024-06-16 10:23:08',2,'2022003207','Jonh Allen','Mendoza',NULL,'jonhallenmendoza.basc@gmail.com',0,0,0),(5,'','2024-06-16 13:40:56',1,'8383','Clarence','Flores',NULL,'clarenceflores987@gmail.com',0,1,0),(6,'','2024-06-17 16:32:47',0,'','','',NULL,'',0,0,0),(7,'','2024-06-17 16:34:02',0,'','','',NULL,'',0,0,0),(8,'','2024-06-17 16:34:03',0,'','','',NULL,'',0,0,0),(9,'','2024-06-17 16:34:03',0,'','','',NULL,'',0,0,0),(10,'','2024-06-17 16:34:04',0,'','','',NULL,'',0,0,0),(11,'','2024-06-17 16:34:04',0,'','','',NULL,'',0,0,0),(12,'','2024-06-17 16:34:05',0,'','','',NULL,'',0,0,0);
+insert  into `tblregistrations`(`regid`,`levelid`,`trackingnumber`,`regdate`,`categoryid`,`studentnumber`,`firstname`,`lastname`,`dob`,`emailaddress`,`is_reject`,`is_accept`,`is_online`) values (1,1,'','2024-06-16 10:23:08',1,'2022003207','Jonh Allen','Mendoza',NULL,'jonhallenmendoza567@gmail.com',0,1,0),(2,2,'','2024-06-16 10:23:08',2,'202211111','Darren','Acuna',NULL,'darren@gmail.com',0,0,0),(3,0,'','2024-06-16 10:23:08',3,'202222222','Jose','Rizal',NULL,'joserizal@gmail.com',0,0,0),(4,0,'','2024-06-16 10:23:08',2,'2022003207','Jonh Allen','Mendoza',NULL,'jonhallenmendoza.basc@gmail.com',0,0,0),(5,0,'','2024-06-16 13:40:56',1,'8383','Clarence','Flores',NULL,'clarenceflores987@gmail.com',0,0,0),(6,0,'','2024-06-17 16:32:47',0,'','','',NULL,'',0,0,0),(7,0,'','2024-06-17 16:34:02',0,'','','',NULL,'',0,0,0),(8,0,'','2024-06-17 16:34:03',0,'','','',NULL,'',0,0,0),(9,0,'','2024-06-17 16:34:03',0,'','','',NULL,'',0,0,0),(10,0,'','2024-06-17 16:34:04',0,'','','',NULL,'',0,0,0),(11,0,'','2024-06-17 16:34:04',0,'','','',NULL,'',0,0,0),(12,0,'','2024-06-17 16:34:05',0,'','','',NULL,'',0,0,0);
+
+/*Table structure for table `tblregistrations_family` */
+
+DROP TABLE IF EXISTS `tblregistrations_family`;
+
+CREATE TABLE `tblregistrations_family` (
+  `familyid` int(11) NOT NULL AUTO_INCREMENT,
+  `regid` int(11) DEFAULT 0,
+  PRIMARY KEY (`familyid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tblregistrations_family` */
 
 /*Table structure for table `tblregistrations_requirements` */
 
@@ -209,6 +247,18 @@ CREATE TABLE `tblregistrations_requirements` (
 
 insert  into `tblregistrations_requirements`(`requirementid`,`regid`,`cor`,`indigency`,`idofstudent`,`is_reject`) values (1,9,'','','',0),(2,1,'','','',0),(3,2,'','','',0),(4,3,'','','',0),(5,4,'','','',0),(6,5,'','','',0);
 
+/*Table structure for table `tblrelationship` */
+
+DROP TABLE IF EXISTS `tblrelationship`;
+
+CREATE TABLE `tblrelationship` (
+  `relationshipid` int(11) NOT NULL AUTO_INCREMENT,
+  `relationship` varchar(128) DEFAULT '',
+  PRIMARY KEY (`relationshipid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tblrelationship` */
+
 /*Table structure for table `tblschedule` */
 
 DROP TABLE IF EXISTS `tblschedule`;
@@ -223,6 +273,17 @@ CREATE TABLE `tblschedule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblschedule` */
+
+/*Table structure for table `tblsemester` */
+
+DROP TABLE IF EXISTS `tblsemester`;
+
+CREATE TABLE `tblsemester` (
+  `semid` int(11) DEFAULT NULL,
+  `sem` varchar(128) DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tblsemester` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -170,6 +170,8 @@ if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/i
 										
 										<div class="row">
 											<div class="col-10">
+											<input type="radio" name="dd"/>Elementary Student/High school&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="ddd"/>Elementary Student/High school
 												<select class="form-control mb-3" id="category" style="width:200px;height:40px;">
 													<option value="0">Select Category</option>
 													<? $rs = mysqli_query($db_connection,'SELECT categoryid, category FROM tblcategory ORDER BY category');
