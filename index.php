@@ -4,23 +4,54 @@ if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
 if (file_exists('admin/includes/systemconfig.inc')) {include_once('admin/includes/systemconfig.inc'); }
 if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/includes/systemconfig.inc'); }
 
-if(isset($_POST['register'])){
-	$category = $_POST['category'];
-	$studentnum = $_POST['studentnum'];
-	$firstname = $_POST['firstname'];
-	$lastname = $_POST['lastname'];
-	$email = $_POST['email'];
+if (isset($_POST['register'])) {
+    $categoryid = $_POST['categoryid'];
+    $surname = $_POST['surname'];
+    $firstname = $_POST['firstname'];
+    $middlename = $_POST['middlename'];
+    $namextid = $_POST['namextid'];
+    $provid = $_POST['provid'];
+    $cityid = $_POST['cityid'];
+    $brgyid = $_POST['brgyid'];
+    $street = $_POST['street'];
+    $dob = $_POST['dob'];
+    $birthplace = $_POST['birthplace'];
+    $citizenshipid = $_POST['citizenshipid'];
+    $civilid = $_POST['civilid'];
+    $sexid = $_POST['sexid'];
+    $contact = $_POST['contact'];
+    
+    // Perform database insertion
+    $query = "INSERT INTO tblregistrations 
+              SET categoryid='$categoryid', 
+                  surname='$surname', 
+                  firstname='$firstname', 
+                  lastname='$lastname', 
+                  middlename='$middlename', 
+                  namextid='$namextid', 
+                  provid='$provid', 
+                  cityid='$cityid', 
+                  brgyid='$brgyid', 
+                  street='$street', 
+                  dob='$dob', 
+                  birthplace='$birthplace', 
+                  citizenshipid='$citizenshipid', 
+                  civilid='$civilid', 
+                  sexid='$sexid', 
+                  contact='$contact'";
+    
+    mysqli_query($db_connection, $query);
 
-	//echo $category, $studentnum, $firstname, $lastname, $email;
+    // Get the inserted registration ID
+    $regid = mysqli_insert_id($db_connection);
 
-	mysqli_query($db_connection, "INSERT INTO tblregistrations SET 
-								  categoryid='$category', studentnumber='$studentnum', 
-								  firstname='$firstname', lastname='$lastname', emailaddress='$email'");
+    // Insert into tblregistrations_requirements (assuming this is another related table)
+    mysqli_query($db_connection, "INSERT INTO tblregistrations_requirements SET regid='$regid'");
 
-	$regid = mysqli_insert_id($db_connection);
-	mysqli_query($db_connection, "INSERT INTO tblregistrations_requirements SET regid='$regid'");
-
+    // Optionally, you can redirect or return a success message here
+    echo "Registration successful!";
 }
+
 ?>
 
 <!DOCTYPE html>

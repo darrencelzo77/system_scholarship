@@ -30,18 +30,40 @@ if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/i
 		function object(id) { return document.getElementById(id); }
 
 		function register(){
-			var category = object('category').value;
-			var studentnum = object('studentnum').value;
+			var categoryid = object('categoryid').value;
+			var surname = object('surname').value;
 			var firstname = object('firstname').value;
-			var lastname = object('lastname').value;
-			var email = object('email').value;
+			var middlename = object('middlename').value;
+			var namextid = object('namextid').value;
+            var provid = object('provid').value;
+            var cityid = object('cityid').value;
+            var brgyid = object('brgyid').value;
+            var street = object('street').value;
+            var dob = object('dob').value;
+            var birthplace = object('birthplace').value;
+            var citizenshipid = object('citizenshipid').value;
+            var civilid = object('civilid').value;
+            var sexid = object('sexid').value;
+            var contact = object('contact').value;
+          
 
 			let myForm = new FormData();
-			myForm.append('category', category);
-			myForm.append('studentnum', studentnum);
+			myForm.append('categoryid', categoryid);
+			myForm.append('surname', surname);
 			myForm.append('firstname', firstname);
 			myForm.append('lastname', lastname);
-			myForm.append('email', email);
+			myForm.append('middlename', middlename);
+            myForm.append('namextid', namextid);
+            myForm.append('provid', provid);
+            myForm.append('cityid', cityid);
+            myForm.append('brgyid', brgyid);
+            myForm.append('street', street);
+            myForm.append('dob', dob);
+            myForm.append('birthplace', birthplace);
+            myForm.append('citizenshipid', citizenshipid);
+            myForm.append('civilid', civilid);
+            myForm.append('sexid', sexid);
+            myForm.append('contact', contact);
 			myForm.append('register', 1);
 			swal({
 				title: "Basic Information",
@@ -152,78 +174,317 @@ if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/i
 		</div>
     
 
-		<!-- Main content -->
-		<div id="" class="content">
-			<div class="container">
-			<!----START---->
-				<div class="row">
-					<span id="home" style="margin-top:-200px;"></span>
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="card-body">
-								<!-- <h5 class="card-title">Home</h5><br> -->
-								<h4 class="card-title">Scholarship Application Form</h4>
+  <!-- Main content -->
+  <div id="content" class="content">
+        <div class="container">
+            <!----START---->
+            <div class="row">
+                <span id="home" style="margin-top:-200px;"></span>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- <h5 class="card-title">Home</h5><br> -->
+                            <h4 class="card-title">Scholarship Application Form</h4>
 
-								<div class="mt-5">
-                                    <form method="POST" id="myForm">
-										<div id="page_1" class="tabcontent" style="display:block;">
-										
-										<div class="row">
-											<div class="col-10">
-											<input type="radio" name="dd"/>Elementary Student/High school&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<input type="radio" name="ddd"/>Elementary Student/High school
-												<select class="form-control mb-3" id="category" style="width:200px;height:40px;">
-													<option value="0">Select Category</option>
-													<? $rs = mysqli_query($db_connection,'SELECT categoryid, category FROM tblcategory ORDER BY category');
-														while($rw=mysqli_fetch_array($rs)){ $sel='';
-															if($sectionid==$rw['categoryid']){ $sel = 'selected="selected"'; }
-															echo'<option value="'.$rw['categoryid'].'" '.$sel.'>'.$rw['category'].'</option>';
-														} ?>
-												</select>
-												
-											</div>
-											<div class="col-6">
-												<label for="studentnum">Student No.:</label>
-												<input type="text" id="studentnum" class="form-control">
-											</div>
-											<div class="col-6">
-												<label for="firstname">Firstname:</label>
-												<input type="text" id="firstname" class="form-control">
-											</div>
-											<div class="col-6">
-												<label for="lastname">Lastname:</label>
-												<input type="text" id="lastname" class="form-control">
-											</div>
-											<div class="col-6">
-												<label for="email">Email Address:</label>
-												<input type="text" id="email" class="form-control">
-											</div>
-										</div>
-										<div>
-											<span>
-												<span style="cursor:hand; cursor:pointer; font-size:15px;" onclick="openTab(event, 'page_2', 'f')">1 of 3 - Next 
-												<i class="fa fa-arrow-right"></i></span>
-											</span><br>
-											<span>Intake Sheet Details</span>
-										</div>
-									</div>
-										<a href="javascript:void(0);" class="btn btn-primary btn-sm float-right mb-3" onclick="register();">Submit</a>
-									</form>
-							
-								</div>
-							</div>
-						</div>
-					</div>
+                            <div class="mt-5">
+                                <form method="POST" id="myForm">
+                                    <div id="elementary_form" class="form-content" style="display:block;">
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                <input type="radio" name="formtype" value="typeformid" onclick="showForm('elementary_form')" checked /> Elementary Student/High School
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" name="formtype" value="typeformid" onclick="showForm('college_form')" /> College
+                                            </div>
+											
+                                            <div class="col-12 mb-3">
+                                                <h4>Elementary Student/High School Form</h4>
+                                                <select class="form-control mb-3" id="categoryid" style="width:200px;height:40px;">
+                                                    <option value="0">Select Category</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT categoryid, category FROM tblcategory ORDER BY category');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($sectionid == $rw['categoryid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['categoryid'] . '" ' . $sel . '>' . $rw['category'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+											
+                                            </div>
+									
+                                            <div class="col-md-6 mb-3">
+                                                <label for="surname">Surname:</label>
+                                                <input type="text" id="surname" name="surname" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="firstname">Firstname:</label>
+                                                <input type="text" id="firstname" name="firstname" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="middlename">Middlename:</label>
+                                                <input type="text" id="middlename" name="middlename" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="namext">Name EXT.:</label>
+                                                <select class="form-control mb-2" id="namextid" name="namextid">
+                                                    <option value="0">Select Name EXT</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT namextid, namext FROM tblnamext');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($namextid == $rw['namextid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['namextid'] . '" ' . $sel . '>' . $rw['namext'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label for="address">Address:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4 mb-3">
+                                                        <?php
+                                                        echo '<select class="form-control" name="provid" id="provid" onchange="loadPage(\'selectcity.php?provid=\' + this.value, \'tmp_city\');">';
+                                                        echo '<option value="0">Select Province</option>';
+                                                        $rs1 = mysqli_query($db_connection, 'SELECT provid, province FROM tblloc_province ORDER BY province');
+                                                        while ($rw1 = mysqli_fetch_array($rs1)) {
+                                                            $sel = ($provid == $rw1['provid']) ? 'selected="selected"' : '';
+                                                            echo '<option value="' . $rw1['provid'] . '" ' . $sel . '>' . $rw1['province'] . '</option>';
+                                                        }
+                                                        echo '</select>';
+                                                        ?>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <span id="tmp_city">
+                                                            <select class="form-control" id="cityid" name="cityid">
+                                                                <option value="0">Select City</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <span id="tmp_b">
+                                                            <select class="form-control" id="brgyid" name="brgyid">
+                                                                <option value="0">Select Barangay</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <input type="text" id="street" name="street" placeholder="Enter Street Number/House#" class="form-control mb-2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="dob">Date of Birth:</label>
+                                                <input type="date" id="dob" name="dob" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="birthplace">Place of Birth:</label>
+                                                <input type="text" id="birthplace" name="birthplace" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="citizenship">Citizenship:</label>
+                                                <select class="form-control mb-2" id="citizenshipid" name="citizenshipid">
+                                                    <option value="0">Select Citizenship</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT citizenshipid, citizenship FROM tblcitizenship');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($citizenshipid == $rw['citizenshipid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['citizenshipid'] . '" ' . $sel . '>' . $rw['citizenship'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="civil">Civil Status:</label>
+                                                <select class="form-control mb-2" id="civilid" name="civilid">
+                                                    <option value="0">Select Civil Status</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT civilid, status FROM tblcivil');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($civilid == $rw['civilid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['civilid'] . '" ' . $sel . '>' . $rw['status'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sex">Sex:</label>
+                                                <select class="form-control mb-2" id="sexid" name="sexid">
+                                                    <option value="0">Select Sex</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT sexid, sex FROM tblsex');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($sexid == $rw['sexid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['sexid'] . '" ' . $sel . '>' . $rw['sex'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="contact">Contact Number:</label>
+                                                <input type="text" id="contact" name="contact" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="college_form" class="form-content" style="display:none;">
+                                        <div class="row">
+                                            <div class="col-12 mb-3">
+                                                <input type="radio" name="formtype" value="typeformid" onclick="showForm('elementary_form')" /> Elementary Student/High School
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="radio" name="formtype" value="typeformid" onclick="showForm('college_form')" checked /> College
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <h4>College Form</h4>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                            <label for="name_ext">Semester:</label>
+                                            <select class="form-control mb-3" id="category" style="width:200px;height:40px;">
+                                                    <option value="0">Select Category</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT categoryid, category FROM tblcategory ORDER BY category');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($sectionid == $rw['categoryid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['categoryid'] . '" ' . $sel . '>' . $rw['category'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                                </div>
+											<label for="name_ext">Semester:</label>
+                                                <select class="form-control mb-2" id="semid" name="semid">
+                                                    <option value="0">Select Semester</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT semid, sem FROM tblsemester');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($semid == $rw['semid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['semid'] . '" ' . $sel . '>' . $rw['sem'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+											<div class="col-md-6 mb-3">
+                                                <label for="surname">Surname:</label>
+                                                <input type="text" id="surname" name="surname" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="firstname">Firstname:</label>
+                                                <input type="text" id="firstname" name="firstname" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="middlename">Middlename:</label>
+                                                <input type="text" id="middlename" name="middlename" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="name_ext">Name EXT.:</label>
+                                                <select class="form-control mb-2" id="namextid" name="namextid">
+                                                    <option value="0">Select Name EXT</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT namextid, namext FROM tblnamext');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($namextid == $rw['namextid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['namextid'] . '" ' . $sel . '>' . $rw['namext'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label for="address">Address:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4 mb-3">
+                                                        <?php
+                                                        echo '<select class="form-control" name="provid" id="provid" onchange="loadPage(\'selectcity2.php?provid=\' + this.value, \'tmp_city2\');">';
+                                                        echo '<option value="0">Select Province</option>';
+                                                        $rs1 = mysqli_query($db_connection, 'SELECT provid, province FROM tblloc_province ORDER BY province');
+                                                        while ($rw1 = mysqli_fetch_array($rs1)) {
+                                                            $sel = ($provid == $rw1['provid']) ? 'selected="selected"' : '';
+                                                            echo '<option value="' . $rw1['provid'] . '" ' . $sel . '>' . $rw1['province'] . '</option>';
+                                                        }
+                                                        echo '</select>';
+                                                        ?>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <span id="tmp_city2">
+                                                            <select class="form-control" id="cityid" name="cityid">
+                                                                <option value="0">Select City</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <span id="tmp_b2">
+                                                            <select class="form-control" id="brgyid" name="brgyid">
+                                                                <option value="0">Select Barangay</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <input type="text" id="street" name="street" placeholder="Enter Street Number/House#" class="form-control mb-2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="birthdate">Date of Birth:</label>
+                                                <input type="date" id="birthdate" name="birthdate" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="birthplace">Place of Birth:</label>
+                                                <input type="text" id="birthplace" name="birthplace" class="form-control">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="citizenship">Citizenship:</label>
+                                                <select class="form-control mb-2" id="citizenshipid" name="citizenshipid">
+                                                    <option value="0">Select Citizenship</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT citizenshipid, citizenship FROM tblcitizenship');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($citizenshipid == $rw['citizenshipid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['citizenshipid'] . '" ' . $sel . '>' . $rw['citizenship'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="civil">Civil Status:</label>
+                                                <select class="form-control mb-2" id="civilid" name="civilid">
+                                                    <option value="0">Select Civil Status</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT civilid, status FROM tblcivil');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($civilid == $rw['civilid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['civilid'] . '" ' . $sel . '>' . $rw['status'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="sex">Sex:</label>
+                                                <select class="form-control mb-2" id="sexid" name="sexid">
+                                                    <option value="0">Select Sex</option>
+                                                    <?php
+                                                    $rs = mysqli_query($db_connection, 'SELECT sexid, sex FROM tblsex');
+                                                    while ($rw = mysqli_fetch_array($rs)) {
+                                                        $sel = ($sexid == $rw['sexid']) ? 'selected="selected"' : '';
+                                                        echo '<option value="' . $rw['sexid'] . '" ' . $sel . '>' . $rw['sex'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="contact">Contact Number:</label>
+                                                <input type="text" id="contact" name="contact" class="form-control">
+                                            </div>
+                                            <!-- You can duplicate the address, birthdate, birthplace, etc. fields if needed -->
+                                        </div>
+                                    </div>
 
-					
-				</div>
-				
-				<br><br><br><br><br><br><br>
-				<!-- <br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br> -->
-			<!----END----->
-			</div>
-		</div>
+                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm float-right mb-3" onclick="register();">Submit</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br><br><br><br><br><br>
+            <!-- <br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br> -->
+            <!----END----->
+        </div>
+    </div>
 	</div>
 	<aside class="control-sidebar control-sidebar-dark"></aside>
 	<footer class="main-footer">
@@ -246,7 +507,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 		});
 	});
 });
+
+function loadPage(url,elementId) {
+		if (window.XMLHttpRequest) {
+				xmlhttp=new XMLHttpRequest();
+		} else {
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}   
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+				document.getElementById(elementId).innerHTML="";
+				document.getElementById(elementId).innerHTML=xmlhttp.responseText;	
+			}
+		}  
+		xmlhttp.open("GET",url,true);
+		xmlhttp.send();	   
+	}
+
+    function showForm(formId) {
+        document.getElementById('elementary_form').style.display = 'none';
+        document.getElementById('college_form').style.display = 'none';
+        document.getElementById(formId).style.display = 'block';
+    }
+
+        function register() {
+            document.getElementById('myForm').submit();
+        }
 </script>
+
 </body>
 </div>
 </html>
