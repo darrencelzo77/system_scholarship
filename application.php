@@ -530,9 +530,9 @@ function loadPage(url,elementId) {
         document.getElementById(formId).style.display = 'block';
     }
 
-        function register() {
-            document.getElementById('myForm').submit();
-        }
+        // function register() {
+        //     document.getElementById('myForm').submit();
+        // }
 </script>
 
 </body>

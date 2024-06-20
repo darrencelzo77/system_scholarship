@@ -63,7 +63,7 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
               echo '<td>
                     <span id="tmp' . $rw['regid'] . '">
                     <input type="hidden" value="' . $rw['firstname'] . '" id="regid_x' . $rw['regid'] . '"/>
-                    <a href="javascript:void(0);" class="view" title="View" data-toggle="tooltip" onclick="openWin(\'view_reg.php?studentid=' . secureData($rw['regid']) . '\');"><i class="material-icons">&#xE417;</i></a>
+                    <a href="javascript:void(0);" class="view" title="View" data-toggle="tooltip" onclick="openCustom(\'../forms/form?studentid=' . secureData($rw['regid']) . '\',900,900);"><i class="material-icons">&#xE417;</i></a>
                     <a href="javascript:void(0);" class="accept" title="Accept" data-toggle="tooltip" onclick="accept_application(' . $rw['regid'] . ');"><i class="material-icons">&#xe86c;</i></a>
                     <a href="javascript:void(0);" class="reject" title="Reject" data-toggle="tooltip" onclick="TINY.box.show({url:\'reject.php?regid='.secureData($rw['regid']).'\',width:400,height:150 })";><i class="material-icons">&#xE5C9;</i></a>
                     </td>';
