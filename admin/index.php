@@ -63,6 +63,7 @@ $_SESSION['token'] = rand(1, 100);
       x.type = "password";
       }
     }
+    
   </script>
   </head>
   <body>
