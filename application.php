@@ -125,7 +125,7 @@ if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/i
                 swal('Error on Required Field', 'Please select a category', 'error');
             }
         } else {
-            swal('Error on Required Field', 'Please input semester ID', 'error');
+            swal('Error on Required Field', 'Please select semester', 'error');
         }
     } else {
         swal('Error on Required Field', 'Please select level of education', 'error');
