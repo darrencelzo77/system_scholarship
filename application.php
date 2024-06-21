@@ -417,31 +417,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 	});
 });
 
-function loadPage(url,elementId) {
-		if (window.XMLHttpRequest) {
-				xmlhttp=new XMLHttpRequest();
-		} else {
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}   
-		xmlhttp.onreadystatechange=function() {
-			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-				document.getElementById(elementId).innerHTML="";
-				document.getElementById(elementId).innerHTML=xmlhttp.responseText;	
-			}
-		}  
-		xmlhttp.open("GET",url,true);
-		xmlhttp.send();	   
-	}
 
-    function showForm(formId) {
-        document.getElementById('elementary_form').style.display = 'none';
-        document.getElementById('college_form').style.display = 'none';
-        document.getElementById(formId).style.display = 'block';
-    }
-
-        function register() {
-            document.getElementById('myForm').submit();
-        }
+document.addEventListener("DOMContentLoaded", function() {
+        var radios = document.querySelectorAll('input[name="levelid"]');
+        radios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                var levelid = this.value;
+                if (levelid === '1') {
+                    document.getElementById('semid').style.display = 'none';
+                } else {
+                    document.getElementById('semid').style.display = 'block';
+                }
+            });
+        });
+    });
 </script>
 </body>
 </div>
