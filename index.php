@@ -1,29 +1,46 @@
+<?php
+if (file_exists('systemconfig.inc')) { include_once('systemconfig.inc'); }
+if (file_exists('admin/includes/systemconfig.inc')) { include_once('admin/includes/systemconfig.inc'); }
+if (file_exists('../admin/includes/systemconfig.inc')) { include_once('../admin/includes/systemconfig.inc'); }
 
-<?
-if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-if (file_exists('admin/includes/systemconfig.inc')) {include_once('admin/includes/systemconfig.inc'); }
-if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/includes/systemconfig.inc'); }
+$_SESSION['tmp_registrations_family'] = 'tmp_registrations_family';
+$result = mysqli_query($db_connection, 'DROP TABLE IF EXISTS ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
+
+$str = "CREATE TABLE " . $_SESSION['tmp_registrations_family'] . " (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `family_lastname` varchar(128) DEFAULT '',
+    `family_firstname` varchar(128) DEFAULT '',
+    `family_middleinitial` varchar(128) DEFAULT '',
+    `relationshipid` INT(11) DEFAULT 0,
+    `family_age` varchar(128) DEFAULT '',
+    `familycivilid` INT(11) DEFAULT 0,
+    `educationid` INT(11) DEFAULT 0,
+    `occupation` varchar(128) DEFAULT '',
+    `income` varchar(128) DEFAULT '',
+    PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+
+mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 
 if (isset($_POST['register'])) {
-    $levelid = $_POST['levelid'];
-    $semid = $_POST['semid'];
-    $categoryid = $_POST['categoryid'];
-    $lastname = $_POST['lastname'];
-    $firstname = $_POST['firstname'];
-    $middlename = $_POST['middlename'];
-    $namextid = $_POST['namextid'];
-    $provid = $_POST['provid'];
-    $cityid = $_POST['cityid'];
-    $brgyid = $_POST['brgyid'];
-    $street = $_POST['street'];
-    $dob = $_POST['dob'];
-    $birthplace = $_POST['birthplace'];
-    $citizenshipid = $_POST['citizenshipid'];
-    $civilid = $_POST['civilid'];
-    $sexid = $_POST['sexid'];
-    $contact = $_POST['contact'];
-    
-    // Perform database insertion
+    $levelid = mysqli_real_escape_string($db_connection, $_POST['levelid']);
+    $semid = mysqli_real_escape_string($db_connection, $_POST['semid']);
+    $categoryid = mysqli_real_escape_string($db_connection, $_POST['categoryid']);
+    $lastname = mysqli_real_escape_string($db_connection, $_POST['lastname']);
+    $firstname = mysqli_real_escape_string($db_connection, $_POST['firstname']);
+    $middlename = mysqli_real_escape_string($db_connection, $_POST['middlename']);
+    $namextid = mysqli_real_escape_string($db_connection, $_POST['namextid']);
+    $provid = mysqli_real_escape_string($db_connection, $_POST['provid']);
+    $cityid = mysqli_real_escape_string($db_connection, $_POST['cityid']);
+    $brgyid = mysqli_real_escape_string($db_connection, $_POST['brgyid']);
+    $street = mysqli_real_escape_string($db_connection, $_POST['street']);
+    $dob = mysqli_real_escape_string($db_connection, $_POST['dob']);
+    $birthplace = mysqli_real_escape_string($db_connection, $_POST['birthplace']);
+    $citizenshipid = mysqli_real_escape_string($db_connection, $_POST['citizenshipid']);
+    $civilid = mysqli_real_escape_string($db_connection, $_POST['civilid']);
+    $sexid = mysqli_real_escape_string($db_connection, $_POST['sexid']);
+    $contact = mysqli_real_escape_string($db_connection, $_POST['contact']);
+
     $query = "INSERT INTO tblregistrations 
               SET semid='$semid',
                   levelid='$levelid',
@@ -43,18 +60,46 @@ if (isset($_POST['register'])) {
                   sexid='$sexid', 
                   contact='$contact'";
     
-    mysqli_query($db_connection, $query);
+    echo "Executing query: $query<br>";
+    mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
 
-    // Get the inserted registration ID
     $regid = mysqli_insert_id($db_connection);
+    echo "Inserted registration ID: $regid<br>";
 
-    // Insert into tblregistrations_requirements (assuming this is another related table)
-    mysqli_query($db_connection, "INSERT INTO tblregistrations_requirements SET regid='$regid'");
+    $query_requirements = "INSERT INTO tblregistrations_requirements SET regid='$regid'";
+    echo "Executing query: $query_requirements<br>";
+    mysqli_query($db_connection, $query_requirements) or die(mysqli_error($db_connection));
 
-    // Optionally, you can redirect or return a success message here
+    $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
+    while ($rw = mysqli_fetch_array($rs)) {
+        $family_lastname = mysqli_real_escape_string($db_connection, $rw['family_lastname']);
+        $family_firstname = mysqli_real_escape_string($db_connection, $rw['family_firstname']);
+        $family_middleinitial = mysqli_real_escape_string($db_connection, $rw['family_middleinitial']);
+        $relationshipid = mysqli_real_escape_string($db_connection, $rw['relationshipid']);
+        $family_age = mysqli_real_escape_string($db_connection, $rw['family_age']);
+        $familycivilid = mysqli_real_escape_string($db_connection, $rw['familycivilid']);
+        $educationid = mysqli_real_escape_string($db_connection, $rw['educationid']);
+        $occupation = mysqli_real_escape_string($db_connection, $rw['occupation']);
+        $income = mysqli_real_escape_string($db_connection, $rw['income']);
+
+        $query_family = "INSERT INTO tblregistrations_family SET 
+                        regid='$regid', 
+                        family_lastname='$family_lastname',
+                        family_firstname='$family_firstname',
+                        family_middleinitial='$family_middleinitial',
+                        relationshipid='$relationshipid',
+                        family_age='$family_age',
+                        familycivilid='$familycivilid',
+                        educationid='$educationid',
+                        occupation='$occupation',
+                        income='$income'";
+
+        echo "Executing query: $query_family<br>";
+        mysqli_query($db_connection, $query_family) or die(mysqli_error($db_connection));
+    }
+
     echo "Registration successful!";
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -195,7 +240,7 @@ if (isset($_POST['register'])) {
 	<div class="home-analytics-container">
     
 	</div>
-	<br><br><br>
+	<br><br><br><br><br><br>
 	<div class="home-help-container">
 	<span id="application" style="margin-top:-30px;"></span>
          <div class="card">
@@ -221,7 +266,7 @@ if (isset($_POST['register'])) {
 									<h6><strong>Personal Statement: </strong>A 500-word essay on your academic and career goals, and how this scholarship will help you achieve them.</h6>
 
 								</div>
-
+<br>
 								<a href="application" class="home-btn btn-sm mt-2">Apply Now!</a>
 							</div>
 						</div>
