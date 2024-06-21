@@ -5,8 +5,10 @@ if (file_exists('admin/includes/systemconfig.inc')) {include_once('admin/include
 if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/includes/systemconfig.inc'); }
 
 if (isset($_POST['register'])) {
+    $levelid = $_POST['levelid'];
+    $semid = $_POST['semid'];
     $categoryid = $_POST['categoryid'];
-    $surname = $_POST['surname'];
+    $lastname = $_POST['lastname'];
     $firstname = $_POST['firstname'];
     $middlename = $_POST['middlename'];
     $namextid = $_POST['namextid'];
@@ -23,10 +25,11 @@ if (isset($_POST['register'])) {
     
     // Perform database insertion
     $query = "INSERT INTO tblregistrations 
-              SET categoryid='$categoryid', 
-                  surname='$surname', 
-                  firstname='$firstname', 
+              SET semid='$semid',
+                  levelid='$levelid',
+                  categoryid='$categoryid', 
                   lastname='$lastname', 
+                  firstname='$firstname', 
                   middlename='$middlename', 
                   namextid='$namextid', 
                   provid='$provid', 
@@ -219,7 +222,7 @@ if (isset($_POST['register'])) {
 
 								</div>
 
-								<a href="application" class="btn btn-primary btn-sm mt-2">Apply Now!</a>
+								<a href="application" class="home-btn btn-sm mt-2">Apply Now!</a>
 							</div>
 						</div>
         </div>

@@ -307,7 +307,7 @@ a {
 }
 
 .home-analytics-container {
-  background-color: #fff455;
+  background-color: #bff6c3;
   padding: 50px 50px;
   width: 100%;
   display: flex;
@@ -971,7 +971,7 @@ a {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  background-color: #fff455;
+  background-color: #74e291;
   color: #131313;
   transition: background-color 0.3s ease;
 }
