@@ -1,9 +1,13 @@
 <?php
 session_start();
-if (file_exists('systemconfig.inc')) { include_once('systemconfig.inc'); }
-if (file_exists('admin/includes/systemconfig.inc')) { include_once('admin/includes/systemconfig.inc'); }
-if (file_exists('../admin/includes/systemconfig.inc')) { include_once('../admin/includes/systemconfig.inc'); }
-
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+} else {
+    header('location: ../'); exit(0); 
+}
 
 
 if(isset($_GET['del'])){

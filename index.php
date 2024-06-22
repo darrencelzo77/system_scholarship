@@ -27,6 +27,7 @@ if (isset($_POST['register'])) {
     $junior = mysqli_real_escape_string($db_connection, $_POST['junior']);
     $senior = mysqli_real_escape_string($db_connection, $_POST['senior']);
     $college = mysqli_real_escape_string($db_connection, $_POST['college']);
+    $is_online = mysqli_real_escape_string($db_connection, $_POST['is_online']);
     $query = "INSERT INTO tblregistrations 
               SET semid='$semid',
                   levelid='$levelid',
@@ -48,7 +49,8 @@ if (isset($_POST['register'])) {
                   elementary='$elementary',
                   junior='$junior',
                   senior='$senior',
-                  college='$college'";
+                  college='$college',
+                  is_online='$is_online'";
     mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
 
     $regid = mysqli_insert_id($db_connection);

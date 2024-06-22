@@ -1,9 +1,12 @@
 <?php
-session_start();
-if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-if (file_exists('admin/includes/systemconfig.inc')) {include_once('admin/includes/systemconfig.inc'); }
-if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/includes/systemconfig.inc'); }
-
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+} else {
+    header('location: ../'); exit(0); 
+}
 $_SESSION['tmp_registrations_family'] = 'tmp_registrations_family';
 $result = mysqli_query($db_connection, 'DROP TABLE IF EXISTS ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
 
@@ -55,6 +58,41 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 		xmlhttp.open("GET",url,true);
 		xmlhttp.send();	   
 	}
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var radios = document.querySelectorAll('input[name="levelid"]');
+    var seniorSection = document.getElementById('seniorSection');
+    var collegeSection = document.getElementById('collegeSection');
+    var seniorLabel = document.getElementById('seniorLabel');
+    var seniorInput = document.getElementById('senior');
+    var collegeLabel = document.getElementById('collegeLabel');
+    var collegeInput = document.getElementById('college');
+
+    radios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var levelid = this.value;
+            if (levelid === '1') {
+                document.getElementById('semid').style.display = 'none';
+                seniorSection.style.display = 'none';
+                collegeSection.style.display = 'none';
+                seniorLabel.style.display = 'none';
+                seniorInput.style.display = 'none';
+                collegeLabel.style.display = 'none';
+                collegeInput.style.display = 'none';
+            } else if (levelid === '2') {
+                document.getElementById('semid').style.display = 'block';
+                seniorSection.style.display = 'block';
+                collegeSection.style.display = 'block';
+                seniorLabel.style.display = 'block';
+                seniorInput.style.display = 'block';
+                collegeLabel.style.display = 'block';
+                collegeInput.style.display = 'block';
+            }
+        });
+    });
+}); 
     
 	function ajax_new_v2(url_, tmp_add_customer) {
 	$.ajax({
@@ -107,21 +145,6 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 }
 
 
-
-
-
-		// function ajax_new(url_, tmp_container) {
-		// $('#' + tmp_container).html("<div align='center'><img src='../images/tar.gif' width='40px' /></div>");
-
-		// $.ajax({
-		// 	url: url_,
-		// 	method: "post",
-		// 	data: {record: 1},
-		// 	success: function(data) {
-		// 		$('#' + tmp_container).html(data);
-		// 	}
-		// });
-		// }
 		function object(id) { return document.getElementById(id); }
 
         function register() {
@@ -147,7 +170,6 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
     var senior = document.getElementById('senior').value;
     var college = document.getElementById('college').value;
     var is_online = document.getElementById('is_online').value;
-
 
     if (levelid && levelid.value !== '1') {
         if (semid == 0) {
@@ -203,7 +225,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
     }).then((willAdd) => {
         if (willAdd) {
             $.ajax({
-                url: 'index.php',
+                url: 'registration.php',
                 type: 'POST',
                 data: myForm,
                 beforeSend: function () {
@@ -226,87 +248,36 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
         }
     });
 }
+function toggleSections() {
+        var levelid1 = document.getElementById('levelid1');
+        var seniorSection = document.getElementById('seniorSection');
+        var collegeSection = document.getElementById('collegeSection');
+        var semesterSelectContainer = document.getElementById('semesterSelectContainer');
 
+        if (levelid1.checked) {
+            seniorSection.style.display = 'none';
+            collegeSection.style.display = 'none';
+            semesterSelectContainer.style.display = 'none';
+        } else {
+            seniorSection.style.display = 'block';
+            collegeSection.style.display = 'block';
+          
+            semesterSelectContainer.style.display = 'block';
+        }
+    }
+    window.onload = function() {
+        toggleSections(); 
+    };
 
 	</script>
 </head>
 <div id="maincontent">
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
-	<nav hidden class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
-		<div class="container">
-			<a href="javascript:void();" onclick="window.location.href='?';" class="navbar-brand">
-				<span>Insert Logo Here</span>
-				<!--<img src="admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
-				<span class="brand-text font-weight-light">Scholarship</span>
-			</a>
-
-			<button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse order-3" id="navbarCollapse">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a href="system_scholarship/" class="nav-link">Home</a>
-					</li>
-					<li class="nav-item">
-						<a href="#about" class="nav-link">Contact</a>
-					</li>
-				</ul>
-
-				<!-- SEARCH FORM -->
-				<form class="form-inline ml-0 ml-md-3">
-					<div class="input-group input-group-sm">
-						<input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-						<div class="input-group-append">
-							<button class="btn btn-navbar" type="submit">
-							<i class="fas fa-search"></i>
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			 
-			<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-				<!-- Notifications Dropdown Menu -->
-				<li hidden class="nav-item dropdown">
-					<a class="nav-link" data-toggle="dropdown" href="#">
-						<i class="far fa-bell"></i>
-						<span class="badge badge-warning navbar-badge">15</span>
-					</a>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-						<span class="dropdown-header">15 Notifications</span>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item">
-							<i class="fas fa-envelope mr-2"></i> 4 new messages
-							<span class="float-right text-muted text-sm">3 mins</span>
-						</a>
-						<div class="dropdown-divider"></div>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</nav>
+	
   
 	<div class="content-wrapper">
-		<div class="content-header">
-			<div class="container">
-				<div class="row mb-2">
-					<div class="col-sm-6">
-						<h1 class="m-0"> Scholarship <small>(Students)</small></h1>
-					</div>
-					<div class="col-sm-6">
-						<ol class="breadcrumb float-sm-right">
-							<li class="breadcrumb-item"><a href="../system_scholarship/">Home</a></li>
-							<li class="breadcrumb-item active">Menu</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
+
     
 
 		<!-- Main content -->
@@ -321,25 +292,26 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                         <h4 class="card-title">Scholarship Application Form</h4>
                         <div class="mt-5">
                             <form method="POST" id="myForm">
-                            <input hidden type="text" value="2" id="is_online" name="is_online" class="form-control">
+                            <input hidden type="text" value="1" id="is_online" name="is_online" class="form-control">
                                 <div id="page_1" class="tabcontent" style="display:block;">
                                     <div class="row">
-                                        <div class="col-12 mb-3">
-                                            <input type="radio" id="levelid1" name="levelid" value="1" /> Elementary Student/High school
-                                            <input type="radio" id="levelid2" name="levelid" value="2" /> College
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <select class="form-control" id="semid" name="semid">
-                                                <option value="0">Select Semester</option>
-                                                <?php
-                                                $rs = mysqli_query($db_connection, 'SELECT semid, sem FROM tblsemester');
-                                                while ($rw = mysqli_fetch_array($rs)) {
-                                                    $sel = ($semid == $rw['semid']) ? 'selected="selected"' : '';
-                                                    echo '<option value="' . $rw['semid'] . '" ' . $sel . '>' . $rw['sem'] . '</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
+                                    <div class="col-12 mb-3">
+    <input type="radio" id="levelid1" name="levelid" value="1" onclick="toggleSections();" /> Elementary Student/High school
+    <input type="radio" id="levelid2" name="levelid" value="2" onclick="toggleSections();" /> College
+</div>
+
+<div class="col-6 mb-3" id="semesterSelectContainer">
+    <select class="form-control" id="semid" name="semid">
+        <option value="0">Select Semester</option>
+        <?php
+        $rs = mysqli_query($db_connection, 'SELECT semid, sem FROM tblsemester');
+        while ($rw = mysqli_fetch_array($rs)) {
+            $sel = ($semid == $rw['semid']) ? 'selected="selected"' : '';
+            echo '<option value="' . $rw['semid'] . '" ' . $sel . '>' . $rw['sem'] . '</option>';
+        }
+        ?>
+    </select>
+</div>
                                         <div class="col-6 mb-3">
                                             <select class="form-control" id="categoryid" name="categoryid">
                                                 <option value="0">Select Category</option>
@@ -352,6 +324,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                 ?>
                                             </select>
                                         </div>
+                                        <br>
                                         <div class="col-6 mb-3">
                                             <label for="lastname">Lastname:</label>
                                             <input type="text" id="lastname" name="lastname" class="form-control">
@@ -563,13 +536,13 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                             <input type="text" id="junior" name="junior" class="form-control">
                                         </div>
                                         <div class="col-6 mb-3" id="seniorSection">
-                                            <label for="senior">Senior High school:</label>
-                                            <input type="text" id="senior" name="senior" class="form-control">
-                                        </div>
-                                        <div class="col-6 mb-3" id="collegeSection">
-                                            <label for="college">Vocational/College:</label>
-                                            <input type="text" id="college" name="college" class="form-control">
-                                        </div>
+                                        <label for="senior">Senior High school:</label>
+                                        <input type="text" id="senior" name="senior" class="form-control">
+                                    </div>
+                                    <div class="col-6 mb-3" id="collegeSection">
+                                        <label for="college">Vocational/College:</label>
+                                        <input type="text" id="college" name="college" class="form-control">
+                                    </div>
                                     </div>
                                     <a href="javascript:void(0);" class="btn btn-primary btn-sm float-right mb-3" onclick="register();">Submit</a>
                                 </div>
@@ -592,52 +565,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="admin/dist/js/adminlte.min.js"></script>
-<script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-    var radios = document.querySelectorAll('input[name="levelid"]');
-    var seniorSection = document.getElementById('seniorSection');
-    var collegeSection = document.getElementById('collegeSection');
-    var seniorLabel = document.getElementById('seniorLabel');
-    var seniorInput = document.getElementById('senior');
-    var collegeLabel = document.getElementById('collegeLabel');
-    var collegeInput = document.getElementById('college');
-
-    radios.forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            var levelid = this.value;
-            if (levelid === '1') {
-                document.getElementById('semid').style.display = 'none';
-                seniorSection.style.display = 'none';
-                collegeSection.style.display = 'none';
-                seniorLabel.style.display = 'none';
-                seniorInput.style.display = 'none';
-                collegeLabel.style.display = 'none';
-                collegeInput.style.display = 'none';
-            } else if (levelid === '2') {
-                document.getElementById('semid').style.display = 'block';
-                seniorSection.style.display = 'block';
-                collegeSection.style.display = 'block';
-                seniorLabel.style.display = 'block';
-                seniorInput.style.display = 'block';
-                collegeLabel.style.display = 'block';
-                collegeInput.style.display = 'block';
-            }
-        });
-    });
-});
-
-
-
-</script>
 </body>
 </div>
 </html>

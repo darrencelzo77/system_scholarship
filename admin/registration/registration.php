@@ -9,6 +9,72 @@ if (isset($_SESSION['accountid'])){
 }
 
 
+if (isset($_POST['register'])) {
+  $levelid = mysqli_real_escape_string($db_connection, $_POST['levelid']);
+  $semid = mysqli_real_escape_string($db_connection, $_POST['semid']);
+  $categoryid = mysqli_real_escape_string($db_connection, $_POST['categoryid']);
+  $lastname = mysqli_real_escape_string($db_connection, $_POST['lastname']);
+  $firstname = mysqli_real_escape_string($db_connection, $_POST['firstname']);
+  $middlename = mysqli_real_escape_string($db_connection, $_POST['middlename']);
+  $namextid = mysqli_real_escape_string($db_connection, $_POST['namextid']);
+  $provid = mysqli_real_escape_string($db_connection, $_POST['provid']);
+  $cityid = mysqli_real_escape_string($db_connection, $_POST['cityid']);
+  $brgyid = mysqli_real_escape_string($db_connection, $_POST['brgyid']);
+  $street = mysqli_real_escape_string($db_connection, $_POST['street']);
+  $dob = mysqli_real_escape_string($db_connection, $_POST['dob']);
+  $birthplace = mysqli_real_escape_string($db_connection, $_POST['birthplace']);
+  $citizenshipid = mysqli_real_escape_string($db_connection, $_POST['citizenshipid']);
+  $civilid = mysqli_real_escape_string($db_connection, $_POST['civilid']);
+  $sexid = mysqli_real_escape_string($db_connection, $_POST['sexid']);
+  $contact = mysqli_real_escape_string($db_connection, $_POST['contact']);
+  $elementary = mysqli_real_escape_string($db_connection, $_POST['elementary']);
+  $junior = mysqli_real_escape_string($db_connection, $_POST['junior']);
+  $senior = mysqli_real_escape_string($db_connection, $_POST['senior']);
+  $college = mysqli_real_escape_string($db_connection, $_POST['college']);
+  $is_online = mysqli_real_escape_string($db_connection, $_POST['is_online']);
+  $query = "INSERT INTO tblregistrations 
+            SET semid='$semid',
+                levelid='$levelid',
+                categoryid='$categoryid', 
+                lastname='$lastname', 
+                firstname='$firstname', 
+                middlename='$middlename', 
+                namextid='$namextid', 
+                provid='$provid', 
+                cityid='$cityid', 
+                brgyid='$brgyid', 
+                street='$street', 
+                dob='$dob', 
+                birthplace='$birthplace', 
+                citizenshipid='$citizenshipid', 
+                civilid='$civilid', 
+                sexid='$sexid', 
+                contact='$contact',
+                elementary='$elementary',
+                junior='$junior',
+                senior='$senior',
+                college='$college',
+                is_online='$is_online'";
+  mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
+
+  $regid = mysqli_insert_id($db_connection);
+ 
+  $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
+  while ($rw = mysqli_fetch_array($rs)) {
+      $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.',family_lastname=\''
+                                              .$rw['family_lastname'].'\',family_firstname=\''
+                                              .$rw['family_firstname'].'\',family_middleinitial=\''
+                                              .$rw['family_middleinitial'].'\',relationshipid=\''
+                                              .$rw['relationshipid'].'\',family_age=\''
+                                              .$rw['family_age'].'\',familycivilid=\''
+                                              .$rw['familycivilid'].'\',educationid=\''
+                                              .$rw['educationid'].'\',occupation=\''
+                                              .$rw['occupation'].'\',income=\''
+                                              .$rw['income'].'\' ';
+      mysqli_query($db_connection, $query_family);
+  }
+}
+
 
 $jscript = "ajax_new_without_reload('tmp_registration.php?date1='+object('date1').value
                                                   +'&date2='+object('date2').value
@@ -18,6 +84,59 @@ $jscript = "ajax_new_without_reload('tmp_registration.php?date1='+object('date1'
 $from = date('Y-m-d', strtotime('-31 days'));
 $to = date('Y-m-d');
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function loadPage(url,elementId) {
+		if (window.XMLHttpRequest) {
+				xmlhttp=new XMLHttpRequest();
+		} else {
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}   
+		xmlhttp.onreadystatechange=function() {
+			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+				document.getElementById(elementId).innerHTML="";
+				document.getElementById(elementId).innerHTML=xmlhttp.responseText;	
+			}
+		}  
+		xmlhttp.open("GET",url,true);
+		xmlhttp.send();	   
+	}
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var radios = document.querySelectorAll('input[name="levelid"]');
+    var seniorSection = document.getElementById('seniorSection');
+    var collegeSection = document.getElementById('collegeSection');
+    var seniorLabel = document.getElementById('seniorLabel');
+    var seniorInput = document.getElementById('senior');
+    var collegeLabel = document.getElementById('collegeLabel');
+    var collegeInput = document.getElementById('college');
+
+    radios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var levelid = this.value;
+            if (levelid === '1') {
+                document.getElementById('semid').style.display = 'none';
+                seniorSection.style.display = 'none';
+                collegeSection.style.display = 'none';
+                seniorLabel.style.display = 'none';
+                seniorInput.style.display = 'none';
+                collegeLabel.style.display = 'none';
+                collegeInput.style.display = 'none';
+            } else if (levelid === '2') {
+                document.getElementById('semid').style.display = 'block';
+                seniorSection.style.display = 'block';
+                collegeSection.style.display = 'block';
+                seniorLabel.style.display = 'block';
+                seniorInput.style.display = 'block';
+                collegeLabel.style.display = 'block';
+                collegeInput.style.display = 'block';
+            }
+        });
+    });
+}); 
+</script>
 
 <div align="left">
   <h3>Registration</h3>
@@ -40,7 +159,7 @@ $to = date('Y-m-d');
         <option value="1">Accepeted</option>
       </select>
       &nbsp;&nbsp;
-    <button onclick="alert('if walk in dito mo ikakana');" class="btn btn-sm btn-success" style="width: 150px;" class="mx-2 form-control"> Register New</button>
+    <button onclick="ajax_new('application.php','maincontent');" class="btn btn-sm btn-success" style="width: 150px;" class="mx-2 form-control"> Register New</button>
     </td>
   </tr>
 </table>

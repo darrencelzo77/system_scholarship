@@ -18,6 +18,7 @@ if (isset($_SESSION['accountid'])){
 </style>
 <? include('../nav/header.php'); ?>
   <script>
+    
     function accept_application(regid){
       
 	    var regid_x = object('regid_x'+regid).value;
