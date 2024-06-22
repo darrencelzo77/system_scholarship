@@ -125,91 +125,87 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 		function object(id) { return document.getElementById(id); }
 
     function register() {
-    var levelid = document.querySelector('input[name="levelid"]:checked');
-    var semid = document.getElementById('semid').value;
-    var categoryid = document.getElementById('categoryid').value;
-    var lastname = document.getElementById('lastname').value;
-    var firstname = document.getElementById('firstname').value;
-    var middlename = document.getElementById('middlename').value;
-    var namextid = document.getElementById('namextid').value;
-    var provid = document.getElementById('provid').value;
-    var cityid = document.getElementById('cityid').value;
-    var brgyid = document.getElementById('brgyid').value;
-    var street = document.getElementById('street').value;
-    var dob = document.getElementById('dob').value;
-    var birthplace = document.getElementById('birthplace').value;
-    var citizenshipid = document.getElementById('citizenshipid').value;
-    var civilid = document.getElementById('civilid').value;
-    var sexid = document.getElementById('sexid').value;
-    var contact = document.getElementById('contact').value;
-
-    if (levelid) {
-        if (semid != 0 ) {
-            if (categoryid != 0) {
-                if (lastname != '') {
-                    let myForm = new FormData();
-                    myForm.append('levelid', levelid.value);
-                    myForm.append('semid', semid);
-                    myForm.append('categoryid', categoryid);
-                    myForm.append('lastname', lastname);
-                    myForm.append('firstname', firstname);
-                    myForm.append('middlename', middlename);
-                    myForm.append('namextid', namextid);
-                    myForm.append('provid', provid);
-                    myForm.append('cityid', cityid);
-                    myForm.append('brgyid', brgyid);
-                    myForm.append('street', street);
-                    myForm.append('dob', dob);
-                    myForm.append('birthplace', birthplace);
-                    myForm.append('citizenshipid', citizenshipid);
-                    myForm.append('civilid', civilid);
-                    myForm.append('sexid', sexid);
-                    myForm.append('contact', contact);
-                    myForm.append('register', 1);
-
-                    swal({
-                        title: 'Basic Information',
-                        text: 'Are you sure that all your information is correct?',
-                        icon: 'info',
-                        buttons: true,
-                        dangerMode: true,
-                    }).then((willAdd) => {
-                        if (willAdd) {
-                            $.ajax({
-                                url: 'index.php',
-                                type: 'POST',
-                                data: myForm,
-                                beforeSend: function () {
-                                    $('#body-overlay').show();
-                                },
-                                contentType: false,
-                                processData: false,
-                                success: function (data) {
-                                    $('#maincontent').html(data);
-                                    $('#maincontent').css('opacity', '1');
-                                    $('#body-overlay').hide();
-                                    swal('Success', 'Successfully Processed Request', 'success');
-                                },
-                                error: function () {
-                                    swal('Error', 'Error Processing Request', 'error');
-                                },
-                            });
-                        } else {
-                            swal('Action Cancelled', 'Your request has been cancelled.', 'info');
-                        }
-                    });
-                } else {
-                    swal('Error on Required Field', 'Please input your last name', 'error');
-                }
-            } else {
-                swal('Error on Required Field', 'Please select a category', 'error');
-            }
-        } else {
-            swal('Error on Required Field', 'Please select semester', 'error');
+        var levelid = document.querySelector('input[name="levelid"]:checked');
+        var semid = document.getElementById('semid').value;
+        var categoryid = document.getElementById('categoryid').value;
+        var lastname = document.getElementById('lastname').value;
+        var firstname = document.getElementById('firstname').value;
+        var middlename = document.getElementById('middlename').value;
+        var namextid = document.getElementById('namextid').value;
+        var provid = document.getElementById('provid').value;
+        var cityid = document.getElementById('cityid').value;
+        var brgyid = document.getElementById('brgyid').value;
+        var street = document.getElementById('street').value;
+        var dob = document.getElementById('dob').value;
+        var birthplace = document.getElementById('birthplace').value;
+        var citizenshipid = document.getElementById('citizenshipid').value;
+        var civilid = document.getElementById('civilid').value;
+        var sexid = document.getElementById('sexid').value;
+        var contact = document.getElementById('contact').value;
+        /*
+        if(level==1){ //if elementary
+        
+        } else { //if college
+            
         }
-    } else {
-        swal('Error on Required Field', 'Please select level of education', 'error');
-    }
+        */
+        if (levelid) {
+            if (semid != 0 ) {
+                if (categoryid != 0) {
+                    if (lastname != '') {
+                        let myForm = new FormData();
+                        myForm.append('levelid', levelid.value);
+                        myForm.append('semid', semid);
+                        myForm.append('categoryid', categoryid);
+                        myForm.append('lastname', lastname);
+                        myForm.append('firstname', firstname);
+                        myForm.append('middlename', middlename);
+                        myForm.append('namextid', namextid);
+                        myForm.append('provid', provid);
+                        myForm.append('cityid', cityid);
+                        myForm.append('brgyid', brgyid);
+                        myForm.append('street', street);
+                        myForm.append('dob', dob);
+                        myForm.append('birthplace', birthplace);
+                        myForm.append('citizenshipid', citizenshipid);
+                        myForm.append('civilid', civilid);
+                        myForm.append('sexid', sexid);
+                        myForm.append('contact', contact);
+                        myForm.append('register', 1);
+
+                        swal({
+                            title: 'Basic Information',
+                            text: 'Are you sure that all your information is correct?',
+                            icon: 'info',
+                            buttons: true,
+                            dangerMode: true,
+                        }).then((willAdd) => {
+                            if (willAdd) {
+                                $.ajax({
+                                    url: 'index.php',
+                                    type: 'POST',
+                                    data: myForm,
+                                    beforeSend: function () {
+                                        $('#body-overlay').show();
+                                    },
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (data) {
+                                        $('#maincontent').html(data);
+                                        $('#maincontent').css('opacity', '1');
+                                        $('#body-overlay').hide();
+                                        swal('Success', 'Successfully Processed Request', 'success');
+                                    },
+                                    error: function () {
+                                        swal('Error', 'Error Processing Request', 'error');
+                                    },
+                                });
+                            } else {swal('Action Cancelled', 'Your request has been cancelled.', 'info');}
+                        });
+                    } else {swal('Error on Required Field', 'Please input your last name', 'error');}
+                } else {swal('Error on Required Field', 'Please select a category', 'error');}
+            } else {swal('Error on Required Field', 'Please select semester', 'error');}
+        } else {swal('Error on Required Field', 'Please select level of education', 'error');}
 }
 
 
