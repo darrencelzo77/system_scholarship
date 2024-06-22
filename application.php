@@ -4,6 +4,24 @@ if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
 if (file_exists('admin/includes/systemconfig.inc')) {include_once('admin/includes/systemconfig.inc'); }
 if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/includes/systemconfig.inc'); }
 
+$_SESSION['tmp_registrations_family'] = 'tmp_registrations_family';
+$result = mysqli_query($db_connection, 'DROP TABLE IF EXISTS ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
+
+$str = "CREATE TABLE " . $_SESSION['tmp_registrations_family'] . " (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `family_lastname` varchar(128) DEFAULT '',
+    `family_firstname` varchar(128) DEFAULT '',
+    `family_middleinitial` varchar(128) DEFAULT '',
+    `relationshipid` INT(11) DEFAULT 0,
+    `family_age` varchar(128) DEFAULT '',
+    `familycivilid` INT(11) DEFAULT 0,
+    `educationid` INT(11) DEFAULT 0,
+    `occupation` varchar(128) DEFAULT '',
+    `income` varchar(128) DEFAULT '',
+    PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+
+mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 ?>
 <!DOCTYPE html>
 <html lang="en">

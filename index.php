@@ -59,46 +59,16 @@ if (isset($_POST['register'])) {
                   civilid='$civilid', 
                   sexid='$sexid', 
                   contact='$contact'";
-    
-    echo "Executing query: $query<br>";
     mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
 
     $regid = mysqli_insert_id($db_connection);
-    echo "Inserted registration ID: $regid<br>";
-
-    $query_requirements = "INSERT INTO tblregistrations_requirements SET regid='$regid'";
-    echo "Executing query: $query_requirements<br>";
-    mysqli_query($db_connection, $query_requirements) or die(mysqli_error($db_connection));
-
+   
     $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
     while ($rw = mysqli_fetch_array($rs)) {
-        $family_lastname = mysqli_real_escape_string($db_connection, $rw['family_lastname']);
-        $family_firstname = mysqli_real_escape_string($db_connection, $rw['family_firstname']);
-        $family_middleinitial = mysqli_real_escape_string($db_connection, $rw['family_middleinitial']);
-        $relationshipid = mysqli_real_escape_string($db_connection, $rw['relationshipid']);
-        $family_age = mysqli_real_escape_string($db_connection, $rw['family_age']);
-        $familycivilid = mysqli_real_escape_string($db_connection, $rw['familycivilid']);
-        $educationid = mysqli_real_escape_string($db_connection, $rw['educationid']);
-        $occupation = mysqli_real_escape_string($db_connection, $rw['occupation']);
-        $income = mysqli_real_escape_string($db_connection, $rw['income']);
-
-        $query_family = "INSERT INTO tblregistrations_family SET 
-                        regid='$regid', 
-                        family_lastname='$family_lastname',
-                        family_firstname='$family_firstname',
-                        family_middleinitial='$family_middleinitial',
-                        relationshipid='$relationshipid',
-                        family_age='$family_age',
-                        familycivilid='$familycivilid',
-                        educationid='$educationid',
-                        occupation='$occupation',
-                        income='$income'";
-
-        echo "Executing query: $query_family<br>";
-        mysqli_query($db_connection, $query_family) or die(mysqli_error($db_connection));
+        $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.', 
+                        family_lastname=\''.$rw['family_lastname'].'\' ';
+        mysqli_query($db_connection, $query_family);
     }
-
-    echo "Registration successful!";
 }
 ?>
 
