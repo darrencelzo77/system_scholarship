@@ -23,7 +23,10 @@ if (isset($_POST['register'])) {
     $civilid = mysqli_real_escape_string($db_connection, $_POST['civilid']);
     $sexid = mysqli_real_escape_string($db_connection, $_POST['sexid']);
     $contact = mysqli_real_escape_string($db_connection, $_POST['contact']);
-
+    $elementary = mysqli_real_escape_string($db_connection, $_POST['elementary']);
+    $junior = mysqli_real_escape_string($db_connection, $_POST['junior']);
+    $senior = mysqli_real_escape_string($db_connection, $_POST['senior']);
+    $college = mysqli_real_escape_string($db_connection, $_POST['college']);
     $query = "INSERT INTO tblregistrations 
               SET semid='$semid',
                   levelid='$levelid',
@@ -41,7 +44,11 @@ if (isset($_POST['register'])) {
                   citizenshipid='$citizenshipid', 
                   civilid='$civilid', 
                   sexid='$sexid', 
-                  contact='$contact'";
+                  contact='$contact',
+                  elementary='$elementary',
+                  junior='$junior',
+                  senior='$senior',
+                  college='$college'";
     mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
 
     $regid = mysqli_insert_id($db_connection);
@@ -49,18 +56,15 @@ if (isset($_POST['register'])) {
     $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
     while ($rw = mysqli_fetch_array($rs)) {
         $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_lastname=\''
-                                                .$rw['family_lastname'].'\' ';
+                                                .$rw['family_lastname'].'\',family_firstname=\''
+                                                .$rw['family_firstname'].'\',family_middleinitial=\''
+                                                .$rw['family_middleinitial'].'\',relationshipid=\''
+                                                .$rw['relationshipid'].'\',family_age=\''
+                                                .$rw['family_age'].'\',familycivilid=\''
+                                                .$rw['familycivilid'].'\',educationid=\''
+                                                .$rw['educationid'].'\',occupation=\''
+                                                .$rw['occupation'].'\',income=\''
+                                                .$rw['income'].'\' ';
         mysqli_query($db_connection, $query_family);
     }
 }

@@ -124,88 +124,104 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 		// }
 		function object(id) { return document.getElementById(id); }
 
-    function register() {
-        var levelid = document.querySelector('input[name="levelid"]:checked');
-        var semid = document.getElementById('semid').value;
-        var categoryid = document.getElementById('categoryid').value;
-        var lastname = document.getElementById('lastname').value;
-        var firstname = document.getElementById('firstname').value;
-        var middlename = document.getElementById('middlename').value;
-        var namextid = document.getElementById('namextid').value;
-        var provid = document.getElementById('provid').value;
-        var cityid = document.getElementById('cityid').value;
-        var brgyid = document.getElementById('brgyid').value;
-        var street = document.getElementById('street').value;
-        var dob = document.getElementById('dob').value;
-        var birthplace = document.getElementById('birthplace').value;
-        var citizenshipid = document.getElementById('citizenshipid').value;
-        var civilid = document.getElementById('civilid').value;
-        var sexid = document.getElementById('sexid').value;
-        var contact = document.getElementById('contact').value;
-        /*
-        if(level==1){ //if elementary
-        
-        } else { //if college
-            
-        }
-        */
-        if (levelid) {
-            if (semid != 0 ) {
-                if (categoryid != 0) {
-                    if (lastname != '') {
-                        let myForm = new FormData();
-                        myForm.append('levelid', levelid.value);
-                        myForm.append('semid', semid);
-                        myForm.append('categoryid', categoryid);
-                        myForm.append('lastname', lastname);
-                        myForm.append('firstname', firstname);
-                        myForm.append('middlename', middlename);
-                        myForm.append('namextid', namextid);
-                        myForm.append('provid', provid);
-                        myForm.append('cityid', cityid);
-                        myForm.append('brgyid', brgyid);
-                        myForm.append('street', street);
-                        myForm.append('dob', dob);
-                        myForm.append('birthplace', birthplace);
-                        myForm.append('citizenshipid', citizenshipid);
-                        myForm.append('civilid', civilid);
-                        myForm.append('sexid', sexid);
-                        myForm.append('contact', contact);
-                        myForm.append('register', 1);
+        function register() {
+    var levelid = document.querySelector('input[name="levelid"]:checked');
+    var semid = document.getElementById('semid').value;
+    var categoryid = document.getElementById('categoryid').value;
+    var lastname = document.getElementById('lastname').value;
+    var firstname = document.getElementById('firstname').value;
+    var middlename = document.getElementById('middlename').value;
+    var namextid = document.getElementById('namextid').value;
+    var provid = document.getElementById('provid').value;
+    var cityid = document.getElementById('cityid').value;
+    var brgyid = document.getElementById('brgyid').value;
+    var street = document.getElementById('street').value;
+    var dob = document.getElementById('dob').value;
+    var birthplace = document.getElementById('birthplace').value;
+    var citizenshipid = document.getElementById('citizenshipid').value;
+    var civilid = document.getElementById('civilid').value;
+    var sexid = document.getElementById('sexid').value;
+    var contact = document.getElementById('contact').value;
+    var elementary = document.getElementById('elementary').value;
+    var junior = document.getElementById('junior').value;
+    var senior = document.getElementById('senior').value;
+    var college = document.getElementById('college').value;
 
-                        swal({
-                            title: 'Basic Information',
-                            text: 'Are you sure that all your information is correct?',
-                            icon: 'info',
-                            buttons: true,
-                            dangerMode: true,
-                        }).then((willAdd) => {
-                            if (willAdd) {
-                                $.ajax({
-                                    url: 'index.php',
-                                    type: 'POST',
-                                    data: myForm,
-                                    beforeSend: function () {
-                                        $('#body-overlay').show();
-                                    },
-                                    contentType: false,
-                                    processData: false,
-                                    success: function (data) {
-                                        $('#maincontent').html(data);
-                                        $('#maincontent').css('opacity', '1');
-                                        $('#body-overlay').hide();
-                                        swal('Success', 'Successfully Processed Request', 'success');
-                                    },
-                                    error: function () {
-                                        swal('Error', 'Error Processing Request', 'error');
-                                    },
-                                });
-                            } else {swal('Action Cancelled', 'Your request has been cancelled.', 'info');}
-                        });
-                    } else {swal('Error on Required Field', 'Please input your last name', 'error');}
-                } else {swal('Error on Required Field', 'Please select a category', 'error');}
-            } else {swal('Error on Required Field', 'Please select semester', 'error');}
-        } else {swal('Error on Required Field', 'Please select level of education', 'error');}
+    if (levelid && levelid.value !== '1') {
+        if (semid == 0) {
+            swal('Error on Required Field', 'Please select semester', 'error');
+            return;
+        }
+        if (categoryid == 0) {
+            swal('Error on Required Field', 'Please select a category', 'error');
+            return;
+        }
+    }
+
+    if (!levelid) {
+        swal('Error on Required Field', 'Please select level of education', 'error');
+        return;
+    }
+    if (lastname == '') {
+        swal('Error on Required Field', 'Please input your last name', 'error');
+        return;
+    }
+
+    let myForm = new FormData();
+    myForm.append('levelid', levelid.value);
+    myForm.append('semid', semid);
+    myForm.append('categoryid', categoryid);
+    myForm.append('lastname', lastname);
+    myForm.append('firstname', firstname);
+    myForm.append('middlename', middlename);
+    myForm.append('namextid', namextid);
+    myForm.append('provid', provid);
+    myForm.append('cityid', cityid);
+    myForm.append('brgyid', brgyid);
+    myForm.append('street', street);
+    myForm.append('dob', dob);
+    myForm.append('birthplace', birthplace);
+    myForm.append('citizenshipid', citizenshipid);
+    myForm.append('civilid', civilid);
+    myForm.append('sexid', sexid);
+    myForm.append('contact', contact);
+    myForm.append('elementary', elementary);
+    myForm.append('junior', junior);
+    myForm.append('senior', senior);
+    myForm.append('college', college);
+    myForm.append('register', 1);
+
+    swal({
+        title: 'Basic Information',
+        text: 'Are you sure that all your information is correct?',
+        icon: 'info',
+        buttons: true,
+        dangerMode: true,
+    }).then((willAdd) => {
+        if (willAdd) {
+            $.ajax({
+                url: 'index.php',
+                type: 'POST',
+                data: myForm,
+                beforeSend: function () {
+                    $('#body-overlay').show();
+                },
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $('#maincontent').html(data);
+                    $('#maincontent').css('opacity', '1');
+                    $('#body-overlay').hide();
+                    swal('Success', 'Successfully Processed Request', 'success');
+                },
+                error: function () {
+                    swal('Error', 'Error Processing Request', 'error');
+                },
+            });
+        } else {
+            swal('Action Cancelled', 'Your request has been cancelled.', 'info');
+        }
+    });
 }
 
 
@@ -305,8 +321,8 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                 <div id="page_1" class="tabcontent" style="display:block;">
                                     <div class="row">
                                         <div class="col-12 mb-3">
-                                            <input type="radio" id="levelid" name="levelid" value="1" /> Elementary Student/High school
-                                            <input type="radio" id="levelid" name="levelid" value="2" /> College
+                                            <input type="radio" id="levelid1" name="levelid" value="1" /> Elementary Student/High school
+                                            <input type="radio" id="levelid2" name="levelid" value="2" /> College
                                         </div>
                                         <div class="col-6 mb-3">
                                             <select class="form-control" id="semid" name="semid">
@@ -444,95 +460,115 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                         </div>
 
                                         <div class="col-12">
-    <h4>Family Background</h4>
-</div>
+                                            <h4>Family Background</h4>
+                                        </div>
 
-<div class="col-6 mb-3">
-    <label for="family_lastname">Lastname:</label>
-    <input type="text" id="family_lastname" name="family_lastname" class="form-control">
-</div>
-<div class="col-6 mb-3">
-    <label for="family_firstname">Firstname:</label>
-    <input type="text" id="family_firstname" name="family_firstname" class="form-control">
-</div>
-<div class="col-6 mb-3">
-    <label for="family_middleinitial">Middle Initial:</label>
-    <input type="text" id="family_middleinitial" name="family_middleinitial" class="form-control">
-</div>
-<div class="col-6 mb-3">
-    <label for="relationshipid">Relationship:</label>
-    <select class="form-control" id="relationshipid" name="relationshipid">
-        <option value="0">Select Relationship</option>
-        <?php
-        $rs = mysqli_query($db_connection, 'SELECT relationshipid, relationship FROM tblrelationship');
-        while ($rw = mysqli_fetch_array($rs)) {
-            echo '<option value="' . $rw['relationshipid'] . '">' . $rw['relationship']. '</option>';
-        }
-        ?>
-    </select>
-</div>
-<div class="col-6 mb-3">
-    <label for="family_age">Age:</label>
-    <input type="text" id="family_age" name="family_age" class="form-control">
-</div>
-<div class="col-6 mb-3">
-    <label for="familycivilid">Civil Status:</label>
-    <select class="form-control" id="familycivilid" name="familycivilid">
-        <option value="0">Select Civil Status</option>
-        <?php
-        $rs = mysqli_query($db_connection, 'SELECT civilid, status FROM tblcivil');
-        while ($rw = mysqli_fetch_array($rs)) {
-            echo '<option value="' .$rw['civilid'] . '">' . $rw['status'] . '</option>';
-        }
-        ?>
-    </select>
-</div>
-<div class="col-6 mb-3">
-    <label for="educationid">Education Attainment:</label>
-    <select class="form-control" id="educationid" name="educationid">
-        <option value="0">Select Education Attainment</option>
-        <?php
-        $rs = mysqli_query($db_connection, 'SELECT educid, educ FROM tbleducational_attainment');
-        while ($rw = mysqli_fetch_array($rs)) {
-            echo '<option value="' .$rw['educid'] . '">' . $rw['educ'] . '</option>';
-        }
-        ?>
-    </select>
-</div>
-<div class="col-6 mb-3">
-    <label for="occupation">Occupation:</label>
-    <input type="text" id="occupation" name="occupation" class="form-control">
-</div>
-<div class="col-6 mb-3">
-    <label for="income">Monthly Income:</label>
-    <input type="number" id="income" name="income" class="form-control">
-<br>
-    <a class="btn btn-primary btn-sm" onclick="add_family();">ADD</a>
-</div>
+                                        <div class="col-6 mb-3">
+                                            <label for="family_lastname">Lastname:</label>
+                                            <input type="text" id="family_lastname" name="family_lastname" class="form-control">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="family_firstname">Firstname:</label>
+                                            <input type="text" id="family_firstname" name="family_firstname" class="form-control">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="family_middleinitial">Middle Initial:</label>
+                                            <input type="text" id="family_middleinitial" name="family_middleinitial" class="form-control">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="relationshipid">Relationship:</label>
+                                            <select class="form-control" id="relationshipid" name="relationshipid">
+                                                <option value="0">Select Relationship</option>
+                                                <?php
+                                                $rs = mysqli_query($db_connection, 'SELECT relationshipid, relationship FROM tblrelationship');
+                                                while ($rw = mysqli_fetch_array($rs)) {
+                                                    echo '<option value="' . $rw['relationshipid'] . '">' . $rw['relationship'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="family_age">Age:</label>
+                                            <input type="text" id="family_age" name="family_age" class="form-control">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="familycivilid">Civil Status:</label>
+                                            <select class="form-control" id="familycivilid" name="familycivilid">
+                                                <option value="0">Select Civil Status</option>
+                                                <?php
+                                                $rs = mysqli_query($db_connection, 'SELECT civilid, status FROM tblcivil');
+                                                while ($rw = mysqli_fetch_array($rs)) {
+                                                    echo '<option value="' . $rw['civilid'] . '">' . $rw['status'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="educationid">Education Attainment:</label>
+                                            <select class="form-control" id="educationid" name="educationid">
+                                                <option value="0">Select Education Attainment</option>
+                                                <?php
+                                                $rs = mysqli_query($db_connection, 'SELECT educid, educ FROM tbleducational_attainment');
+                                                while ($rw = mysqli_fetch_array($rs)) {
+                                                    echo '<option value="' . $rw['educid'] . '">' . $rw['educ'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="occupation">Occupation:</label>
+                                            <input type="text" id="occupation" name="occupation" class="form-control">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="income">Monthly Income:</label>
+                                            <input type="number" id="income" name="income" class="form-control">
+                                            <br>
+                                            <a class="btn btn-primary btn-sm" onclick="add_family();">ADD</a>
+                                        </div>
 
-<div id="tmp_u">
-    <table id="myTable" class="table table-sm table-striped">
-        <tr>
-        <thead>
-            <th>Lastname</th>
-            <th>Firstname</th>
-            <th>Middle Initial</th>
-            <th>Relationship</th>
-            <th>Age</th>
-            <th>Civil Status</th>
-            <th>Educational Attainment</th>
-            <th>Occupation</th>
-            <th>Income</th>
-            <th>Remove</th>
-    </thead>
-        </tr>
-       
-    </table>
-</div>
+                                        <div id="tmp_u">
+                                            <table id="myTable" class="table table-sm table-striped">
+                                                <tr>
+                                                <thead>
+                                                    <th>Lastname</th>
+                                                    <th>Firstname</th>
+                                                    <th>Middle Initial</th>
+                                                    <th>Relationship</th>
+                                                    <th>Age</th>
+                                                    <th>Civil Status</th>
+                                                    <th>Educational Attainment</th>
+                                                    <th>Occupation</th>
+                                                    <th>Income</th>
+                                                    <th>Remove</th>
+                                                </thead>
+                                                </tr>
+                                            </table>
+                                        </div>
 
-                                 
+                                        <br>
+                                        <div class="col-12">
+                                            <h4>Educational Background</h4>
+                                        </div>
+
+                                        <div class="col-6 mb-3">
+                                            <label for="elementary">Elementary:</label>
+                                            <input type="text" id="elementary" name="elementary" class="form-control">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="junior">Junior High school:</label>
+                                            <input type="text" id="junior" name="junior" class="form-control">
+                                        </div>
+                                        <div class="col-6 mb-3" id="seniorSection">
+                                            <label for="senior">Senior High school:</label>
+                                            <input type="text" id="senior" name="senior" class="form-control">
+                                        </div>
+                                        <div class="col-6 mb-3" id="collegeSection">
+                                            <label for="college">Vocational/College:</label>
+                                            <input type="text" id="college" name="college" class="form-control">
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm float-right mb-3" onclick="register();">Submit</a>
                                 </div>
-                                <a href="javascript:void(0);" class="btn btn-primary btn-sm float-right mb-3" onclick="register();">Submit</a>
                             </form>
                         </div>
                     </div>
@@ -542,45 +578,61 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
         <!----END----->
     </div>
 </div>
-
-		</div>
-	</div>
-	<aside class="control-sidebar control-sidebar-dark"></aside>
-	<footer class="main-footer">
-		<div class="float-right d-none d-sm-inline">
-			Scholarship Management System
-		</div>
-		<strong>Clarence & Patrick &copy; 2024 <a href="javascript:void();"></a>.</strong> All rights reserved.
-	</footer>
-</div>
-<script src="admin/plugins/jquery/jquery.min.js"></script>
-<script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<aside class="control-sidebar control-sidebar-dark"></aside>
+<footer class="main-footer">
+    <div class="float-right d-none d-sm-inline">
+        Scholarship Management System
+    </div>
+    <strong>Clarence & Patrick &copy; 2024 <a href="javascript:void();"></a>.</strong> All rights reserved.
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="admin/dist/js/adminlte.min.js"></script>
 <script>
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-	anchor.addEventListener('click', function (e) {
-		e.preventDefault();
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
-		document.querySelector(this.getAttribute('href')).scrollIntoView({
-			behavior: 'smooth'
-		});
-	});
+document.addEventListener("DOMContentLoaded", function() {
+    var radios = document.querySelectorAll('input[name="levelid"]');
+    var seniorSection = document.getElementById('seniorSection');
+    var collegeSection = document.getElementById('collegeSection');
+    var seniorLabel = document.getElementById('seniorLabel');
+    var seniorInput = document.getElementById('senior');
+    var collegeLabel = document.getElementById('collegeLabel');
+    var collegeInput = document.getElementById('college');
+
+    radios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var levelid = this.value;
+            if (levelid === '1') {
+                document.getElementById('semid').style.display = 'none';
+                seniorSection.style.display = 'none';
+                collegeSection.style.display = 'none';
+                seniorLabel.style.display = 'none';
+                seniorInput.style.display = 'none';
+                collegeLabel.style.display = 'none';
+                collegeInput.style.display = 'none';
+            } else if (levelid === '2') {
+                document.getElementById('semid').style.display = 'block';
+                seniorSection.style.display = 'block';
+                collegeSection.style.display = 'block';
+                seniorLabel.style.display = 'block';
+                seniorInput.style.display = 'block';
+                collegeLabel.style.display = 'block';
+                collegeInput.style.display = 'block';
+            }
+        });
+    });
 });
 
 
-document.addEventListener("DOMContentLoaded", function() {
-        var radios = document.querySelectorAll('input[name="levelid"]');
-        radios.forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                var levelid = this.value;
-                if (levelid === '1') {
-                    document.getElementById('semid').style.display = 'none';
-                } else {
-                    document.getElementById('semid').style.display = 'block';
-                }
-            });
-        });
-    });
+
 </script>
 </body>
 </div>

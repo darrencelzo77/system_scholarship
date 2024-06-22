@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2024 at 04:39 AM
+-- Generation Time: Jun 22, 2024 at 09:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44182,22 +44182,31 @@ CREATE TABLE `tblregistrations` (
   `civilid` int(11) DEFAULT NULL,
   `sexid` int(11) DEFAULT NULL,
   `contact` varchar(128) DEFAULT NULL,
-  `semid` int(11) DEFAULT 0
+  `semid` int(11) DEFAULT 0,
+  `elementary` varchar(128) DEFAULT '',
+  `junior` varchar(128) DEFAULT '',
+  `senior` varchar(128) DEFAULT '',
+  `college` varchar(128) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblregistrations`
 --
 
-INSERT INTO `tblregistrations` (`regid`, `levelid`, `trackingnumber`, `regdate`, `categoryid`, `middlename`, `firstname`, `lastname`, `dob`, `emailaddress`, `is_reject`, `is_accept`, `is_online`, `namextid`, `provid`, `cityid`, `brgyid`, `street`, `birthplace`, `citizenshipid`, `civilid`, `sexid`, `contact`, `semid`) VALUES
-(92, 2, '', '2024-06-22 00:43:00', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1),
-(93, 2, '', '2024-06-22 00:46:59', 1, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 2),
-(94, 2, '', '2024-06-22 00:47:56', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1),
-(95, 2, '', '2024-06-22 00:49:38', 4, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 3),
-(96, 2, '', '2024-06-22 00:51:28', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1),
-(97, 2, '', '2024-06-22 00:56:23', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 2, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1),
-(98, 2, '', '2024-06-22 10:27:33', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1),
-(99, 2, '', '2024-06-22 10:36:30', 3, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 2);
+INSERT INTO `tblregistrations` (`regid`, `levelid`, `trackingnumber`, `regdate`, `categoryid`, `middlename`, `firstname`, `lastname`, `dob`, `emailaddress`, `is_reject`, `is_accept`, `is_online`, `namextid`, `provid`, `cityid`, `brgyid`, `street`, `birthplace`, `citizenshipid`, `civilid`, `sexid`, `contact`, `semid`, `elementary`, `junior`, `senior`, `college`) VALUES
+(108, 2, '', '2024-06-22 11:06:44', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
+(109, 2, '', '2024-06-22 11:08:03', 3, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 1, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 3, '', '', '', ''),
+(110, 2, '', '2024-06-22 12:19:58', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
+(111, 2, '', '2024-06-22 12:21:51', 3, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
+(112, 2, '', '2024-06-22 12:23:17', 4, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
+(113, 2, '', '2024-06-22 13:04:23', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 2, '', '', '', ''),
+(114, 2, '', '2024-06-22 13:04:52', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
+(115, 2, '', '2024-06-22 13:11:16', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 2, '', '', '', ''),
+(116, 2, '', '2024-06-22 14:40:22', 2, 'Gadot', 'Angelo Julius', 'Taruc', '2024-06-22', '', 0, 0, 0, 2, 72, 1442, 38224, '12asd', 'cabanatuan', 2, 3, 2, '32423432', 2, '', '', '', ''),
+(117, 2, '', '2024-06-22 14:48:36', 2, 'Gadot', 'Angelo Julius', 'Taruc', '2024-06-13', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 1, 1, 1, '32423432', 2, 'bitas', 'nehs', 'nehs', 'neust'),
+(118, 2, '', '2024-06-22 15:05:07', 1, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, 'asdasdgsd', 'asfkj2', '', ''),
+(119, 2, '', '2024-06-22 15:05:54', 3, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', '', 0, 0, 0, '32423432', 1, 'asd', 'asdadasdas', 'asdasd', 'asd'),
+(120, 1, '', '2024-06-22 15:16:32', 1, 'Gadot', 'Angelo Julius', 'Taruc', '2024-06-06', '', 0, 0, 0, 1, 35, 0, 0, '12asd', 'cabanatuan', 2, 2, 2, '32423432', 0, 'asdasdgsd', 'asfkj2', '', '');
 
 -- --------------------------------------------------------
 
@@ -44218,6 +44227,29 @@ CREATE TABLE `tblregistrations_family` (
   `occupation` varchar(128) DEFAULT '',
   `income` varchar(128) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblregistrations_family`
+--
+
+INSERT INTO `tblregistrations_family` (`familyid`, `regid`, `family_lastname`, `family_firstname`, `family_middleinitial`, `relationshipid`, `family_age`, `familycivilid`, `educationid`, `occupation`, `income`) VALUES
+(1, 112, 'Taruc', '', '', 0, '', 0, 0, '', ''),
+(2, 113, 'Taruc', '', '', 0, '', 0, 0, '', ''),
+(3, 114, 'Taruc', '', '', 0, '', 0, 0, '', ''),
+(4, 114, '', '', '', 0, '', 0, 0, '', ''),
+(5, 114, '', '', '', 0, '', 0, 0, '', ''),
+(6, 115, 'Taruc', '', '', 0, '', 0, 0, '', ''),
+(7, 115, 'Bondoc', '', '', 0, '', 0, 0, '', ''),
+(8, 116, 'Bondoc', 'Almer', 'D', 4, '22', 1, 1, 'S', '12000'),
+(9, 116, 'Bondoc', 'Almer', 'D', 3, '22', 2, 2, 'asdasd', '3433'),
+(10, 117, 'taruc', 'Almer', 'D', 2, '22', 1, 2, 'S', '11'),
+(11, 117, '', '', '', 0, '', 0, 0, '', ''),
+(12, 117, '', '', '', 0, '', 0, 0, '', ''),
+(13, 117, '', '', '', 0, '', 0, 0, '', ''),
+(14, 118, 'Taruc', 'Angelo Julius', 'G', 0, '22', 0, 0, '', ''),
+(15, 119, '', '', '', 0, '', 0, 0, '', ''),
+(16, 120, 'Taruc', 'Angelo Julius', 'G', 3, '2', 4, 1, 'asdkjakjdsb,asd', '12121212'),
+(17, 120, 'A8', 'Samsung', 'G', 3, '22', 4, 4, 'asfiuj3r1', '23242');
 
 -- --------------------------------------------------------
 
@@ -44539,13 +44571,13 @@ ALTER TABLE `tblnamext`
 -- AUTO_INCREMENT for table `tblregistrations`
 --
 ALTER TABLE `tblregistrations`
-  MODIFY `regid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `regid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `tblregistrations_family`
 --
 ALTER TABLE `tblregistrations_family`
-  MODIFY `familyid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `familyid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tblregistrations_requirements`
