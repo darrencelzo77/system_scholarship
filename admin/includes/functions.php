@@ -130,6 +130,10 @@ function Cat($id){ global $db_connection;
 	return GetData('SELECT cat FROM tblcategory WHERE categoryid='.$id);
 }
 
+function NameExt($id){
+	return GetData('select namext from tblnamext where namextid='.$id);
+}
+
 		
 
 

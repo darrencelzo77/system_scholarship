@@ -1,12 +1,17 @@
 <?php
-// if(session_id()==''){session_start();} 
-// if (isset($_SESSION['accountid'])){ 
-//     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-//     if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-//     if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-// } else {
-//     header('location: ../'); exit(0); 
-// }
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+} else {
+    header('location: ../'); exit(0); 
+}
+
+$regid = secureData($_GET['studentid'], 'd');
+// echo $regid;
+$qr = mysqli_query($db_connection, "SELECT * FROM tblregistrations WHERE regid='$regid'");
+$rw = mysqli_fetch_array($qr);
 ?>
 
 <!DOCTYPE html>
@@ -76,17 +81,17 @@
         <tr>
             <td><img style="height: 100px; margin-left: 80px; position: absolute; top: 80px;" src="../../admin/images/logo_u.png" alt=""></td>
             <td style="text-align: center; font-weight: bold; font-size: 13px">MUNICIPAL EXPANDED <br> EDUCATIONAL ASSISTANCE <br> PROGRAM</td>
-            <td><img style="height: 100px; position: absolute; left: 780px; top: 80px;" src="../../admin/images/dswd_u.png" alt=""></td>
+            <td><img style="height: 100px; position: absolute; margin-left: -90px; top: 80px;" src="../../admin/images/dswd_u.png" alt=""></td>
         </tr>
 
         <tr>
             <td></td>
-            <td style="text-align: center; font-weight: bold; font-size: 15px;">CATEGORY 1</td>
+            <td style="text-align: center; font-weight: bold; font-size: 15px;">CATEGORY <?=htmlspecialchars($rw['categoryid'])?></td>
         </tr>
 
         <tr>
             <td></td>
-            <td style="text-align: center; font-weight: bold; color: blue; font-size: 15px;">COLLEGE STUDENT APPLICATION FORM</td>
+            <td style="text-align: center; font-weight: bold; color: blue; font-size: 15px;"><?if($rw['levelid'] == 1) {echo 'ELEMENTARY/HIGH SCHOOL';}else{echo 'COLLEGE';}?> STUDENT APPLICATION FORM</td>
         </tr>
 
         <tr>
@@ -94,8 +99,48 @@
             <td style="text-align: center;">SY/AC: <span style="text-decoration: underline;">2023-2024</span></td>
         </tr>
 
-        
-        <tr>
+        <?
+            if($rw['levelid'] == 2){
+                echo '
+                    <tr>
+                        <td>
+                            <table width="50%" style="position: absolute; top: 150px;">
+                                <tr>
+                                    <td></td>
+                                    <td>SEMESTER:</td>
+                                </tr>
+                                <tr>
+                                    <td height="10px;" width="10px;" style="border: 1px solid black;">';
+                                    if($rw['semid'] == 1){
+                                        echo '<img height="10px" src="../images/check_.png">';
+                                    }
+                                    echo '</td>
+                                    <td>FIRST</td>
+                                </tr>
+                                <tr>
+                                    <td height="10px;" width="10px;" style="border: 1px solid black;">';
+                                    if($rw['semid'] == 2){
+                                        echo '<img height="10px" src="../images/check_.png">';
+                                    }
+                                    echo '</td>
+                                    <td>SECOND</td>
+                                </tr>
+                                <tr>
+                                    <td height="10px;" width="10px;" style="border: 1px solid black;">';
+                                    if($rw['semid'] == 3){
+                                        echo '<img height="10px" src="../images/check_.png">';
+                                    }
+                                    echo '</td>
+                                    <td>THIRD</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                ';
+            }
+
+        ?>
+        <!-- <tr>
             <td>
                 <table width="50%" style="position: absolute; top: 150px;">
                     <tr>
@@ -103,21 +148,21 @@
                         <td>SEMESETER:</td>
                     </tr>
                     <tr>
-                        <td height="10px;" width="10px;" style="border: 1px solid black;"></td>
+                        <td height="10px;" width="10px;" style="border: 1px solid black;"><? if($rw['semid'] == 1){echo '<img height="10px" src="../images/check_.png">';}?></td>
                         <td>FIRST</td>
                     </tr>
                     <tr>
-                        <td height="10px;" width="10px;" style="border: 1px solid black;"></td>
+                        <td height="10px;" width="10px;" style="border: 1px solid black;"><? if($rw['semid'] == 2){echo '<img height="10px" src="../images/check_.png">';}?></td>
                         <td>SECOND</td>
 
                     </tr>
                     <tr>
-                        <td height="10px;" width="10px;" style="border: 1px solid black;"></td>
+                        <td height="10px;" width="10px;" style="border: 1px solid black;"><? if($rw['semid'] == 3){echo '<img height="10px" src="../images/check_.png">';}?></td>
                         <td>THIRD</td>
                     </tr>
                 </table>
             </td>
-        </tr>
+        </tr> -->
 
     </table>
 
@@ -130,79 +175,6 @@
             </td>
         </tr>
     </table>
-
-
-    
-    <!-- <table width="30%">
-        <tr>
-            <td style="font-size: 12px;">LGU MEEAP FORM</td>
-        </tr>
-        <tr>
-            <td style="font-size: 12px;">2023 VERSION (NOT FOR SALE)</</td>
-        </tr>
-    </table>
-
-    <div class="header">
-        <div class="div1">
-        </div>
-
-        <div class="div2">
-            <table>
-                <tr>
-                    <td><img height="100px" src="../../admin/images/logo_u.png" alt=""></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="div3" style="text-align: center;">
-            <table>
-                <tr>
-                    <td style="font-size: 12px;">Republic of the Philippines</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 12px;">Province of Batangas</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 14px;">MUNICIPALITY OF SAN JOSE</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 14px; font-weight:bold;">MUNICIPAL EXPANDED EDUCATIONAL ASSISTANCE  PROGRAM</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 30px; font-weight:bold;">CATEGORY 1</td>
-                </tr>
-                <tr>
-                    <td style="color: blue; font-size:20px; font-weight:bold;">COLLEGE STUDENT APPLICATION FORM</td>
-                </tr>
-                <tr>
-                    <td>SY/AC: 2020-2024</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="div4">
-            <table>
-                <tr>
-                    <td><img height="100px" src="../../admin/images/dswd_u.png" alt=""></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="div5">
-            <table>
-                <tr>
-                    <td>
-                        <div style="width: 200px; height:200px;border:1px solid black;text-align:center;">
-                            <span style="margin-top: 50px;">Picture</span><br>
-                            <span>2X2</span><br>
-                            <span style="color:red;">*White or Blue</span><br>
-                            <span style="color: red;">Background</span>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div> -->
 
     <table width="100%">
         <tr>
@@ -218,11 +190,11 @@
     
     <table width="100%" style="border-collapse:collapse; border-bottom: none;" border="1">
         <tr align="top">
-            <td width="28%" height="40px;"><span>Surname<span style="color: red;">*</span></span><br></td>
-            <td width="28%"><span>First Name<span style="color: red;">*</span></span></td>
-            <td width="28%"><span>Middle Name<span style="color: red;">*</span></span></td>
+            <td width="28%" height="40px;"><span>Surname<span style="color: red;">*</span></span><br><br>&nbsp;<span style="font-size: 14px;"><?=htmlspecialchars($rw['lastname'])?></span></td>
+            <td width="28%"><span>First Name<span style="color: red;">*</span></span><br><br><span style="font-size: 14px;">&nbsp;<?=htmlspecialchars($rw['firstname'])?></span></td>
+            <td width="28%"><span>Middle Name<span style="color: red;">*</span></span><br><br><span style="font-size: 14px;">&nbsp;<?=htmlspecialchars($rw['middlename'])?></span></td>
             <td width="16%"><span>Name EXT.<span style="color: red;">*</span></span><br>
-                <span>(Jr., Sr.)*</span>
+                <span>(Jr., Sr.)*</span><br>&nbsp;<span style="font-size: 14px;"><?=htmlspecialchars(NameExt($rw['namextid']))?></span>
             </td>
         </tr>
 
@@ -234,8 +206,8 @@
                 &nbsp;&nbsp;&nbsp;<span>Barangay</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span>San Jose, Batangas</span>
             </td>
-            <td width="20%"><span>Date of Birth<span style="color: red;">*</span></span></td>
-            <td width="40%"><span>Place of Birth<span style="color: red;">*</span></span></td>
+            <td width="20%"><span>Date of Birth<span style="color: red;">*</span></span><br>&nbsp;<span style="font-size: 14px;"><br>&nbsp;<?=htmlspecialchars($rw['dob'])?></span></td>
+            <td width="40%"><span>Place of Birth<span style="color: red;">*</span></span><br>&nbsp;<span style="font-size: 14px;"><br>&nbsp;<?=htmlspecialchars(ucwords($rw['birthplace']))?></span></td>
         </tr>
     </table>
 
@@ -246,9 +218,9 @@
                 <table width="100%" style="margin-left: 50px;">
                     <tr>
                         <td>FILIPINO</td>
-                        <td width="10px;" height="10px;" style="border: 1px solid black;"></td>
+                        <td width="10px;" height="10px;" style="border: 1px solid black;"><? if($rw['citizenshipid'] == 1){echo '<img height="10px" src="../images/check_.png">';}?></td>
                         <td>by birth</td>
-                        <td width="10px;" height="10px;" style="border: 1px solid black;"></td>
+                        <td width="10px;" height="10px;" style="border: 1px solid black;"><? if($rw['citizenshipid'] == 2){echo '<img height="10px" src="../images/check_.png">';}?></td>
                         <td>by naturalization</td>
                     </tr>
                 </table>
@@ -256,9 +228,9 @@
             <td width="20%"><span>Civil Status<span style="color: red;">*</span></span><br>
                 <table width="100%">
                     <tr>
-                        <td width="10px;" height="10px;" style="border: 1px solid black;"></td>
+                        <td width="10px;" height="10px;" style="border: 1px solid black;"><? if($rw['civil'] == 1){echo '<img height="10px" src="../images/check_.png">';}?></td>
                         <td>Single</td>
-                        <td width="10px;" height="10px;" style="border: 1px solid black;"></td>
+                        <td width="10px;" height="10px;" style="border: 1px solid black;"><? if($rw['civil'] == 2){echo '<img height="10px" src="../images/check_.png">';}?></td>
                         <td>Married</td>
                     </tr>
                 </table>
@@ -266,14 +238,14 @@
             <td width="20%"><span>Sex<span style="color: red;">*</span></span><br>
                 <table width="100%">
                     <tr>
-                        <td width="10px;" height="10px;" style="border: 1px solid black;"></td>
-                        <td>Single</td>
-                        <td width="10px;" height="10px;" style="border: 1px solid black;"></td>
-                        <td>Married</td>
+                        <td width="10px;" height="10px;" style="border: 1px solid black;"><? if($rw['sexid'] == 1){echo '<img height="10px" src="../images/check_.png">';}?></td>
+                        <td>Male</td>
+                        <td width="10px;" height="10px;" style="border: 1px solid black;"><? if($rw['sexid'] == 2){echo '<img height="10px" src="../images/check_.png">';}?></td>
+                        <td>Female</td>
                     </tr>
                 </table>
             </td>
-            <td width="20%"><span>Contact Number<span style="color: red;">*</span></span><br></td>
+            <td width="20%"><span>Contact Number<span style="color: red;">*</span></span><br><br>&nbsp;<span style="font-size: 14px;"><?=htmlspecialchars($rw['contact'])?></span></td>
         </tr>
     </table><br>
 
@@ -309,51 +281,22 @@
                 <span style="font-size: 10px; color:red;">(Take-home pay)</span>
             </td>
         </tr>
-        <tr>
-            <td height="25px"></td>
-            <td ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td height="25px"></td>
-            <td ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td height="25px"></td>
-            <td ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td height="25px"></td>
-            <td ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td height="25px"></td>
-            <td ></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+
+        <?
+            $f_qr = mysqli_query($db_connection, 'select * from tblregistrations_family where regid='.$regid);
+            while($f_rw = mysqli_fetch_array($f_qr)){
+                echo '<tr>';
+                echo '<td style="font-size: 14px;">'.htmlspecialchars($f_rw['family_lastname'].' '.$f_rw['family_firstname'].' '.$f_rw['family_middleinitial']).'</td>';
+                echo '<td style="font-size: 14px;">'.htmlspecialchars(GetData('select relationship from tblrelationship where relationshipid='.$f_rw['relationshipid'])).'</td>';
+                echo '<td style="font-size: 14px;">'.htmlspecialchars($f_rw['family_age']).'</td>';
+                echo '<td style="font-size: 14px;">'.htmlspecialchars(GetData('select status from tblcivil where civilid='.$f_rw['familycivilid'])).'</td>';
+                echo '<td style="font-size: 14px;">'.htmlspecialchars(GetData('select educ from tbleducational_attainment where educid='.$f_rw['educationid'])).'</td>';
+                echo '<td style="font-size: 14px;">'.htmlspecialchars($f_rw['occupation']).'</td>';
+                echo '<td style="font-size: 14px;">'.htmlspecialchars($f_rw['income']).'</td>';
+                echo '</tr>';
+            }
+        
+        ?>
         <tr>
             <td height="25px"></td>
             <td ></td>
@@ -401,23 +344,28 @@
         </tr>
         <tr>
             <td width="35%">Elementary (Grade 1 - Grade 6)</td>
-            <td></td>
+            <td style="font-size: 14px;"><?=htmlspecialchars(ucwords($rw['elementary']))?></td>
         </tr>
 
         <tr>
             <td width="35%">Junior High School (Grade 1 - Grade 6)</td>
-            <td></td>
+            <td style="font-size: 14px;"><?=htmlspecialchars(ucwords($rw['junior']))?></td>
         </tr>
  
         <tr>
             <td width="35%">Senior High School (Grade 1 - Grade 6)</td>
-            <td></td>
+            <td style="font-size: 14px;"><?=htmlspecialchars(ucwords($rw['senior']))?></td>
         </tr>
 
-        <tr style="border-bottom: 3px solid black;">
-            <td width="35%">Vocational / College</td>
-            <td></td>
-        </tr>
+        <? if($rw['levelid'] == 2){
+            echo '
+            <tr style="border-bottom: 3px solid black;">
+                <td width="35%">Vocational / College</td>
+                <td style="font-size: 14px;">' . htmlspecialchars(ucwords($rw['college'])) . '</td>
+            </tr>
+            ';
+        }?>
+
     </table>
     <table>
         <tr style="font-style:italic; font-size:10px;">
@@ -437,7 +385,7 @@
 
     <table width="90%" style="margin-top: 40px; margin-left: 40px;">
         <tr>
-            <td width="40%" style="border-bottom: 1px solid black;"></td>
+            <td width="40%" style="border-bottom: 1px solid black; text-align:center; font-size: 14px;"><?=htmlspecialchars($rw['firstname'].' '.$rw['middlename'].' '.$rw['lastname'])?></td>
             <td width="30%"></td>
             <td width="30%" style="border-bottom: 1px solid black;"></td>
         </tr>
