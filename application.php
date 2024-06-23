@@ -229,6 +229,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 
 
 	</script>
+
 </head>
 <div id="maincontent">
 <body class="hold-transition layout-top-nav">
@@ -316,7 +317,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
         <div class="row">
             <span id="home" style="margin-top:-200px;"></span>
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card w-200 mx-auto">
                     <div class="card-body">
                         <h4 class="card-title">Scholarship Application Form</h4>
                         <div class="mt-5">
@@ -340,7 +341,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                 ?>
                                             </select>
                                         </div>
-                                        <div class="col-6 mb-3">
+                                        <div class="col-12 mb-3">
                                             <select class="form-control" id="categoryid" name="categoryid">
                                                 <option value="0">Select Category</option>
                                                 <?php
@@ -462,7 +463,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                             <label for="contact">Contact Number:</label>
                                             <input type="text" id="contact" name="contact" class="form-control">
                                         </div>
-
+<br><br><br><br><br>
                                         <div class="col-12">
                                             <h4>Family Background</h4>
                                         </div>
@@ -507,6 +508,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                 ?>
                                             </select>
                                         </div>
+                                        
                                         <div class="col-6 mb-3">
                                             <label for="educationid">Education Attainment:</label>
                                             <select class="form-control" id="educationid" name="educationid">
@@ -530,8 +532,8 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                             <a class="btn btn-primary btn-sm" onclick="add_family();">ADD</a>
                                         </div>
 
-                                        <div id="tmp_u">
-                                            <table id="myTable" class="table table-sm table-striped">
+                                        <div id="tmp_u" >
+                                            <table id="myTable" class="table table-striped" align="center">
                                                 <tr>
                                                 <thead>
                                                     <th>Lastname</th>
@@ -549,7 +551,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                             </table>
                                         </div>
 
-                                        <br>
+                                        <br><br><br><br><br>
                                         <div class="col-12">
                                             <h4>Educational Background</h4>
                                         </div>

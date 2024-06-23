@@ -296,23 +296,23 @@ function toggleSections() {
                                 <div id="page_1" class="tabcontent" style="display:block;">
                                     <div class="row">
                                     <div class="col-12 mb-3">
-    <input type="radio" id="levelid1" name="levelid" value="1" onclick="toggleSections();" /> Elementary Student/High school
-    <input type="radio" id="levelid2" name="levelid" value="2" onclick="toggleSections();" /> College
-</div>
+                                    <input type="radio" id="levelid1" name="levelid" value="1" onclick="toggleSections();" /> Elementary Student/High school
+                                    <input type="radio" id="levelid2" name="levelid" value="2" onclick="toggleSections();" /> College
+                                </div>
 
-<div class="col-6 mb-3" id="semesterSelectContainer">
-    <select class="form-control" id="semid" name="semid">
-        <option value="0">Select Semester</option>
-        <?php
-        $rs = mysqli_query($db_connection, 'SELECT semid, sem FROM tblsemester');
-        while ($rw = mysqli_fetch_array($rs)) {
-            $sel = ($semid == $rw['semid']) ? 'selected="selected"' : '';
-            echo '<option value="' . $rw['semid'] . '" ' . $sel . '>' . $rw['sem'] . '</option>';
-        }
-        ?>
-    </select>
-</div>
-                                        <div class="col-6 mb-3">
+                                <div class="col-6 mb-3" id="semesterSelectContainer">
+                                    <select class="form-control" id="semid" name="semid">
+                                        <option value="0">Select Semester</option>
+                                        <?php
+                                        $rs = mysqli_query($db_connection, 'SELECT semid, sem FROM tblsemester');
+                                        while ($rw = mysqli_fetch_array($rs)) {
+                                            $sel = ($semid == $rw['semid']) ? 'selected="selected"' : '';
+                                            echo '<option value="' . $rw['semid'] . '" ' . $sel . '>' . $rw['sem'] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                    </div>
+                                        <div class="col-12 mb-3">
                                             <select class="form-control" id="categoryid" name="categoryid">
                                                 <option value="0">Select Category</option>
                                                 <?php
@@ -435,7 +435,7 @@ function toggleSections() {
                                             <label for="contact">Contact Number:</label>
                                             <input type="text" id="contact" name="contact" class="form-control">
                                         </div>
-
+                                        <br><br><br><br><br><br>
                                         <div class="col-12">
                                             <h4>Family Background</h4>
                                         </div>
@@ -502,9 +502,9 @@ function toggleSections() {
                                             <br>
                                             <a class="btn btn-primary btn-sm" onclick="add_family();">ADD</a>
                                         </div>
-
+<br>
                                         <div id="tmp_u">
-                                            <table id="myTable" class="table table-sm table-striped">
+                                            <table id="myTable" class="table table-striped">
                                                 <tr>
                                                 <thead>
                                                     <th>Lastname</th>
@@ -521,7 +521,10 @@ function toggleSections() {
                                                 </tr>
                                             </table>
                                         </div>
-
+                                       <br>
+                                       <br>
+                                       <br>
+                                        <br>
                                         <br>
                                         <div class="col-12">
                                             <h4>Educational Background</h4>
@@ -555,13 +558,7 @@ function toggleSections() {
         <!----END----->
     </div>
 </div>
-<aside class="control-sidebar control-sidebar-dark"></aside>
-<footer class="main-footer">
-    <div class="float-right d-none d-sm-inline">
-        Scholarship Management System
-    </div>
-    <strong>Clarence & Patrick &copy; 2024 <a href="javascript:void();"></a>.</strong> All rights reserved.
-</footer>
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script src="admin/dist/js/adminlte.min.js"></script>
