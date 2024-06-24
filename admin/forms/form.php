@@ -190,9 +190,9 @@ $rw = mysqli_fetch_array($qr);
     
     <table width="100%" style="border-collapse:collapse; border-bottom: none;" border="1">
         <tr align="top">
-            <td width="28%" height="40px;"><span>Surname<span style="color: red;">*</span></span><br><br>&nbsp;<span style="font-size: 14px;"><?=htmlspecialchars($rw['lastname'])?></span></td>
-            <td width="28%"><span>First Name<span style="color: red;">*</span></span><br><br><span style="font-size: 14px;">&nbsp;<?=htmlspecialchars($rw['firstname'])?></span></td>
-            <td width="28%"><span>Middle Name<span style="color: red;">*</span></span><br><br><span style="font-size: 14px;">&nbsp;<?=htmlspecialchars($rw['middlename'])?></span></td>
+            <td width="28%" height="40px;"><span>Surname<span style="color: red;">*</span></span><br><br>&nbsp;<span style="font-size: 14px;"><?=htmlspecialchars(ucwords($rw['lastname']))?></span></td>
+            <td width="28%"><span>First Name<span style="color: red;">*</span></span><br><br><span style="font-size: 14px;">&nbsp;<?=htmlspecialchars(ucwords($rw['firstname']))?></span></td>
+            <td width="28%"><span>Middle Name<span style="color: red;">*</span></span><br><br><span style="font-size: 14px;">&nbsp;<?=htmlspecialchars(ucwords($rw['middlename']))?></span></td>
             <td width="16%"><span>Name EXT.<span style="color: red;">*</span></span><br>
                 <span>(Jr., Sr.)*</span><br>&nbsp;<span style="font-size: 14px;"><?=htmlspecialchars(NameExt($rw['namextid']))?></span>
             </td>
@@ -286,7 +286,7 @@ $rw = mysqli_fetch_array($qr);
             $f_qr = mysqli_query($db_connection, 'select * from tblregistrations_family where regid='.$regid);
             while($f_rw = mysqli_fetch_array($f_qr)){
                 echo '<tr>';
-                echo '<td style="font-size: 14px;">'.htmlspecialchars($f_rw['family_lastname'].' '.$f_rw['family_firstname'].' '.$f_rw['family_middleinitial']).'</td>';
+                echo '<td style="font-size: 14px;">'.htmlspecialchars(ucwords($f_rw['family_lastname'].' '.$f_rw['family_firstname'].' '.$f_rw['family_middleinitial'])).'</td>';
                 echo '<td style="font-size: 14px;">'.htmlspecialchars(GetData('select relationship from tblrelationship where relationshipid='.$f_rw['relationshipid'])).'</td>';
                 echo '<td style="font-size: 14px;">'.htmlspecialchars($f_rw['family_age']).'</td>';
                 echo '<td style="font-size: 14px;">'.htmlspecialchars(GetData('select status from tblcivil where civilid='.$f_rw['familycivilid'])).'</td>';
@@ -385,7 +385,7 @@ $rw = mysqli_fetch_array($qr);
 
     <table width="90%" style="margin-top: 40px; margin-left: 40px;">
         <tr>
-            <td width="40%" style="border-bottom: 1px solid black; text-align:center; font-size: 14px;"><?=htmlspecialchars($rw['firstname'].' '.$rw['middlename'].' '.$rw['lastname'])?></td>
+            <td width="40%" style="border-bottom: 1px solid black; text-align:center; font-size: 14px;"><?=htmlspecialchars(ucwords($rw['firstname'].' '.$rw['middlename'].' '.$rw['lastname']))?></td>
             <td width="30%"></td>
             <td width="30%" style="border-bottom: 1px solid black;"></td>
         </tr>
