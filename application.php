@@ -32,7 +32,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
@@ -40,6 +40,22 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="admin/js/sweetalert.min.js"></script>
 	<script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioOptions = document.querySelectorAll('.radio-option');
+            radioOptions.forEach(option => {
+                const input = option.querySelector('input[type="radio"]');
+                if (input.checked) {
+                    option.classList.add('selected');
+                }
+                option.addEventListener('click', function() {
+                    radioOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    input.checked = true;
+                });
+            });
+        });
+
         function loadPage(url,elementId) {
 		if (window.XMLHttpRequest) {
 				xmlhttp=new XMLHttpRequest();
@@ -127,7 +143,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
         function register() {
     var levelid = document.querySelector('input[name="levelid"]:checked');
     var semid = document.getElementById('semid').value;
-    var categoryid = document.getElementById('categoryid').value;
+    var categoryid = document.querySelector('input[name="categoryid"]:checked');
     var lastname = document.getElementById('lastname').value;
     var firstname = document.getElementById('firstname').value;
     var middlename = document.getElementById('middlename').value;
@@ -154,12 +170,12 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
             swal('Error on Required Field', 'Please select semester', 'error');
             return;
         }
-        if (categoryid == 0) {
+  
+    }
+    if (!categoryid) {
             swal('Error on Required Field', 'Please select a category', 'error');
             return;
         }
-    }
-
     if (!levelid) {
         swal('Error on Required Field', 'Please select level of education', 'error');
         return;
@@ -172,7 +188,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
     let myForm = new FormData();
     myForm.append('levelid', levelid.value);
     myForm.append('semid', semid);
-    myForm.append('categoryid', categoryid);
+    myForm.append('categoryid', categoryid.value);
     myForm.append('lastname', lastname);
     myForm.append('firstname', firstname);
     myForm.append('middlename', middlename);
@@ -231,6 +247,44 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 	</script>
 
 </head>
+<style>
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-option {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-option:hover {
+    background-color: #f1f1f1;
+}
+
+.radio-option.selected {
+    border-color: #007bff;
+    background-color: #e9f5ff;
+}
+
+.radio-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #007bff;
+}
+
+.radio-description {
+    margin-left: 10px;
+    color: #6c757d;
+}
+
+</style>
 <div id="maincontent">
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -341,18 +395,22 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                 ?>
                                             </select>
                                         </div>
+
                                         <div class="col-12 mb-3">
-                                            <select class="form-control" id="categoryid" name="categoryid">
-                                                <option value="0">Select Category</option>
-                                                <?php
-                                                $rs = mysqli_query($db_connection, 'SELECT categoryid, category FROM tblcategory ORDER BY category');
-                                                while ($rw = mysqli_fetch_array($rs)) {
-                                                    $sel = ($sectionid == $rw['categoryid']) ? 'selected="selected"' : '';
-                                                    echo '<option value="' . $rw['categoryid'] . '" ' . $sel . '>' . $rw['category'] . '</option>';
-                                                }
-                                                ?>
-                                            </select>
+                                            <?php
+                                            $rs = mysqli_query($db_connection, 'SELECT categoryid, cat, category FROM tblcategory ORDER BY categoryid');
+                                            while ($rw = mysqli_fetch_array($rs)) {
+                                                $checked = ($sectionid == $rw['categoryid']) ? 'checked="checked"' : '';
+                                                echo '<div class="radio-option form-check mb-2">';
+                                                echo '<input class="form-check-input  font-weight-bold ml-1" type="radio" name="categoryid" id="category' . $rw['categoryid'] . '" value="' . $rw['categoryid'] . '" ' . $checked . '>';
+                                                echo '<i class="radio-icon fas fa-tag"></i>' . $rw['cat'];
+                                                echo '</label>';
+                                                echo '<small class="form-text radio-description">' . $rw['category'] . '</small>';
+                                                echo '</div>';
+                                            }
+                                            ?>
                                         </div>
+
                                         <div class="col-6 mb-3">
                                             <label for="lastname">Lastname:</label>
                                             <input type="text" id="lastname" name="lastname" class="form-control">
