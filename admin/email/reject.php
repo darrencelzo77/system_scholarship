@@ -11,6 +11,8 @@
 
     $reason = $_POST['reason'];
     $email = GetData('select emailaddress from tblregistrations where regid='.$_POST['reject_a']);
+    $name = GetData("SELECT CONCAT_WS(' ', firstname, middlename, lastname) AS name FROM tblregistrations WHERE regid=".$_POST['regid']);
+
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
