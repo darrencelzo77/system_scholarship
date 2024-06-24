@@ -85,58 +85,6 @@ $from = date('Y-m-d', strtotime('-31 days'));
 $to = date('Y-m-d');
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    function loadPage(url,elementId) {
-		if (window.XMLHttpRequest) {
-				xmlhttp=new XMLHttpRequest();
-		} else {
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}   
-		xmlhttp.onreadystatechange=function() {
-			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-				document.getElementById(elementId).innerHTML="";
-				document.getElementById(elementId).innerHTML=xmlhttp.responseText;	
-			}
-		}  
-		xmlhttp.open("GET",url,true);
-		xmlhttp.send();	   
-	}
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    var radios = document.querySelectorAll('input[name="levelid"]');
-    var seniorSection = document.getElementById('seniorSection');
-    var collegeSection = document.getElementById('collegeSection');
-    var seniorLabel = document.getElementById('seniorLabel');
-    var seniorInput = document.getElementById('senior');
-    var collegeLabel = document.getElementById('collegeLabel');
-    var collegeInput = document.getElementById('college');
-
-    radios.forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            var levelid = this.value;
-            if (levelid === '1') {
-                document.getElementById('semid').style.display = 'none';
-                seniorSection.style.display = 'none';
-                collegeSection.style.display = 'none';
-                seniorLabel.style.display = 'none';
-                seniorInput.style.display = 'none';
-                collegeLabel.style.display = 'none';
-                collegeInput.style.display = 'none';
-            } else if (levelid === '2') {
-                document.getElementById('semid').style.display = 'block';
-                seniorSection.style.display = 'block';
-                collegeSection.style.display = 'block';
-                seniorLabel.style.display = 'block';
-                seniorInput.style.display = 'block';
-                collegeLabel.style.display = 'block';
-                collegeInput.style.display = 'block';
-            }
-        });
-    });
-}); 
-</script>
 
 <div align="left">
   <h3>Registration</h3>

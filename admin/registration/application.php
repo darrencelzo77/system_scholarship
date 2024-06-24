@@ -33,6 +33,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Scholarship | System</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 
@@ -60,39 +61,6 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 	}
 
 
-
-document.addEventListener("DOMContentLoaded", function() {
-    var radios = document.querySelectorAll('input[name="levelid"]');
-    var seniorSection = document.getElementById('seniorSection');
-    var collegeSection = document.getElementById('collegeSection');
-    var seniorLabel = document.getElementById('seniorLabel');
-    var seniorInput = document.getElementById('senior');
-    var collegeLabel = document.getElementById('collegeLabel');
-    var collegeInput = document.getElementById('college');
-
-    radios.forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            var levelid = this.value;
-            if (levelid === '1') {
-                document.getElementById('semid').style.display = 'none';
-                seniorSection.style.display = 'none';
-                collegeSection.style.display = 'none';
-                seniorLabel.style.display = 'none';
-                seniorInput.style.display = 'none';
-                collegeLabel.style.display = 'none';
-                collegeInput.style.display = 'none';
-            } else if (levelid === '2') {
-                document.getElementById('semid').style.display = 'block';
-                seniorSection.style.display = 'block';
-                collegeSection.style.display = 'block';
-                seniorLabel.style.display = 'block';
-                seniorInput.style.display = 'block';
-                collegeLabel.style.display = 'block';
-                collegeInput.style.display = 'block';
-            }
-        });
-    });
-}); 
     
 	function ajax_new_v2(url_, tmp_add_customer) {
 	$.ajax({
@@ -150,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
         function register() {
     var levelid = document.querySelector('input[name="levelid"]:checked');
     var semid = document.getElementById('semid').value;
-    var categoryid = document.getElementById('categoryid').value;
+    var categoryid = document.querySelector('input[name="categoryid"]:checked');
     var lastname = document.getElementById('lastname').value;
     var firstname = document.getElementById('firstname').value;
     var middlename = document.getElementById('middlename').value;
@@ -176,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
             swal('Error on Required Field', 'Please select semester', 'error');
             return;
         }
-        if (categoryid == 0) {
+        if (!categoryid) {
             swal('Error on Required Field', 'Please select a category', 'error');
             return;
         }
@@ -194,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let myForm = new FormData();
     myForm.append('levelid', levelid.value);
     myForm.append('semid', semid);
-    myForm.append('categoryid', categoryid);
+    myForm.append('categoryid', categoryid.value);
     myForm.append('lastname', lastname);
     myForm.append('firstname', firstname);
     myForm.append('middlename', middlename);
@@ -269,8 +237,72 @@ function toggleSections() {
         toggleSections(); 
     };
 
-	</script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var radioOptions = document.querySelectorAll('.radio-option');
+
+    radioOptions.forEach(function (option) {
+        option.addEventListener('click', function () {
+            radioOptions.forEach(function (opt) {
+                opt.classList.remove('selected');
+            });
+            option.classList.add('selected');
+            var radio = option.querySelector('input[type="radio"]');
+            radio.checked = true;
+        });
+    });
+});
+
+$(document).ready(function() {
+        $('.radio-option').on('click', function() {
+            var radio = $(this).find('.category-radio');
+            if (!radio.prop('checked')) {
+                $('.category-radio').prop('checked', false);
+                radio.prop('checked', true);
+                $('.radio-option').removeClass('selected-category');
+                $(this).addClass('selected-category');
+            }
+        });
+    });
+</script>
 </head>
+<style>
+    .radio-option input[type="radio"] {
+        display: none;
+    }
+
+    .radio-option {
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .radio-option:hover {
+        background-color: #f1f1f1;
+    }
+
+    .radio-option.selected-category {
+        border-color: #007bff;
+        background-color: #e9f5ff;
+    }
+
+    .radio-icon {
+        font-size: 24px;
+        margin-right: 15px;
+        color: #007bff;
+    }
+
+    .radio-description {
+        margin-left: 10px;
+        color: #6c757d;
+    }
+</style>
+
+
 <div id="maincontent">
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -312,18 +344,21 @@ function toggleSections() {
                                         ?>
                                     </select>
                                     </div>
-                                        <div class="col-12 mb-3">
-                                            <select class="form-control" id="categoryid" name="categoryid">
-                                                <option value="0">Select Category</option>
-                                                <?php
-                                                $rs = mysqli_query($db_connection, 'SELECT categoryid, category FROM tblcategory ORDER BY category');
-                                                while ($rw = mysqli_fetch_array($rs)) {
-                                                    $sel = ($sectionid == $rw['categoryid']) ? 'selected="selected"' : '';
-                                                    echo '<option value="' . $rw['categoryid'] . '" ' . $sel . '>' . $rw['category'] . '</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
+                                    <div class="col-12 mb-3">
+                                        <?php
+                                        $rs = mysqli_query($db_connection, 'SELECT categoryid, cat, category FROM tblcategory ORDER BY categoryid');
+                                        while ($rw = mysqli_fetch_array($rs)) {
+                                            $checked = ($sectionid == $rw['categoryid']) ? 'checked="checked"' : '';
+                                            echo '<div class="radio-option form-check mb-2 ' . ($checked ? 'selected-category' : '') . '">';
+                                            echo '<input class="form-check-input font-weight-bold ml-1 category-radio" type="radio" name="categoryid" id="category' . $rw['categoryid'] . '" value="' . $rw['categoryid'] . '" ' . $checked . '>';
+                                            echo '<i class="radio-icon fas fa-tag"></i>';
+                                            echo '<label for="category' . $rw['categoryid'] . '">' . $rw['cat'] . '</label>';
+                                            echo '<small class="form-text radio-description">' . $rw['category'] . '</small>';
+                                            echo '</div>';
+                                        }
+                                        ?>
+                                    </div>
+
                                         <br>
                                         <div class="col-6 mb-3">
                                             <label for="lastname">Lastname:</label>
