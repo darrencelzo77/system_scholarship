@@ -162,6 +162,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
     var junior = document.getElementById('junior').value;
     var senior = document.getElementById('senior').value;
     var college = document.getElementById('college').value;
+    var emailaddress = document.getElementById('emailaddress').value;
     var is_online = document.getElementById('is_online').value;
 
 
@@ -208,6 +209,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
     myForm.append('senior', senior);
     myForm.append('college', college);
     myForm.append('is_online', is_online);
+    myForm.append('emailaddress', emailaddress);
     myForm.append('register', 1);
 
     swal({
@@ -410,7 +412,10 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                             }
                                             ?>
                                         </div>
-
+                                        <div class="col-6 mb-3">
+                                            <label for="emailaddress">Email Address:</label>
+                                            <input type="text" id="emailaddress" name="emailaddress" class="form-control">
+                                        </div>
                                         <div class="col-6 mb-3">
                                             <label for="lastname">Lastname:</label>
                                             <input type="text" id="lastname" name="lastname" class="form-control">
