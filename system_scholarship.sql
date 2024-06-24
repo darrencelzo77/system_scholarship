@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2024 at 09:19 AM
+-- Generation Time: Jun 24, 2024 at 07:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -131,7 +131,15 @@ INSERT INTO `tblactivity` (`activityid`, `accountid`, `activitydate`, `activity`
 (40, 4, '2024-06-19 23:17:11', 'Logout'),
 (41, 1, '2024-06-19 23:18:58', 'Login'),
 (42, 1, '2024-06-19 23:21:03', 'Logout'),
-(43, 1, '2024-06-22 02:16:53', 'Login');
+(43, 1, '2024-06-22 02:16:53', 'Login'),
+(44, 1, '2024-06-22 18:10:35', 'Logout'),
+(45, 1, '2024-06-22 20:52:34', 'Login'),
+(46, 1, '2024-06-22 23:49:16', 'Logout'),
+(47, 1, '2024-06-23 00:36:42', 'Login'),
+(48, 1, '2024-06-23 22:20:40', 'Login'),
+(49, 1, '2024-06-23 22:24:53', 'Logout'),
+(50, 1, '2024-06-23 22:29:05', 'Login'),
+(51, 1, '2024-06-24 12:13:54', 'Login');
 
 -- --------------------------------------------------------
 
@@ -44189,25 +44197,6 @@ CREATE TABLE `tblregistrations` (
   `college` varchar(128) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tblregistrations`
---
-
-INSERT INTO `tblregistrations` (`regid`, `levelid`, `trackingnumber`, `regdate`, `categoryid`, `middlename`, `firstname`, `lastname`, `dob`, `emailaddress`, `is_reject`, `is_accept`, `is_online`, `namextid`, `provid`, `cityid`, `brgyid`, `street`, `birthplace`, `citizenshipid`, `civilid`, `sexid`, `contact`, `semid`, `elementary`, `junior`, `senior`, `college`) VALUES
-(108, 2, '', '2024-06-22 11:06:44', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
-(109, 2, '', '2024-06-22 11:08:03', 3, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 1, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 3, '', '', '', ''),
-(110, 2, '', '2024-06-22 12:19:58', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
-(111, 2, '', '2024-06-22 12:21:51', 3, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
-(112, 2, '', '2024-06-22 12:23:17', 4, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
-(113, 2, '', '2024-06-22 13:04:23', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 2, '', '', '', ''),
-(114, 2, '', '2024-06-22 13:04:52', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, '', '', '', ''),
-(115, 2, '', '2024-06-22 13:11:16', 2, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 2, '', '', '', ''),
-(116, 2, '', '2024-06-22 14:40:22', 2, 'Gadot', 'Angelo Julius', 'Taruc', '2024-06-22', '', 0, 0, 0, 2, 72, 1442, 38224, '12asd', 'cabanatuan', 2, 3, 2, '32423432', 2, '', '', '', ''),
-(117, 2, '', '2024-06-22 14:48:36', 2, 'Gadot', 'Angelo Julius', 'Taruc', '2024-06-13', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 1, 1, 1, '32423432', 2, 'bitas', 'nehs', 'nehs', 'neust'),
-(118, 2, '', '2024-06-22 15:05:07', 1, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', 'cabanatuan', 0, 0, 0, '32423432', 1, 'asdasdgsd', 'asfkj2', '', ''),
-(119, 2, '', '2024-06-22 15:05:54', 3, 'Gadot', 'Angelo Julius', 'Taruc', '0000-00-00', '', 0, 0, 0, 0, 0, 0, 0, '12asd', '', 0, 0, 0, '32423432', 1, 'asd', 'asdadasdas', 'asdasd', 'asd'),
-(120, 1, '', '2024-06-22 15:16:32', 1, 'Gadot', 'Angelo Julius', 'Taruc', '2024-06-06', '', 0, 0, 0, 1, 35, 0, 0, '12asd', 'cabanatuan', 2, 2, 2, '32423432', 0, 'asdasdgsd', 'asfkj2', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -44227,29 +44216,6 @@ CREATE TABLE `tblregistrations_family` (
   `occupation` varchar(128) DEFAULT '',
   `income` varchar(128) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tblregistrations_family`
---
-
-INSERT INTO `tblregistrations_family` (`familyid`, `regid`, `family_lastname`, `family_firstname`, `family_middleinitial`, `relationshipid`, `family_age`, `familycivilid`, `educationid`, `occupation`, `income`) VALUES
-(1, 112, 'Taruc', '', '', 0, '', 0, 0, '', ''),
-(2, 113, 'Taruc', '', '', 0, '', 0, 0, '', ''),
-(3, 114, 'Taruc', '', '', 0, '', 0, 0, '', ''),
-(4, 114, '', '', '', 0, '', 0, 0, '', ''),
-(5, 114, '', '', '', 0, '', 0, 0, '', ''),
-(6, 115, 'Taruc', '', '', 0, '', 0, 0, '', ''),
-(7, 115, 'Bondoc', '', '', 0, '', 0, 0, '', ''),
-(8, 116, 'Bondoc', 'Almer', 'D', 4, '22', 1, 1, 'S', '12000'),
-(9, 116, 'Bondoc', 'Almer', 'D', 3, '22', 2, 2, 'asdasd', '3433'),
-(10, 117, 'taruc', 'Almer', 'D', 2, '22', 1, 2, 'S', '11'),
-(11, 117, '', '', '', 0, '', 0, 0, '', ''),
-(12, 117, '', '', '', 0, '', 0, 0, '', ''),
-(13, 117, '', '', '', 0, '', 0, 0, '', ''),
-(14, 118, 'Taruc', 'Angelo Julius', 'G', 0, '22', 0, 0, '', ''),
-(15, 119, '', '', '', 0, '', 0, 0, '', ''),
-(16, 120, 'Taruc', 'Angelo Julius', 'G', 3, '2', 4, 1, 'asdkjakjdsb,asd', '12121212'),
-(17, 120, 'A8', 'Samsung', 'G', 3, '22', 4, 4, 'asfiuj3r1', '23242');
 
 -- --------------------------------------------------------
 
@@ -44398,6 +44364,13 @@ CREATE TABLE `tmp_registrations_family` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
+-- Dumping data for table `tmp_registrations_family`
+--
+
+INSERT INTO `tmp_registrations_family` (`id`, `family_lastname`, `family_firstname`, `family_middleinitial`, `relationshipid`, `family_age`, `familycivilid`, `educationid`, `occupation`, `income`) VALUES
+(1, 'Alegado', 'Samsung', 'G', 0, '2', 0, 0, '', '');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -44529,7 +44502,7 @@ ALTER TABLE `tblacctype`
 -- AUTO_INCREMENT for table `tblactivity`
 --
 ALTER TABLE `tblactivity`
-  MODIFY `activityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `activityid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `tblbranch`
@@ -44571,13 +44544,13 @@ ALTER TABLE `tblnamext`
 -- AUTO_INCREMENT for table `tblregistrations`
 --
 ALTER TABLE `tblregistrations`
-  MODIFY `regid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `regid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `tblregistrations_family`
 --
 ALTER TABLE `tblregistrations_family`
-  MODIFY `familyid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `familyid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tblregistrations_requirements`
@@ -44619,7 +44592,7 @@ ALTER TABLE `tbltypeform`
 -- AUTO_INCREMENT for table `tmp_registrations_family`
 --
 ALTER TABLE `tmp_registrations_family`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
