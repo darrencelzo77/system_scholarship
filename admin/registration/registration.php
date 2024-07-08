@@ -10,71 +10,188 @@ if (isset($_SESSION['accountid'])){
 
 
 if (isset($_POST['register'])) {
-  $levelid = mysqli_real_escape_string($db_connection, $_POST['levelid']);
-  $semid = mysqli_real_escape_string($db_connection, $_POST['semid']);
-  $categoryid = mysqli_real_escape_string($db_connection, $_POST['categoryid']);
-  $lastname = mysqli_real_escape_string($db_connection, $_POST['lastname']);
-  $firstname = mysqli_real_escape_string($db_connection, $_POST['firstname']);
-  $middlename = mysqli_real_escape_string($db_connection, $_POST['middlename']);
-  $namextid = mysqli_real_escape_string($db_connection, $_POST['namextid']);
-  $provid = mysqli_real_escape_string($db_connection, $_POST['provid']);
-  $cityid = mysqli_real_escape_string($db_connection, $_POST['cityid']);
-  $brgyid = mysqli_real_escape_string($db_connection, $_POST['brgyid']);
-  $street = mysqli_real_escape_string($db_connection, $_POST['street']);
-  $dob = mysqli_real_escape_string($db_connection, $_POST['dob']);
-  $birthplace = mysqli_real_escape_string($db_connection, $_POST['birthplace']);
-  $citizenshipid = mysqli_real_escape_string($db_connection, $_POST['citizenshipid']);
-  $civilid = mysqli_real_escape_string($db_connection, $_POST['civilid']);
-  $sexid = mysqli_real_escape_string($db_connection, $_POST['sexid']);
-  $contact = mysqli_real_escape_string($db_connection, $_POST['contact']);
-  $elementary = mysqli_real_escape_string($db_connection, $_POST['elementary']);
-  $junior = mysqli_real_escape_string($db_connection, $_POST['junior']);
-  $senior = mysqli_real_escape_string($db_connection, $_POST['senior']);
-  $college = mysqli_real_escape_string($db_connection, $_POST['college']);
-  $emailaddress = mysqli_real_escape_string($db_connection, $_POST['emailaddress']);
-  $is_online = mysqli_real_escape_string($db_connection, $_POST['is_online']);
-  $query = "INSERT INTO tblregistrations 
-            SET semid='$semid',
-                levelid='$levelid',
-                categoryid='$categoryid', 
-                lastname='$lastname', 
-                firstname='$firstname', 
-                middlename='$middlename', 
-                namextid='$namextid', 
-                provid='$provid', 
-                cityid='$cityid', 
-                brgyid='$brgyid', 
-                street='$street', 
-                dob='$dob', 
-                birthplace='$birthplace', 
-                citizenshipid='$citizenshipid', 
-                civilid='$civilid', 
-                sexid='$sexid', 
-                contact='$contact',
-                elementary='$elementary',
-                junior='$junior',
-                senior='$senior',
-                college='$college',
-                emailaddress='$emailaddress',
-                is_online='$is_online'";
-  mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
+    $levelid = mysqli_real_escape_string($db_connection, $_POST['levelid']);
+    $semid = mysqli_real_escape_string($db_connection, $_POST['semid']);
+    $categoryid = mysqli_real_escape_string($db_connection, $_POST['categoryid']);
+    $lastname = mysqli_real_escape_string($db_connection, $_POST['lastname']);
+    $firstname = mysqli_real_escape_string($db_connection, $_POST['firstname']);
+    $middlename = mysqli_real_escape_string($db_connection, $_POST['middlename']);
+    $namextid = mysqli_real_escape_string($db_connection, $_POST['namextid']);
+    $provid = mysqli_real_escape_string($db_connection, $_POST['provid']);
+    $cityid = mysqli_real_escape_string($db_connection, $_POST['cityid']);
+    $brgyid = mysqli_real_escape_string($db_connection, $_POST['brgyid']);
+    $street = mysqli_real_escape_string($db_connection, $_POST['street']);
+    $dob = mysqli_real_escape_string($db_connection, $_POST['dob']);
+    $birthplace = mysqli_real_escape_string($db_connection, $_POST['birthplace']);
+    $citizenshipid = mysqli_real_escape_string($db_connection, $_POST['citizenshipid']);
+    $civilid = mysqli_real_escape_string($db_connection, $_POST['civilid']);
+    $sexid = mysqli_real_escape_string($db_connection, $_POST['sexid']);
+    $contact = mysqli_real_escape_string($db_connection, $_POST['contact']);
+    $elementary = mysqli_real_escape_string($db_connection, $_POST['elementary']);
+    $junior = mysqli_real_escape_string($db_connection, $_POST['junior']);
+    $senior = mysqli_real_escape_string($db_connection, $_POST['senior']);
+    $college = mysqli_real_escape_string($db_connection, $_POST['college']);
+    $emailaddress = mysqli_real_escape_string($db_connection, $_POST['emailaddress']);
+    $is_online = mysqli_real_escape_string($db_connection, $_POST['is_online']);
+    $grade = mysqli_real_escape_string($db_connection, $_POST['grade']);
+   
+    if($grade>=70){
+                if (isset($_FILES['cor'])) {
+                    $target_dir = "requirements/";
+                    $cor = basename($_FILES["cor"]["name"]);
+                    $target_file = $target_dir . $cor;
+                    if (move_uploaded_file($_FILES["cor"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$cor = '';}
 
-  $regid = mysqli_insert_id($db_connection);
- 
-  $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
-  while ($rw = mysqli_fetch_array($rs)) {
-      $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.',family_lastname=\''
-                                              .$rw['family_lastname'].'\',family_firstname=\''
-                                              .$rw['family_firstname'].'\',family_middleinitial=\''
-                                              .$rw['family_middleinitial'].'\',relationshipid=\''
-                                              .$rw['relationshipid'].'\',family_age=\''
-                                              .$rw['family_age'].'\',familycivilid=\''
-                                              .$rw['familycivilid'].'\',educationid=\''
-                                              .$rw['educationid'].'\',occupation=\''
-                                              .$rw['occupation'].'\',income=\''
-                                              .$rw['income'].'\' ';
-      mysqli_query($db_connection, $query_family);
-  }
+
+                 if (isset($_FILES['cog'])) {
+                    $target_dir = "requirements/";
+                    $cog = basename($_FILES["cog"]["name"]);
+                    $target_file = $target_dir . $cog;
+                    if (move_uploaded_file($_FILES["cog"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$cog = '';}
+
+
+
+                 if (isset($_FILES['indigency'])) {
+                    $target_dir = "requirements/";
+                    $indigency = basename($_FILES["indigency"]["name"]);
+                    $target_file = $target_dir . $indigency;
+                    if (move_uploaded_file($_FILES["indigency"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$indigency = '';}
+
+
+                $query = "INSERT INTO tblregistrations 
+                          SET cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
+                              levelid='$levelid',
+                              categoryid='$categoryid', 
+                              lastname='$lastname', 
+                              firstname='$firstname', 
+                              middlename='$middlename', 
+                              namextid='$namextid', 
+                              provid='$provid', 
+                              cityid='$cityid', 
+                              brgyid='$brgyid', 
+                              street='$street', 
+                              dob='$dob', 
+                              birthplace='$birthplace', 
+                              citizenshipid='$citizenshipid', 
+                              civilid='$civilid', 
+                              sexid='$sexid', 
+                              contact='$contact',
+                              elementary='$elementary',
+                              junior='$junior',
+                              senior='$senior',
+                              college='$college',
+                              emailaddress='$emailaddress',
+                              is_online='$is_online'";
+                mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
+
+                $regid = mysqli_insert_id($db_connection);
+                include('../email/verify.php');
+               
+                $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
+                while ($rw = mysqli_fetch_array($rs)) {
+                    $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.',family_lastname=\''
+                                                            .$rw['family_lastname'].'\',family_firstname=\''
+                                                            .$rw['family_firstname'].'\',family_middleinitial=\''
+                                                            .$rw['family_middleinitial'].'\',relationshipid=\''
+                                                            .$rw['relationshipid'].'\',family_age=\''
+                                                            .$rw['family_age'].'\',familycivilid=\''
+                                                            .$rw['familycivilid'].'\',educationid=\''
+                                                            .$rw['educationid'].'\',occupation=\''
+                                                            .$rw['occupation'].'\',income=\''
+                                                            .$rw['income'].'\' ';
+                    mysqli_query($db_connection, $query_family);
+                }
+        } else {
+            if (isset($_FILES['cor'])) {
+                    $target_dir = "../requirements/";
+                    $cor = basename($_FILES["cor"]["name"]);
+                    $target_file = $target_dir . $cor;
+                    if (move_uploaded_file($_FILES["cor"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$cor = '';}
+
+
+                 if (isset($_FILES['cog'])) {
+                    $target_dir = "../requirements/";
+                    $cog = basename($_FILES["cog"]["name"]);
+                    $target_file = $target_dir . $cog;
+                    if (move_uploaded_file($_FILES["cog"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$cog = '';}
+
+
+
+                 if (isset($_FILES['indigency'])) {
+                    $target_dir = "../requirements/";
+                    $indigency = basename($_FILES["indigency"]["name"]);
+                    $target_file = $target_dir . $indigency;
+                    if (move_uploaded_file($_FILES["indigency"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$indigency = '';}
+
+
+                $query = "INSERT INTO tblregistrations 
+                          SET is_reject=1,cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
+                              levelid='$levelid',
+                              categoryid='$categoryid', 
+                              lastname='$lastname', 
+                              firstname='$firstname', 
+                              middlename='$middlename', 
+                              namextid='$namextid', 
+                              provid='$provid', 
+                              cityid='$cityid', 
+                              brgyid='$brgyid', 
+                              street='$street', 
+                              dob='$dob', 
+                              birthplace='$birthplace', 
+                              citizenshipid='$citizenshipid', 
+                              civilid='$civilid', 
+                              sexid='$sexid', 
+                              contact='$contact',
+                              elementary='$elementary',
+                              junior='$junior',
+                              senior='$senior',
+                              college='$college',
+                              emailaddress='$emailaddress',
+                              is_online='$is_online'";
+                mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
+
+                $regid = mysqli_insert_id($db_connection);
+                include('../email/auto_reject.php');
+               
+                $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
+                while ($rw = mysqli_fetch_array($rs)) {
+                    $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.',family_lastname=\''
+                                                            .$rw['family_lastname'].'\',family_firstname=\''
+                                                            .$rw['family_firstname'].'\',family_middleinitial=\''
+                                                            .$rw['family_middleinitial'].'\',relationshipid=\''
+                                                            .$rw['relationshipid'].'\',family_age=\''
+                                                            .$rw['family_age'].'\',familycivilid=\''
+                                                            .$rw['familycivilid'].'\',educationid=\''
+                                                            .$rw['educationid'].'\',occupation=\''
+                                                            .$rw['occupation'].'\',income=\''
+                                                            .$rw['income'].'\' ';
+                    mysqli_query($db_connection, $query_family);
+                }
+        }
 }
 
 
@@ -103,13 +220,33 @@ $to = date('Y-m-d');
     <td align="right" class="d-flex justify-content-end">
       <input type="text" id="src" style="width: 150px;" class="mx-2 form-control" placeholder="Search..." onkeyup="<?=$jscript?>">
   
-      <select style="width: 100px;" class="form-control mb-1" id="status" onchange="<?=$jscript?>">
-        <option value="-1" selected>All</option>
-        <option value="0">Pending</option>
-        <option value="1">Accepeted</option>
-      </select>
-      &nbsp;&nbsp;
-    <button onclick="ajax_new('application.php','maincontent');" class="btn btn-sm btn-success" style="width: 150px;" class="mx-2 form-control"> Register New</button>
+   <select style="width: 150px;" class="form-control mb-1" id="status" onchange="<?=$jscript?>">
+            <option value="-1" selected>All Categories</option>
+           <?
+           $rs = mysqli_query($db_connection,'select categoryid, cat from tblcategory');
+           while(){
+            
+           }
+            ?>
+          </select>
+  &nbsp;&nbsp;
+
+         <select style="width: 110px;" class="form-control mb-1" id="status" onchange="<?=$jscript?>">
+            <option value="-1" selected>All Status</option>
+            <option value="0">Pending</option>
+            <option value="1">Accepted</option>
+            <option value="2">Rejected</option>
+          </select>
+        &nbsp;&nbsp;
+
+          <select style="width: 150px;" class="form-control mb-1" id="status" onchange="<?=$jscript?>">
+            <option value="-1" selected>Online/Walk-in</option>
+            <option value="0">Pending</option>
+            <option value="1">Accepted</option>
+            <option value="2">Rejected</option>
+          </select>
+        &nbsp;&nbsp;
+        <button onclick="ajax_new('application.php','maincontent');" class="btn btn-sm btn-success" style="width: 150px;" class="mx-2 form-control"> Register New</button>
     </td>
   </tr>
 </table>

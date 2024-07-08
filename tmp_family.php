@@ -26,7 +26,7 @@ if(isset($_POST['add'])){
 
 ?>
 <div align="center">
-<table class="table table-striped" >
+<table class="table table-striped table-bordered" >
     <tr>
 	<thead>
         <th>Lastname</th>

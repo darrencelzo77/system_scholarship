@@ -4,7 +4,6 @@ if (file_exists('systemconfig.inc')) { include_once('systemconfig.inc'); }
 if (file_exists('admin/includes/systemconfig.inc')) { include_once('admin/includes/systemconfig.inc'); }
 if (file_exists('../admin/includes/systemconfig.inc')) { include_once('../admin/includes/systemconfig.inc'); }
 
-
 if (isset($_POST['register'])) {
     $levelid = mysqli_real_escape_string($db_connection, $_POST['levelid']);
     $semid = mysqli_real_escape_string($db_connection, $_POST['semid']);
@@ -29,49 +28,177 @@ if (isset($_POST['register'])) {
     $college = mysqli_real_escape_string($db_connection, $_POST['college']);
     $emailaddress = mysqli_real_escape_string($db_connection, $_POST['emailaddress']);
     $is_online = mysqli_real_escape_string($db_connection, $_POST['is_online']);
-    $query = "INSERT INTO tblregistrations 
-              SET semid='$semid',
-                  levelid='$levelid',
-                  categoryid='$categoryid', 
-                  lastname='$lastname', 
-                  firstname='$firstname', 
-                  middlename='$middlename', 
-                  namextid='$namextid', 
-                  provid='$provid', 
-                  cityid='$cityid', 
-                  brgyid='$brgyid', 
-                  street='$street', 
-                  dob='$dob', 
-                  birthplace='$birthplace', 
-                  citizenshipid='$citizenshipid', 
-                  civilid='$civilid', 
-                  sexid='$sexid', 
-                  contact='$contact',
-                  elementary='$elementary',
-                  junior='$junior',
-                  senior='$senior',
-                  college='$college',
-                  emailaddress='$emailaddress',
-                  is_online='$is_online'";
-    mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
-
-    $regid = mysqli_insert_id($db_connection);
+    $grade = mysqli_real_escape_string($db_connection, $_POST['grade']);
    
-    $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
-    while ($rw = mysqli_fetch_array($rs)) {
-        $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.',family_lastname=\''
-                                                .$rw['family_lastname'].'\',family_firstname=\''
-                                                .$rw['family_firstname'].'\',family_middleinitial=\''
-                                                .$rw['family_middleinitial'].'\',relationshipid=\''
-                                                .$rw['relationshipid'].'\',family_age=\''
-                                                .$rw['family_age'].'\',familycivilid=\''
-                                                .$rw['familycivilid'].'\',educationid=\''
-                                                .$rw['educationid'].'\',occupation=\''
-                                                .$rw['occupation'].'\',income=\''
-                                                .$rw['income'].'\' ';
-        mysqli_query($db_connection, $query_family);
-    }
+    if($grade>=70){
+                if (isset($_FILES['cor'])) {
+                    $target_dir = "requirements/";
+                    $cor = basename($_FILES["cor"]["name"]);
+                    $target_file = $target_dir . $cor;
+                    if (move_uploaded_file($_FILES["cor"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$cor = '';}
+
+
+                 if (isset($_FILES['cog'])) {
+                    $target_dir = "requirements/";
+                    $cog = basename($_FILES["cog"]["name"]);
+                    $target_file = $target_dir . $cog;
+                    if (move_uploaded_file($_FILES["cog"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$cog = '';}
+
+
+
+                 if (isset($_FILES['indigency'])) {
+                    $target_dir = "requirements/";
+                    $indigency = basename($_FILES["indigency"]["name"]);
+                    $target_file = $target_dir . $indigency;
+                    if (move_uploaded_file($_FILES["indigency"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$indigency = '';}
+
+
+                $query = "INSERT INTO tblregistrations 
+                          SET cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
+                              levelid='$levelid',
+                              categoryid='$categoryid', 
+                              lastname='$lastname', 
+                              firstname='$firstname', 
+                              middlename='$middlename', 
+                              namextid='$namextid', 
+                              provid='$provid', 
+                              cityid='$cityid', 
+                              brgyid='$brgyid', 
+                              street='$street', 
+                              dob='$dob', 
+                              birthplace='$birthplace', 
+                              citizenshipid='$citizenshipid', 
+                              civilid='$civilid', 
+                              sexid='$sexid', 
+                              contact='$contact',
+                              elementary='$elementary',
+                              junior='$junior',
+                              senior='$senior',
+                              college='$college',
+                              emailaddress='$emailaddress',
+                              is_online='$is_online'";
+                mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
+
+                $regid = mysqli_insert_id($db_connection);
+                include('admin/email/verify.php');
+               
+                $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
+                while ($rw = mysqli_fetch_array($rs)) {
+                    $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.',family_lastname=\''
+                                                            .$rw['family_lastname'].'\',family_firstname=\''
+                                                            .$rw['family_firstname'].'\',family_middleinitial=\''
+                                                            .$rw['family_middleinitial'].'\',relationshipid=\''
+                                                            .$rw['relationshipid'].'\',family_age=\''
+                                                            .$rw['family_age'].'\',familycivilid=\''
+                                                            .$rw['familycivilid'].'\',educationid=\''
+                                                            .$rw['educationid'].'\',occupation=\''
+                                                            .$rw['occupation'].'\',income=\''
+                                                            .$rw['income'].'\' ';
+                    mysqli_query($db_connection, $query_family);
+                }
+        } else {
+            if (isset($_FILES['cor'])) {
+                    $target_dir = "requirements/";
+                    $cor = basename($_FILES["cor"]["name"]);
+                    $target_file = $target_dir . $cor;
+                    if (move_uploaded_file($_FILES["cor"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$cor = '';}
+
+
+                 if (isset($_FILES['cog'])) {
+                    $target_dir = "requirements/";
+                    $cog = basename($_FILES["cog"]["name"]);
+                    $target_file = $target_dir . $cog;
+                    if (move_uploaded_file($_FILES["cog"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$cog = '';}
+
+
+
+                 if (isset($_FILES['indigency'])) {
+                    $target_dir = "requirements/";
+                    $indigency = basename($_FILES["indigency"]["name"]);
+                    $target_file = $target_dir . $indigency;
+                    if (move_uploaded_file($_FILES["indigency"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$indigency = '';}
+
+
+                $query = "INSERT INTO tblregistrations 
+                          SET is_reject=1,cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
+                              levelid='$levelid',
+                              categoryid='$categoryid', 
+                              lastname='$lastname', 
+                              firstname='$firstname', 
+                              middlename='$middlename', 
+                              namextid='$namextid', 
+                              provid='$provid', 
+                              cityid='$cityid', 
+                              brgyid='$brgyid', 
+                              street='$street', 
+                              dob='$dob', 
+                              birthplace='$birthplace', 
+                              citizenshipid='$citizenshipid', 
+                              civilid='$civilid', 
+                              sexid='$sexid', 
+                              contact='$contact',
+                              elementary='$elementary',
+                              junior='$junior',
+                              senior='$senior',
+                              college='$college',
+                              emailaddress='$emailaddress',
+                              is_online='$is_online'";
+                mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
+
+                $regid = mysqli_insert_id($db_connection);
+                include('admin/email/auto_reject.php');
+               
+                $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
+                while ($rw = mysqli_fetch_array($rs)) {
+                    $query_family = 'INSERT INTO tblregistrations_family SET regid='.$regid.',family_lastname=\''
+                                                            .$rw['family_lastname'].'\',family_firstname=\''
+                                                            .$rw['family_firstname'].'\',family_middleinitial=\''
+                                                            .$rw['family_middleinitial'].'\',relationshipid=\''
+                                                            .$rw['relationshipid'].'\',family_age=\''
+                                                            .$rw['family_age'].'\',familycivilid=\''
+                                                            .$rw['familycivilid'].'\',educationid=\''
+                                                            .$rw['educationid'].'\',occupation=\''
+                                                            .$rw['occupation'].'\',income=\''
+                                                            .$rw['income'].'\' ';
+                    mysqli_query($db_connection, $query_family);
+                }
+        }
 }
+
+
+
+// if(isset($_GET['invalid'])){
+//     echo'<script>alert(\'Your tracking number is invalid.\');</script>';
+// }
+
+if(isset($_GET['getthis'])){
+    $rrrr =  '&nbsp;&nbsp;<span class="text-danger blink">Invalid tracking number.</span>';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -89,20 +216,59 @@ if (isset($_POST['register'])) {
 	<link rel="stylesheet" href="admin/css/navbar.css">
 	<link rel="stylesheet" href="admin/css/footer.css">
 
-    <link rel="icon" type="image/x-icon" href="../HANA/assets/img/logo.png">
+    <link rel="icon" type="image/x-icon" href="admin/images/logo_u.png">
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+       function loadPage(url,elementId) {
+        if (window.XMLHttpRequest) {
+                xmlhttp=new XMLHttpRequest();
+        } else {
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }   
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                document.getElementById(elementId).innerHTML="";
+                document.getElementById(elementId).innerHTML=xmlhttp.responseText;  
+            }
+        }  
+        xmlhttp.open("GET",url,true);
+        xmlhttp.send();    
+    }
+
+    function verify(){
+        var trackingnumber = document.getElementById('trackingnumber').value;
+        loadPage('verify_status.php?trackingnumber='+trackingnumber,'main_c');
+    }
+    </script><style>
+    .blink {
+      animation: 2s linear infinite condemned_blink_effect;
+    }
+    @keyframes condemned_blink_effect {
+        0% {
+        visibility: hidden;
+        }
+        50% {
+        visibility: hidden;
+        }
+        100% {
+        visibility: visible;
+        }
+    }
+  
+  </style>
 </body>
 </head>
 
 <body class="hold-transition layout-top-nav">
 	
-<div class="main--content">
+<div class="main--content" id="main_c">
       <header id="navbar">
     <nav class="navbar-container container">
         <a href="" class="home-link">
             <img src="admin/images/logo_u.png" alt="" class="navbar-logo">
-			Educational Assistant for Student
+			Educational Assistant for Student 
         </a>
 
         <button type="button" id="navbar-toggle" aria-controls="navbar-menu" aria-label="Toggle menu"
@@ -122,11 +288,12 @@ if (isset($_POST['register'])) {
           	<!-- SEARCH FORM -->
 				<form class="form-inline ml-0 ml-md-3">
 					<div class="input-group input-group-sm">
-						<input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+						<input class="form-control form-control-navbar" id="trackingnumber"  placeholder="Tracking Number...." aria-label="Search">
 						<div class="input-group-append">
-							<button class="btn btn-navbar" type="submit">
-							<i class="fas fa-search"></i>
-							</button>
+							<a class="btn btn-secondary" href="javascript:void();" 
+                            onclick="verify();">
+							 <i class="fas fa-search">Verify</i>
+							</a><? if($rrrr){echo $rrrr;} ?>
 						</div>
 					</div>
 				</form>
@@ -181,9 +348,9 @@ if (isset($_POST['register'])) {
                     <span id="home" style="margin-top:-100px;"></span>
 					
                     <div class="home-box-info">
-                        <span class="hbr-1-lbl">Welcome to _____ Scholarship Program!</span>
+                        <span class="hbr-1-lbl">Welcome to Educational Assistance Program!</span>
                         <span class="hbr-2-lbl">What is Scholarship?</span>
-                        <p>_____ Scholarship Program is dedicated to supporting students who demonstrate academic excellence, leadership potential, and a commitment to their communities. Our mission is to provide financial assistance to help you achieve your educational goals and make a positive impact on the world.</p>
+                        <p>Educational Assistance Program is dedicated to supporting students who demonstrate academic excellence, leadership potential, and a commitment to their communities. Our mission is to provide financial assistance to help you achieve your educational goals and make a positive impact on the world.</p>
                         <button class="home-btn">
                             <a href="#application" class="h-help">APPLY NOW!</a>
                         </button>
@@ -221,12 +388,12 @@ if (isset($_POST['register'])) {
 								<h5 class="card-title">Application</h5>
 
 								<div class="card-text mt-5">
-									<h6>Applying for the _____ Scholarship. Follow these steps:</h6>
+									<h6>Applying for the student assistance. Follow these steps:</h6>
 
 									<h6 class="mt-5"><strong>1. Register an account: </strong>Create an account to start your application.</h6>
-									<h6><strong>1. Complete the application form: </strong>Fill out your personal, academic, and extracurricular details.</h6>
-									<h6><strong>1. Submit Required Documents: </strong>Upload your transcripts, letters of recommendation, and a personal statement.</h6>
-									<h6><strong>1. Review your information and documents: </strong>Make sure that your information is correct and submit your application.</h6>
+									<h6><strong>2. Complete the application form: </strong>Fill out your personal, academic, and extracurricular details.</h6>
+									<h6><strong>3. Submit Required Documents: </strong>Upload your transcripts, letters of recommendation, and a personal statement.</h6>
+									<h6><strong>4. Review your information and documents: </strong>Make sure that your information is correct and submit your application.</h6>
 
 								</div>
 
@@ -314,6 +481,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

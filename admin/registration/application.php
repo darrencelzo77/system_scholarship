@@ -7,7 +7,7 @@ if (isset($_SESSION['accountid'])){
 } else {
     header('location: ../'); exit(0); 
 }
-$_SESSION['tmp_registrations_family'] = 'tmp_registrations_family';
+$_SESSION['tmp_registrations_family'] = 'tmp_registrations_family'.$_SESSION['accountid'];
 $result = mysqli_query($db_connection, 'DROP TABLE IF EXISTS ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
 
 $str = "CREATE TABLE " . $_SESSION['tmp_registrations_family'] . " (
@@ -115,109 +115,131 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 
 		function object(id) { return document.getElementById(id); }
 
+    
         function register() {
-    var levelid = document.querySelector('input[name="levelid"]:checked');
-    var semid = document.getElementById('semid').value;
-    var categoryid = document.querySelector('input[name="categoryid"]:checked');
-    var lastname = document.getElementById('lastname').value;
-    var firstname = document.getElementById('firstname').value;
-    var middlename = document.getElementById('middlename').value;
-    var namextid = document.getElementById('namextid').value;
-    var provid = document.getElementById('provid').value;
-    var cityid = document.getElementById('cityid').value;
-    var brgyid = document.getElementById('brgyid').value;
-    var street = document.getElementById('street').value;
-    var dob = document.getElementById('dob').value;
-    var birthplace = document.getElementById('birthplace').value;
-    var citizenshipid = document.getElementById('citizenshipid').value;
-    var civilid = document.getElementById('civilid').value;
-    var sexid = document.getElementById('sexid').value;
-    var contact = document.getElementById('contact').value;
-    var elementary = document.getElementById('elementary').value;
-    var junior = document.getElementById('junior').value;
-    var senior = document.getElementById('senior').value;
-    var college = document.getElementById('college').value;
-    var emailaddress = document.getElementById('emailaddress').value;
-    var is_online = document.getElementById('is_online').value;
+            var levelid = document.querySelector('input[name="levelid"]:checked');
+            var semid = document.getElementById('semid').value;
+            var categoryid = document.querySelector('input[name="categoryid"]:checked');
+            var lastname = document.getElementById('lastname').value;
+            var firstname = document.getElementById('firstname').value;
+            var middlename = document.getElementById('middlename').value;
+            var namextid = document.getElementById('namextid').value;
+            var provid = document.getElementById('provid').value;
+            var cityid = document.getElementById('cityid').value;
+            var brgyid = document.getElementById('brgyid').value;
+            var street = document.getElementById('street').value;
+            var dob = document.getElementById('dob').value;
+            var birthplace = document.getElementById('birthplace').value;
+            var citizenshipid = document.getElementById('citizenshipid').value;
+            var civilid = document.getElementById('civilid').value;
+            var sexid = document.getElementById('sexid').value;
+            var contact = document.getElementById('contact').value;
+            var elementary = document.getElementById('elementary').value;
+            var junior = document.getElementById('junior').value;
+            var senior = document.getElementById('senior').value;
+            var college = document.getElementById('college').value;
+            var emailaddress = document.getElementById('emailaddress').value;
+            var is_online = document.getElementById('is_online').value;
 
-    if (levelid && levelid.value !== '1') {
-        if (semid == 0) {
-            swal('Error on Required Field', 'Please select semester', 'error');
-            return;
-        }
-        if (!categoryid) {
-            swal('Error on Required Field', 'Please select a category', 'error');
-            return;
-        }
-    }
+            var cor = document.getElementById('cor');
+            var pic_cor = cor.files[0];
 
-    if (!levelid) {
-        swal('Error on Required Field', 'Please select level of education', 'error');
-        return;
-    }
-    if (lastname == '') {
-        swal('Error on Required Field', 'Please input your last name', 'error');
-        return;
-    }
 
-    let myForm = new FormData();
-    myForm.append('levelid', levelid.value);
-    myForm.append('semid', semid);
-    myForm.append('categoryid', categoryid.value);
-    myForm.append('lastname', lastname);
-    myForm.append('firstname', firstname);
-    myForm.append('middlename', middlename);
-    myForm.append('namextid', namextid);
-    myForm.append('provid', provid);
-    myForm.append('cityid', cityid);
-    myForm.append('brgyid', brgyid);
-    myForm.append('street', street);
-    myForm.append('dob', dob);
-    myForm.append('birthplace', birthplace);
-    myForm.append('citizenshipid', citizenshipid);
-    myForm.append('civilid', civilid);
-    myForm.append('sexid', sexid);
-    myForm.append('contact', contact);
-    myForm.append('elementary', elementary);
-    myForm.append('junior', junior);
-    myForm.append('senior', senior);
-    myForm.append('college', college);
-    myForm.append('emailaddress', emailaddress);
-    myForm.append('is_online', is_online);
-    myForm.append('register', 1);
+            var cog = document.getElementById('cog');
+            var pic_cog = cog.files[0];
 
-    swal({
-        title: 'Basic Information',
-        text: 'Are you sure that all your information is correct?',
-        icon: 'info',
-        buttons: true,
-        dangerMode: true,
-    }).then((willAdd) => {
-        if (willAdd) {
-            $.ajax({
-                url: 'registration.php',
-                type: 'POST',
-                data: myForm,
-                beforeSend: function () {
-                    $('#body-overlay').show();
-                },
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    $('#maincontent').html(data);
-                    $('#maincontent').css('opacity', '1');
-                    $('#body-overlay').hide();
-                    swal('Success', 'Successfully Processed Request', 'success');
-                },
-                error: function () {
-                    swal('Error', 'Error Processing Request', 'error');
-                },
+
+            var indigency = document.getElementById('indigency');
+            var pic_indigency = indigency.files[0];
+
+
+            
+
+
+            if (levelid && levelid.value !== '1') {
+                if (semid == 0) {
+                    swal('Error on Required Field', 'Please select semester', 'error');
+                    return;
+                }
+
+            }
+            if (!categoryid) {
+                swal('Error on Required Field', 'Please select a category', 'error');
+                return;
+            }
+            if (!levelid) {
+                swal('Error on Required Field', 'Please select level of education', 'error');
+                return;
+            }
+            if (lastname == '') {
+                swal('Error on Required Field', 'Please input your last name', 'error');
+                return;
+            }
+
+            let myForm = new FormData();
+            myForm.append('cor', pic_cor);
+            myForm.append('cog', pic_cog);
+            myForm.append('indigency', pic_indigency);
+
+            myForm.append('levelid', levelid.value);
+            myForm.append('semid', semid);
+            myForm.append('categoryid', categoryid.value);
+            myForm.append('lastname', lastname);
+            myForm.append('firstname', firstname);
+            myForm.append('middlename', middlename);
+            myForm.append('namextid', namextid);
+            myForm.append('provid', provid);
+            myForm.append('cityid', cityid);
+            myForm.append('brgyid', brgyid);
+            myForm.append('street', street);
+            myForm.append('dob', dob);
+            myForm.append('birthplace', birthplace);
+            myForm.append('citizenshipid', citizenshipid);
+            myForm.append('civilid', civilid);
+            myForm.append('sexid', sexid);
+            myForm.append('contact', contact);
+            myForm.append('elementary', elementary);
+            myForm.append('junior', junior);
+            myForm.append('senior', senior);
+            myForm.append('college', college);
+            myForm.append('is_online', is_online);
+            myForm.append('emailaddress', emailaddress);
+            myForm.append('grade', document.getElementById('grade').value);
+            myForm.append('register', 1);
+
+            swal({
+                title: 'Basic Information',
+                text: 'Are you sure that all your information is correct?',
+                icon: 'info',
+                buttons: true,
+                dangerMode: true,
+            }).then((willAdd) => {
+                if (willAdd) {
+                    $.ajax({
+                        url: 'registration.php',
+                        type: 'POST',
+                        data: myForm,
+                        beforeSend: function () {
+                            $('#body-overlay').show();
+                        },
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            $('#maincontent').html(data);
+                            $('#maincontent').css('opacity', '1');
+                            $('#body-overlay').hide();
+                            swal('Success', 'Successfully Processed Request', 'success');
+                        },
+                        error: function () {
+                            swal('Error', 'Error Processing Request', 'error');
+                        },
+                    });
+                } else {
+                    swal('Action Cancelled', 'Your request has been cancelled.', 'info');
+                }
             });
-        } else {
-            swal('Action Cancelled', 'Your request has been cancelled.', 'info');
         }
-    });
-}
+
 function toggleSections() {
         var levelid1 = document.getElementById('levelid1');
         var seniorSection = document.getElementById('seniorSection');
@@ -324,9 +346,10 @@ $(document).ready(function() {
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Scholarship Application Form</h4>
+                        <div align="right"><button class="btn btn-sm btn-secondary" onclick="ajax_new('registration','maincontent');">Back</button></div>
                         <div class="mt-5">
                             <form method="POST" id="myForm">
-                            <input hidden type="text" value="1" id="is_online" name="is_online" class="form-control">
+                            <input hidden type="text" value="0" id="is_online" name="is_online" class="form-control">
                                 <div id="page_1" class="tabcontent" style="display:block;">
                                     <div class="row">
                                     <div class="col-12 mb-3">
@@ -587,6 +610,26 @@ $(document).ready(function() {
                                         <label for="college">Vocational/College:</label>
                                         <input type="text" id="college" name="college" class="form-control">
                                     </div>
+
+                                      <div class="col-6 mb-3" id="collegeSection">
+                                                            <label for="college">Grade GWA Recent Semester or Term:</label>
+                                                            <input type="number" id="grade" class="form-control">
+                                                        </div>
+
+                                                        <div class="col-6 mb-3" id="collegeSection">
+                                                            <label for="college">Picture of Certificate of Registration:</label>
+                                                            <input type="file" id="cor" class="form-control">
+                                                        </div>
+
+                                                        <div class="col-6 mb-3" id="collegeSection">
+                                                            <label for="college">Picture of Certificate of Grades:</label>
+                                                            <input type="file" id="cog" class="form-control">
+                                                        </div>
+
+                                                         <div class="col-6 mb-3" id="collegeSection">
+                                                            <label for="college">Picture of Indigency:</label>
+                                                            <input type="file" id="indigency" class="form-control">
+                                                        </div>
                                     </div>
                                     <a href="javascript:void(0);" class="btn btn-primary btn-sm float-right mb-3" onclick="register();">Submit</a>
                                 </div>

@@ -31,10 +31,10 @@
         $mail->setFrom('scholarship941@gmail.com', 'scholarship_system');
         $mail->addAddress($email);
         $mail->isHTML(true);
-        $mail->Subject = 'Accept';
+        $mail->Subject = 'Application Accepted';
 
 
-        $mail->Body = ''.ucwords($name). ' You are accepted in your Scholarship Application.';
+        $mail->Body = ''.ucwords($name). ' You are accepted in your Education Assistance Application. You can verify it to the portal by typing your tracking number.';
         
         try {
             $mail->send();

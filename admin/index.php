@@ -36,7 +36,7 @@ $_SESSION['token'] = rand(1, 100);
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href=".vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="images/logo_u.png" />
     <style>
     .blink {
       animation: 2s linear infinite condemned_blink_effect;
