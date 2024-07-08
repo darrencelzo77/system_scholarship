@@ -10,6 +10,7 @@
     }
 
     $email = GetData('select emailaddress from tblregistrations where regid='.$_POST['regid']);
+    $name = GetData("SELECT CONCAT_WS(' ', firstname, middlename, lastname) AS name FROM tblregistrations WHERE regid=".$_POST['regid']);
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
@@ -33,7 +34,7 @@
         $mail->Subject = 'Accept';
 
 
-        $mail->Body = 'Your Application for Scholarhip is accepted.';
+        $mail->Body = ''.ucwords($name). ' You are accepted in your Scholarship Application.';
         
         try {
             $mail->send();
