@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2024 at 07:20 AM
+-- Generation Time: Jul 08, 2024 at 08:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44197,6 +44197,13 @@ CREATE TABLE `tblregistrations` (
   `college` varchar(128) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tblregistrations`
+--
+
+INSERT INTO `tblregistrations` (`regid`, `levelid`, `trackingnumber`, `regdate`, `categoryid`, `middlename`, `firstname`, `lastname`, `dob`, `emailaddress`, `is_reject`, `is_accept`, `is_online`, `namextid`, `provid`, `cityid`, `brgyid`, `street`, `birthplace`, `citizenshipid`, `civilid`, `sexid`, `contact`, `semid`, `elementary`, `junior`, `senior`, `college`) VALUES
+(141, 2, '', '2024-07-08 14:16:52', 1, 'Gadot', 'Angelo Julius', 'Taruc', '2024-08-08', 'angelotaruc384@gmail.com', 0, 0, 2, 1, 12, 245, 6116, '12asd', 'cabanatuan', 0, 0, 1, '32423432', 1, 'bitas', 'nehs', 'dfdgdsg', 'asdsad');
+
 -- --------------------------------------------------------
 
 --
@@ -44216,6 +44223,13 @@ CREATE TABLE `tblregistrations_family` (
   `occupation` varchar(128) DEFAULT '',
   `income` varchar(128) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblregistrations_family`
+--
+
+INSERT INTO `tblregistrations_family` (`familyid`, `regid`, `family_lastname`, `family_firstname`, `family_middleinitial`, `relationshipid`, `family_age`, `familycivilid`, `educationid`, `occupation`, `income`) VALUES
+(36, 141, 'Taruc', 'Angelo Julius', 'G', 2, '2', 2, 1, 'S', '11');
 
 -- --------------------------------------------------------
 
@@ -44368,7 +44382,7 @@ CREATE TABLE `tmp_registrations_family` (
 --
 
 INSERT INTO `tmp_registrations_family` (`id`, `family_lastname`, `family_firstname`, `family_middleinitial`, `relationshipid`, `family_age`, `familycivilid`, `educationid`, `occupation`, `income`) VALUES
-(1, 'Alegado', 'Samsung', 'G', 0, '2', 0, 0, '', '');
+(1, 'Taruc', 'Angelo Julius', 'G', 2, '2', 2, 1, 'S', '11');
 
 --
 -- Indexes for dumped tables
@@ -44544,13 +44558,13 @@ ALTER TABLE `tblnamext`
 -- AUTO_INCREMENT for table `tblregistrations`
 --
 ALTER TABLE `tblregistrations`
-  MODIFY `regid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `regid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `tblregistrations_family`
 --
 ALTER TABLE `tblregistrations_family`
-  MODIFY `familyid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `familyid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `tblregistrations_requirements`
