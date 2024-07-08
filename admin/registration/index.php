@@ -35,18 +35,18 @@ if (isset($_SESSION['accountid'])){
 			.then((willAdd) => {
 				if (willAdd) {
 					$.ajax({
-						url: 'sample.php',
+						url: 'registration.php',
 						type: "POST",
 						data: myForm,
 						beforeSend: function () {$("#body-overlay").show();},
 						contentType: false,
 						processData: false,
 						success: function (data) {
-							$("#tmp"+regid).html(data);
-							$("#tmp"+regid).css('opacity', '1');
+							$("#maincontent").html(data);
+							$("#maincontent").css('opacity', '1');
 							$("#body-overlay").hide();
 						   
-							Swal('Success', 'Successfull Processed Request', 'error');
+							 swal('Success', 'Successfully Processed Request', 'success');
 
 						},
 						error: function () {
@@ -75,7 +75,7 @@ if (isset($_SESSION['accountid'])){
     .then((willAdd) => {
         if (willAdd) {
             $.ajax({
-                url: 'sample.php',
+                url: 'registration.php',
                 type: "POST",
                 data: myForm,
                 beforeSend: function () {
@@ -84,8 +84,8 @@ if (isset($_SESSION['accountid'])){
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    $("#tmp" + rejectid).html(data);
-                    $("#tmp" + rejectid).css('opacity', '1');
+                    $("#maincontent").html(data);
+                    $("#maincontent").css('opacity', '1');
                     $("#body-overlay").hide();
                     swal('Success', 'Successfully Processed Request', 'success');
                 },

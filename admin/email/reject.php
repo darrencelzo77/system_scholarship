@@ -43,7 +43,7 @@
             mysqli_query($db_connection, 'UPDATE tblregistrations SET is_reject=1 WHERE regid='.$_POST['reject_a']);
 			echo '';
 			
-			echo '<span style="color:green;">Email Sent</span>';
+			//$str2 =  '<div align="center" style="color:green;">Successfully Processed Request</div>';
 			
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;

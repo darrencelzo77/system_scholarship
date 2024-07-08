@@ -1,12 +1,12 @@
 <?php
-// if(session_id()==''){session_start();} 
-// if (isset($_SESSION['accountid'])){ 
-//     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-//     if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-//     if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-// } else {
-//     header('location: ../'); exit(0); 
-// }
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+} else {
+    header('location: ../'); exit(0); 
+}
 ?>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
@@ -63,6 +63,8 @@
         </li>
         
 
+        <? if($_SESSION['typeid']==1){ ?>
+
 
         <li class="nav-item <?=$registration?>">
             <a class="nav-link" href="../registration">
@@ -105,6 +107,30 @@
             </a>
         </li>
 
+        <? } else { ?>
 
+         <li class="nav-item <?=$registration?>">
+            <a class="nav-link" href="../registration">
+                <span class="menu-title">Registration</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
+        
+        <li class="nav-item <?=$schedule?>">
+            <a class="nav-link" href="../schedule">
+                <span class="menu-title">Schedule</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
+
+          <li class="nav-item <?=$scholarship?>">
+            <a class="nav-link" href="../scholarship">
+                <span class="menu-title">Scholarship List</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
+
+
+        <? } ?>
     </ul>
 </nav>

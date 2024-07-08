@@ -8,10 +8,23 @@ if (isset($_SESSION['accountid'])){
     header('location: ../'); exit(0); 
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-  <? include('../nav/header.php'); ?>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+  table.table td a {
+    color: black;
+  }
+</style>
+<? include('../nav/header.php'); ?>
+  <script>
+    
+    
+
+  </script>
+
+  
+  
   <body>
     <div class="container-scroller">
       <? include('../nav/topnav.php'); ?>
@@ -19,10 +32,12 @@ if (isset($_SESSION['accountid'])){
         <? include('../nav/sidenav.php'); ?>
         <div class="main-panel">
           <div class="content-wrapper">
+           <div id="body-overlay"><div><img src="../images/processing.gif" width="80%" /></div></div>
             <div id="maincontent">
-             report
+              <? include('report.php'); ?>
+              <br>
             </div>
-          </div>
+
           <? include('../nav/footer.php'); ?>
         </div>
       </div>

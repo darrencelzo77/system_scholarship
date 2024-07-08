@@ -1,12 +1,12 @@
 <?php
-// if(session_id()==''){session_start();} 
-// if (isset($_SESSION['accountid'])){ 
-//     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-//     if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-//     if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-// } else {
-//     header('location: ../'); exit(0); 
-// }
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+} else {
+    header('location: ../'); exit(0); 
+}
 ?>
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex align-items-center">
@@ -30,7 +30,9 @@
               <p class="font-weight-light text-muted mb-0"><?=Username($_SESSION['accountid'])?></p>
             </div>
             <a href="../profile/" class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary" ></i> My Profile <span class="badge badge-pill badge-danger"></span></a>
+            <? if($_SESSION['typeid']==1){ ?>
             <a href="javascript:void(0);" onclick="ajax_new('../trail/index.php','maincontent')" class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Audit Trail</a>
+            <? } ?> 
             <a class="dropdown-item" href="javascript:void();" onclick="logout();"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
           </div>
         </li>

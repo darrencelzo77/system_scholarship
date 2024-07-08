@@ -33,15 +33,17 @@
         $mail->isHTML(true);
         $mail->Subject = 'Application Accepted';
 
-
-        $mail->Body = ''.ucwords($name). ' You are accepted in your Education Assistance Application. You can verify it to the portal by typing your tracking number.';
+        $trackno = GenerateTracking();
+        $mail->Body = ''.ucwords($name). ' You are accepted in your Education Assistance Application.<br>You
+            This is your tracking number '.$trackno.'
+         You can verify it to the portal by typing your tracking number.';
         
         try {
             $mail->send();
-            mysqli_query($db_connection, 'UPDATE tblregistrations SET is_accept=1 WHERE regid='.$_POST['regid']);
+            mysqli_query($db_connection, 'UPDATE tblregistrations SET trackingnumber=\''.$trackno.'\', is_accept=1 WHERE regid='.$_POST['regid']);
 			echo '';
 			
-			echo '<span style="color:green;">Email Sent</span>';
+			//$str =  '<div align="center" style="color:green;">Successfully Processed Request</div>';
 			
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;

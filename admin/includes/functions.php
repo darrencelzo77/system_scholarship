@@ -47,6 +47,18 @@ function GenerateRandomString($length = 5) {
 	return $randomString;
 }
 
+function GenerateTracking($length = 10) {
+//$characters = '23456790';
+	$characters = '0123456789';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, $charactersLength - 1)];
+	}
+	return $randomString;
+}
+
+
 function GenerateOtp($length = 6) {
 //$characters = '2345679ACDEFGHJKLMNPQRSTUVWXYZ';
 	$characters = '0123456789ABCDE';

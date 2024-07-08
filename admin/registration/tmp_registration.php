@@ -67,15 +67,18 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
   <div class="card-body">
     <div class="table-responsive">
 
-      <table class="table table-hover table-sm table-bordered">
+      <table class="table table-hover  ">
         <thead> 
           <tr>
+            <th>#</th>
+            <th>Reg Date</th>
             <th>Category</th>
             <th>Tracking Number</th>
             <th>Fullname</th>
             <th>Email Address</th>
             <th>Status</th>
             <th>Type</th>
+            <th>Level</th>
             <th>Action</th>
 
           </tr>
@@ -107,41 +110,92 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
             }
           }
 
+
+          if(isset($_GET['categoryid'])){
+            if($_GET['categoryid']==-1){ 
+              $q .= ' ';
+            } else {
+              $q .= ' AND categoryid='.$_GET['categoryid'].' ';
+            }
+          }
+
+
+          if(isset($_GET['is_online'])){
+            if($_GET['is_online']==-1){ 
+              $q .= ' ';
+            } else if($_GET['is_online']==1){
+              $q .= ' AND is_online=1 ';
+            } else {
+              $q .= ' AND is_online=0';
+            }
+          }
+
+
+
+          if(isset($_GET['levelid'])){
+            if($_GET['levelid']==-1){ 
+              $q .= ' ';
+            } else if($_GET['levelid']==1){
+              $q .= ' AND levelid=1 ';
+            } else {
+              $q .= ' AND levelid=2';
+            }
+          }
+          $count = 1;
           $rs = mysqli_query($db_connection, $q);
           while ($rw = mysqli_fetch_array($rs)) {
             foreach ($rw as $key => $value) {
               $rw[$key] = htmlspecialchars($value);
             }
-
+            $category = GetData('select category from tblcategory where categoryid='.$rw['categoryid']);
+            $level = GetData('select level from tbllevel where levelid='.$rw['levelid']);
             echo '<tr>';
-            echo '<td>'.Cat($rw['categoryid']).'</td>';
+            echo'<td>'.$count++.'</td>';
+            echo'<td>'.date("M d, Y",strtotime($rw['regdate'])).'</td>';
+            echo '<td title="'.$category.'">'.Cat($rw['categoryid']).'</td>';
             echo '<td>' . $rw['trackingnumber'].'</td>';
             echo '<td>' . $rw['firstname'].' '.$rw['lastname'] . '</td>';
             echo '<td>' . $rw['emailaddress'] . '</td>';
+
             if ($rw['is_accept'] == 0 && $rw['is_reject'] == 0) {
               echo '<td><label class="badge badge-secondary">Pending</label></td>';
               if($rw['is_online']){
-                echo'<td>Online Application</td>';
+                echo'<td>Online</td>';
               } else {
                 echo'<td>Walk-in</td>';
               }
-
+              echo'<td>'.$level.'</td>';
               echo '<td>
               <span id="tmp' . $rw['regid'] . '">
               <input type="hidden" value="' . $rw['firstname'] . '" id="regid_x' . $rw['regid'] . '"/>
-              <a href="javascript:void(0);" class="view" title="View" data-toggle="tooltip" onclick="openCustom(\'../forms/form?studentid=' . secureData($rw['regid']) . '\',900,900);"><i class="material-icons">&#xE417;</i></a>
-              <a href="javascript:void(0);" class="accept" title="Accept" data-toggle="tooltip" onclick="accept_application(' . $rw['regid'] . ');"><i class="material-icons">&#xe86c;</i></a>
-              <a href="javascript:void(0);" class="reject" title="Reject" data-toggle="tooltip" onclick="TINY.box.show({url:\'reject.php?regid='.secureData($rw['regid']).'\',width:400,height:150 })";><i class="material-icons">&#xE5C9;</i></a>
+              <a href="javascript:void(0);" class="view" title="View" data-toggle="tooltip" 
+                    onclick="openCustom(\'../forms/form?studentid=' . secureData($rw['regid']) . '\',900,900);"><i class="material-icons">&#xE417;</i></a>
+              <a href="javascript:void(0);" class="accept" title="Accept" data-toggle="tooltip" 
+                    onclick="accept_application(' . $rw['regid'] . ');"><i class="material-icons">&#xe86c;</i></a>
+              <a href="javascript:void(0);" class="reject" title="Reject" data-toggle="tooltip" 
+                    onclick="TINY.box.show({url:\'reject.php?regid='.secureData($rw['regid']).'\',width:400,height:150 })";><i class="material-icons">&#xE5C9;</i></a>
               </td>';
               echo '</span>';
             } else if($rw['is_reject'] == 1 && $rw['is_accept'] == 0){
               echo '<td><label class="badge badge-danger">Rejected</label></td>';
-              echo'<td></td>';
-              echo'<td></td>';
+              if($rw['is_online']){
+                echo'<td>Online</td>';
+              } else {
+                echo'<td>Walk-in</td>';
+              }
+              echo'<td>'.$level.'</td>';
+              echo'<td> <a href="javascript:void(0);" class="view" title="View" data-toggle="tooltip" 
+                    onclick="openCustom(\'../forms/form?studentid=' . secureData($rw['regid']) . '\',900,900);"><i class="material-icons">&#xE417;</i></a></td>';
             } else {
               echo '<td><label class="badge badge-success">Accepted</label></td>';
-              echo'<td></td>';
-              echo'<td></td>';
+              if($rw['is_online']){
+                echo'<td>Online</td>';
+              } else {
+                echo'<td>Walk-in</td>';
+              }
+              echo'<td>'.$level.'</td>';
+              echo'<td> <a href="javascript:void(0);" class="view" title="View" data-toggle="tooltip" 
+                    onclick="openCustom(\'../forms/form?studentid=' . secureData($rw['regid']) . '\',900,900);"><i class="material-icons">&#xE417;</i></a></td>';
             }
             echo '</tr>';
           }
