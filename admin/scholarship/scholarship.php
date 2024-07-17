@@ -32,6 +32,7 @@ if (isset($_SESSION['accountid'])) {
                         <th>Fullname</th>
                         <th>Email Address</th>
                         <!-- <th>Status</th> -->
+                        <th>Status</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
@@ -45,12 +46,27 @@ if (isset($_SESSION['accountid'])) {
                             $open_view = 'openCustom(\'../forms/form?studentid='.secureData($rw['regid']).'\',900,900);';
                             echo '<tr>';
                             echo '<td>' . Cat($rw['categoryid']) . '</td>';
-                            echo '<td onclick="'.$open_view.'">' . $rw['firstname'] . ' ' . $rw['lastname'] . '</td>';
+                            echo '<td title="Click to view the application form" style="cursor: pointer;" onclick="'.$open_view.'">' . $rw['firstname'] . ' ' . $rw['lastname'] . '</td>';
                             echo '<td>' . $rw['emailaddress'] . '</td>';
-                            echo '<td> 
-                            <a class="btn btn-success btn-sm">Schedule</a>
-                            <a class="btn btn-success btn-sm">CALL</a>
-                            </td>';
+                           
+                            if($rw['is_complete']==0){
+                                echo'<td><label class="badge badge-warning">PENDING</label></td>';
+                            } else if($rw['is_complete']==2){//naka schedule
+                                echo'<td><label class="badge badge-success">SCHEDULED</label></td>';
+                            } else {
+                                echo'<td><label class="badge badge-primary">COMPLETED</label></td>';
+                            }
+
+                            if($rw['is_complete']==1){
+                                 echo '<td>&nbsp;</td>';
+                            } else {
+                                 echo '<td> <a class="btn btn-primary btn-sm"
+                                 onclick="completed_function('.$rw['regid'].');"
+                                 >Click here if the application is done</a></td>';
+                            }
+                           
+
+
                             echo '</tr>';
 
 

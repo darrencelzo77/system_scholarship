@@ -17,6 +17,46 @@ if (isset($_SESSION['accountid'])){
     <title>Schedule</title>
 </head>
 <? include('../nav/header.php'); ?>
+<script>
+    //schedule_it
+    function schedule_it(schedid,regid,fullname){
+        var scheddate = object('dddd'+schedid).value;
+            let myForm = new FormData();
+            myForm.append('regid', regid);
+            myForm.append('scheddate', scheddate);
+            myForm.append('schedid', schedid);
+           
+            swal({
+                title: "Schedule",
+                text: "Are you sure want to schedule this student at " +scheddate+ " ?",
+                icon: "info",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willAdd) => {
+                if (willAdd) {
+                    $.ajax({
+                        url: 'schedule.php',
+                        type: "POST",
+                        data: myForm,
+                        beforeSend: function () {$("#body-overlay").show();},
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            $("#maincontent").html(data);
+                            $("#maincontent").css('opacity', '1');
+                            $("#body-overlay").hide();
+                             swal('Success', 'Successfully Processed Request', 'success');
+
+                        },
+                        error: function () {
+                            Swal('Error', 'Error Processing Request', 'error');
+                        }
+                    });
+                } else {}
+            });     
+    }
+</script>
 <body>
 <div class="container-scroller">
     <? include('../nav/topnav.php'); ?>
@@ -24,8 +64,9 @@ if (isset($_SESSION['accountid'])){
     <? include('../nav/sidenav.php'); ?>
     <div class="main-panel">
         <div class="content-wrapper">
+        <div id="body-overlay"><div><img src="../images/processing.gif" width="80%" /></div></div>   
         <div id="maincontent">
-            <?include('schedule.php')?>
+            <? include('schedule.php')?>
         </div>
         </div>
         <? include('../nav/footer.php'); ?>

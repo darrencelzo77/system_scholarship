@@ -112,6 +112,9 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
 
          
             echo '</tr>';
+            $male = 1;
+            $female = 2;
+            //$count_sex += $rw['sexid'];
           }
           ?>
         </tbody>

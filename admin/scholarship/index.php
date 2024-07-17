@@ -11,6 +11,11 @@ if (isset($_SESSION['accountid'])){
 <!DOCTYPE html>
 <html lang="en">
   <? include('../nav/header.php'); ?>
+  <script>
+    //completed_function
+
+    
+  </script>
   <body>
     <div class="container-scroller">
       <? include('../nav/topnav.php'); ?>
