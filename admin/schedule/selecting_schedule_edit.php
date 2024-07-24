@@ -36,7 +36,7 @@ $jss = 'ajax_new(\'selecting_schedule_tmp.php?from=\'+object(\'from\').value
   <input onchange="<?=$jss?>" type="date" id="to" value="<?=$to?>"/>
 </div>
 <br>
-<div id="tmp_kkk"><? include('selecting_schedule_tmp.php'); ?></div>
+<div id="tmp_kkk"><? include('selecting_schedule_tmp_edit.php'); ?></div>
 
 
 

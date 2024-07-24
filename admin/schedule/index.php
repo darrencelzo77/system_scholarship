@@ -56,6 +56,46 @@ if (isset($_SESSION['accountid'])){
                 } else {}
             });     
     }
+
+
+     function schedule_it_edit(schedid,regid,fullname){
+        var scheddate = object('dddd'+schedid).value;
+            let myForm = new FormData();
+            myForm.append('regid2', regid);
+            myForm.append('scheddate2', scheddate);
+            myForm.append('schedid2', schedid);
+            myForm.append('edit', 1);
+           
+            swal({
+                title: "Schedule",
+                text: "Are you sure want to re-schedule this student at " +scheddate+ " ?",
+                icon: "info",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willAdd) => {
+                if (willAdd) {
+                    $.ajax({
+                        url: 'schedule.php',
+                        type: "POST",
+                        data: myForm,
+                        beforeSend: function () {$("#body-overlay").show();},
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            $("#maincontent").html(data);
+                            $("#maincontent").css('opacity', '1');
+                            $("#body-overlay").hide();
+                             swal('Success', 'Successfully Processed Request', 'success');
+
+                        },
+                        error: function () {
+                            Swal('Error', 'Error Processing Request', 'error');
+                        }
+                    });
+                } else {}
+            });     
+    }
 </script>
 <body>
 <div class="container-scroller">

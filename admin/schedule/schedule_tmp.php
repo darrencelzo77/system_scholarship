@@ -23,18 +23,23 @@ if (isset($_SESSION['accountid'])){
                 <td>&nbsp;</td>
               </tr>
               <?
-              $q = "SELECT * FROM tblregistrations where is_accept=1 ";
+              $q = "SELECT a.*, b.regid as regid2,c.schedid,c.scheddate
+FROM tblregistrations a
+LEFT JOIN tblschedule_details b ON a.regid = b.regid
+LEFT JOIN tblschedule c ON b.schedid = c.schedid
+WHERE a.is_accept = 1 
+";
 
               if(isset($_GET['str'])){
                 if($_GET['str']=='') {
                   $q .= ' ';
                 } else {
-                  $q .= ' AND firstname LIKE \'%'.escape_str($db_connection,$_GET['str']).'%\' 
-                        OR lastname LIKE \'%'.escape_str($db_connection,$_GET['str']).'%\'
-                        OR trackingnumber LIKE \'%'.escape_str($db_connection,$_GET['str']).'%\' ';
+                  $q .= ' AND a.firstname LIKE \'%'.escape_str($db_connection,$_GET['str']).'%\' 
+                        OR a.lastname LIKE \'%'.escape_str($db_connection,$_GET['str']).'%\'
+                        OR a.trackingnumber LIKE \'%'.escape_str($db_connection,$_GET['str']).'%\' ';
                 }
               }
-
+              //echo $q;
               $rs = mysqli_query($db_connection, $q);
               while ($rw = mysqli_fetch_array($rs)) {
                   foreach ($rw as $key => $value) {
@@ -47,9 +52,12 @@ if (isset($_SESSION['accountid'])){
                     echo'<td>'.$level.'</td>';
 
                     if($rw['is_complete']==2){
-                       echo'<td><label class="badge badge-primary">Scheduled</label></td>';
+                       echo'<td><label class="badge badge-primary">Scheduled</label>&nbsp;&nbsp;';
+                       if($rw['scheddate']){echo 
+                        date("F d, Y",strtotime($rw['scheddate']));}
+                       echo'</td>';
 
-                       echo'<td><a href="javascript:void();" onclick="ajax_new(\'selecting_schedule.php?regid='.secureData($rw['regid']).'\',\'tmp_show\');">Click here to resched</a></td>';
+                       echo'<td><a href="javascript:void();" onclick="ajax_new(\'selecting_schedule_edit.php?regid='.secureData($rw['regid']).'\',\'tmp_show\');">Click here to resched</a></td>';
                     } else {
                        echo'<td><a href="javascript:void();" onclick="ajax_new(\'selecting_schedule.php?regid='.secureData($rw['regid']).'\',\'tmp_show\');">Select</a></td>';
 

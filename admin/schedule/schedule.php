@@ -22,6 +22,26 @@ if(isset($_POST['regid'])){
 
     include('../email/schedule_message.php');
 }
+
+
+if(isset($_POST['edit'])){
+    $sched_id = GetData('select schedid from tblschedule_details where regid='.$_POST['regid2']);
+    mysqli_query($db_connection,'update tblschedule set
+            slot_count = slot_count - 1 where schedid='.$sched_id.' ');
+    mysqli_query($db_connection,'delete from tblschedule_details where regid='.$_POST['regid2']);
+
+
+    ///////////
+
+    mysqli_query($db_connection,'insert into tblschedule_details set regid='.
+                        escape_str($db_connection,$_POST['regid2']).',schedid=\''.
+                        escape_str($db_connection,$_POST['schedid2']).'\' ');
+    mysqli_query($db_connection,'update tblregistrations set is_complete=2 where regid='.$_POST['regid2'].' ');
+    mysqli_query($db_connection,'update tblschedule set
+            slot_count = slot_count + 1 where schedid='.$_POST['schedid2'].' ');
+
+    include('../email/schedule_message_edit.php');
+}
 ?>
 
 
