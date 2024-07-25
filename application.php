@@ -522,7 +522,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                                     <?php
                                                                     echo '<select class="form-control" name="provid" id="provid" onchange="loadPage(\'selectcity.php?provid=\' + this.value, \'tmp_city\');">';
                                                                     echo '<option value="0">Select Province</option>';
-                                                                    $rs1 = mysqli_query($db_connection, 'SELECT provid, province FROM tblloc_province ORDER BY province');
+                                                                    $rs1 = mysqli_query($db_connection, 'SELECT provid, province FROM tblloc_province where provid=18 ORDER BY province');
                                                                     while ($rw1 = mysqli_fetch_array($rs1)) {
                                                                         $sel = ($provid == $rw1['provid']) ? 'selected="selected"' : '';
                                                                         echo '<option value="' . $rw1['provid'] . '" ' . $sel . '>' . $rw1['province'] . '</option>';

@@ -8,8 +8,10 @@ if (isset($_SESSION['accountid'])){
   header('location: ../'); exit(0); 
 }
 
+
 if (!isset($_GET['from'])) {$from = date('Y-m-d', strtotime('-31 days'));}
 if (!isset($_GET['to'])) {$to = date('Y-m-d', strtotime('7 days'));}
+
 
 
 ?>
@@ -45,7 +47,7 @@ if (!isset($_GET['to'])) {$to = date('Y-m-d', strtotime('7 days'));}
                     if($rw['slot']==$rw['slot_count']){
                       echo'<td><label class="badge badge-primary">FULL</label></td>';
                     } else {
-                      echo'<td><a href="javascript:void();" onclick="schedule_it('.$rw['schedid'].','.$regid.',\''.$fullname.'\')">Select</a></td>';
+                      echo'<td><a href="javascript:void(0);" onclick="schedule_it('.$rw['schedid'].','.$_GET['regid'].',\''.$_GET['fullname'].'\');">Select</a></td>';
                     }
                     echo'</tr>';
               }

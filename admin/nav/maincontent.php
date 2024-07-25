@@ -1,12 +1,12 @@
 <?php
-// if(session_id()==''){session_start();} 
-// if (isset($_SESSION['accountid'])){ 
-//     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-//     if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
-//     if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
-// } else {
-//     header('location: ../'); exit(0); 
-// }
+if(session_id()==''){session_start();} 
+if (isset($_SESSION['accountid'])){ 
+	if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
+	if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+	if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
+} else {
+	header('location: ../'); exit(0); 
+}
 ?>
 
 <!-- Quick Action Toolbar Starts-->
@@ -50,7 +50,7 @@
           <div class=" col-md -6 col-xl report-inner-card">
             <div class="inner-card-text">
               <span class="report-title">Application Counts</span>
-              <h4>10</h4>
+              <h4><?=GetData('select count(*) from tblregistrations');?></h4>
               <!-- <span class="report-count"> 2 Reports</span> -->
             </div>
             <div class="inner-card-icon bg-success">
@@ -60,7 +60,7 @@
           <div class="col-md-6 col-xl report-inner-card">
             <div class="inner-card-text">
               <span class="report-title">FEMALE</span>
-              <h4>100</h4>
+              <h4><?=GetData('select count(*) from tblregistrations where sexid=2');?></h4>
               <!-- <span class="report-count"> 3 Reports</span> -->
             </div>
             <div class="inner-card-icon bg-danger">
@@ -70,7 +70,7 @@
           <div class="col-md-6 col-xl report-inner-card">
             <div class="inner-card-text">
               <span class="report-title">MALE</span>
-              <h4>120</h4>
+              <h4><?=GetData('select count(*) from tblregistrations where sexid=1');?></h4>
               <!-- <span class="report-count"> 5 Reports</span> -->
             </div>
             <div class="inner-card-icon bg-warning">
@@ -80,7 +80,7 @@
           <div class="col-md-6 col-xl report-inner-card">
             <div class="inner-card-text">
               <span class="report-title">ACCEPTED</span>
-              <h4>50</h4>
+              <h4><?=GetData('select count(*) from tblregistrations where is_accept=1');?></h4>
               <!-- <span class="report-count"> 9 Reports</span> -->
             </div>
             <div class="inner-card-icon bg-primary">
@@ -101,26 +101,20 @@
         <tr>
           <thead>
             <th>Category ID</th>
-            <th>Student Number</th>
             <th>Fullname</th>
           </thead>
 
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>1221212121</td>
-              <td>Darren Acuna</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>2022003207</td>
-              <td>Jonh Allen Mendoza</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>2024001386</td>
-              <td>Jose Rizal</td>
-            </tr>
+            <?
+			$rs = mysqli_query($db_connection,'select categoryid, CONCAT(firstname,\' \',lastname) as name
+					from tblregistrations order by regid DESC');
+			while($rw = mysqli_fetch_array($rs)){
+				echo'<tr>
+					<td>'.$rw['categoryid'].'</td>
+					<td>'.$rw['name'].'</td>
+				</tr';
+			}
+			?>
           </tbody>
         </tr>
 

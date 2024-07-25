@@ -35,7 +35,7 @@ if(isset($_POST['pre_register'])){
             emailaddress='$emailaddress',
             is_online=1 ";
             mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
-    include('admin/email/pre_registration_email.php');
+                 include('admin/email/pre_registration_email.php');
 
 }
 

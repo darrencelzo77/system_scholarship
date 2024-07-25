@@ -17,7 +17,9 @@ $to = date('Y-m-d');
 
 
 $jss = 'ajax_new(\'selecting_schedule_tmp.php?from=\'+object(\'from\').value
-                                            +\'&to=\'+object(\'to\').value,\'tmp_kkk\');'
+                                            +\'&to=\'+object(\'to\').value
+											+\'&regid=\'+object(\'regid\').value
+											+\'&fullname=\'+object(\'fullname\').value,\'tmp_kkk\');'
 
 
 
@@ -27,7 +29,8 @@ $jss = 'ajax_new(\'selecting_schedule_tmp.php?from=\'+object(\'from\').value
 <div>
   <h5><?=$fullname?></h5>
 </div>
-
+<input type="hidden" id="regid" value="<?=$regid?>"/>
+<input type="hidden" id="fullname" value="<?=$fullname?>"/>
 <div>
   FROM:&nbsp;
   <input onchange="<?=$jss?>" type="date" id="from" value="<?=$from?>"/>

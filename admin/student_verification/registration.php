@@ -15,7 +15,8 @@ if(isset($_POST['regid'])){
 
 $jscript = "ajax_new_without_reload('tmp_registration.php?date1='+object('date1').value
                                                   +'&date2='+object('date2').value
-                                                  +'&src='+object('src').value,'tmp_tmp');";
+                                                  +'&src='+object('src').value
+                                                  +'&levelid='+object('levelid').value,'tmp_tmp');";
 
 $from = date('Y-m-d', strtotime('-31 days'));
 $to = date('Y-m-d');
