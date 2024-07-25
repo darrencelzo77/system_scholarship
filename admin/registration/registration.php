@@ -71,7 +71,7 @@ if (isset($_POST['register'])) {
 
 
                 $query = "INSERT INTO tblregistrations 
-                          SET cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
+                          SET is_verify=1,is_updated=1,cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
                               levelid='$levelid',
                               categoryid='$categoryid', 
                               lastname='$lastname', 

@@ -9,10 +9,10 @@
       header('location: ../'); exit(0); 
     }
 
-    $email = GetData('select emailaddress from tblregistrations where regid='.$_POST['regid']);
-    $is_online = GetData('select is_online from tblregistrations where regid='.$_POST['regid']);
-    $userpassword = GetData('select userpassword from tblregistrations where regid='.$_POST['regid']);
-    $name = GetData("SELECT CONCAT_WS(' ', firstname, middlename, lastname) AS name FROM tblregistrations WHERE regid=".$_POST['regid']);
+    $email = GetData('select emailaddress from tblregistrations where regid='.$_POST['regid_edit']);
+    $is_online = GetData('select is_online from tblregistrations where regid='.$_POST['regid_edit']);
+    $userpassword = GetData('select userpassword from tblregistrations where regid='.$_POST['regid_edit']);
+    $name = GetData("SELECT CONCAT_WS(' ', firstname, middlename, lastname) AS name FROM tblregistrations WHERE regid=".$_POST['regid_edit']);
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
@@ -33,28 +33,29 @@
         $mail->setFrom('scholarship941@gmail.com', 'scholarship_system');
         $mail->addAddress($email);
         $mail->isHTML(true);
-        $mail->Subject = 'Application Accepted';
+        $mail->Subject = 'Completed Transaction';
 
         $trackno = GenerateTracking();
 
         if($is_online){
-            $mail->Body = ''.ucwords($name). ' You are accepted in your Educational Assistance Application.<br>You
+            $mail->Body = ''.ucwords($name). ' Congratulations Your application in Educational Assistance Program has been completed.<br>You
             This is your tracking number '.$trackno.'<br><br>
             This is your login credentials.<br>
             Email: '.$email.'<br>
             Password: '.$userpassword.'<br><br>
                  You can login to the website for Educational Assistance to track the status of your application.';
         } else {
-            $mail->Body = ''.ucwords($name). ' You are accepted in your Educational Assistance Application.<br>You
+            $mail->Body = ''.ucwords($name). ' Congratulations Your application in Educational Assistance Program has been completed.<br>You
             This is your tracking number '.$trackno.'<br><br>
            
-                 You can now settle your concern in the staff in munisipyo.';
+                 You can now settle your concern in the staff in munisipyo. if any.';
         }
         
         
         try {
             $mail->send();
-            mysqli_query($db_connection, 'UPDATE tblregistrations SET trackingnumber=\''.$trackno.'\', is_accept=1 WHERE regid='.$_POST['regid']);
+            mysqli_query($db_connection, 'UPDATE tblregistrations SET is_complete=1 WHERE regid='.$_POST['regid_edit']);
+            mysqli_query($db_connection,'update tblschedule_details set is_complete=1 where regid='.$_POST['regid_edit'].' AND is_complete=0 ');
 			echo '';
 			
 			//$str =  '<div align="center" style="color:green;">Successfully Processed Request</div>';

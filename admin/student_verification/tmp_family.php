@@ -1,12 +1,14 @@
 <?php
+session_start();
 if(session_id()==''){session_start();} 
-if (isset($_SESSION['regid'])){ 
+if (isset($_SESSION['accountid'])){ 
     if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-    if (file_exists('admin/includes/systemconfig.inc')) {include_once('admin/includes/systemconfig.inc'); }
-    if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/includes/systemconfig.inc'); }
+    if (file_exists('includes/systemconfig.inc')) {include_once('includes/systemconfig.inc'); }
+    if (file_exists('../includes/systemconfig.inc')) {include_once('../includes/systemconfig.inc'); }
 } else {
-    header('location: ./'); exit(0); 
+    header('location: ../'); exit(0); 
 }
+
 
 if(isset($_GET['del'])){
 	mysqli_query($db_connection,'delete from '.$_SESSION['tmp_registrations_family'].' where id='.$_GET['del']);
@@ -28,7 +30,7 @@ if(isset($_POST['add'])){
 
 ?>
 <div align="center">
-<table class="table table-striped table-bordered" >
+<table class="table table-striped" >
     <tr>
 	<thead>
         <th>Lastname</th>

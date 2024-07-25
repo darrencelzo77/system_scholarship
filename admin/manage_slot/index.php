@@ -13,40 +13,42 @@ if (isset($_SESSION['accountid'])){
   <? include('../nav/header.php'); ?>
   <script>
     //completed_function
-     function completed_function(regid){
+    function update_slot(){
       let myForm = new FormData();
-          myForm.append('regid_edit', regid);
-        swal({
-        title: "Application",
-        text: "Are you sure that this application has been completed?",
+      myForm.append('slot', object('slot').value);
+    
+    swal({
+        title: "Update Slot",
+        text: "Are you sure you want to update your slot?",
         icon: "info",
         buttons: true,
         dangerMode: true,
-      })
-      .then((willAdd) => {
+    })
+    .then((willAdd) => {
         if (willAdd) {
-          $.ajax({
-            url: 'scholarship.php',
-            type: "POST",
-            data: myForm,
-            beforeSend: function () {$("#body-overlay").show();},
-            contentType: false,
-            processData: false,
-            success: function (data) {
-              $("#maincontent").html(data);
-              $("#maincontent").css('opacity', '1');
-              $("#body-overlay").hide();
-               
-               swal('Success', 'Successfully Processed Request', 'success');
-
-            },
-            error: function () {
-              Swal('Error', 'Error Processing Request', 'error');
-            }
-          });
-        } else {}
-      });   
-  }
+            $.ajax({
+                url: 'add_slot.php',
+                type: "POST",
+                data: myForm,
+                beforeSend: function () {
+                    $("#body-overlay").show();
+                },
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $("#maincontent").html(data);
+                    $("#maincontent").css('opacity', '1');
+                    $("#body-overlay").hide();
+                    swal('Success', 'Successfully Processed Request', 'success');
+                },
+                error: function () {
+                    swal('Error', 'Error Processing Request', 'error');
+                }
+            });
+            //TINY.box.hide();
+        }
+    });
+    }
     
   </script>
   <body>
@@ -56,9 +58,8 @@ if (isset($_SESSION['accountid'])){
         <? include('../nav/sidenav.php'); ?>
         <div class="main-panel">
           <div class="content-wrapper">
-             <div id="body-overlay"><div><img src="../images/processing.gif" width="80%" /></div></div>
             <div id="maincontent">
-              <?include('scholarship.php')?>
+              <? include('add_slot.php'); ?>
             </div>
           </div>
           <? include('../nav/footer.php'); ?>

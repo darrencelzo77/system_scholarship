@@ -28,7 +28,7 @@ if (!isset($_GET['to'])) {$to = date('Y-m-d', strtotime('7 days'));}
               <?
               if (isset($_GET['from'])){$from = date('Y-m-d',strtotime($_GET['from']));}
               if (isset($_GET['to'])){$to = date('Y-m-d',strtotime($_GET['to']));}
-              $q = 'SELECT * FROM tblschedule WHERE DATE(scheddate)  >= \''.$from.'\' AND DATE(scheddate) <= \''.$to.'\' ';
+              $q = 'SELECT * FROM tblschedule WHERE  DATE(scheddate)  >= \''.$from.'\' AND DATE(scheddate) <= \''.$to.'\' ';
               $rs = mysqli_query($db_connection, $q);
               while ($rw = mysqli_fetch_array($rs)) {
                   foreach ($rw as $key => $value) {

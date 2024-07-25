@@ -80,6 +80,7 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
             <th>Type</th>
             <th>Level</th>
             <th>Action</th>
+             <th>View</th>
 
           </tr>
         </thead>
@@ -89,7 +90,7 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
           if (isset($_GET['date1'])){$from = date('Y-m-d',strtotime($_GET['date1']));}
           if (isset($_GET['date2'])){$to = date('Y-m-d',strtotime($_GET['date2']));}
           $c = 1;
-          $q = "SELECT * FROM tblregistrations WHERE DATE(regdate)  >= '$from' AND DATE(regdate) <='$to'";
+          $q = "SELECT * FROM tblregistrations WHERE is_verify=1 AND is_updated=1 AND DATE(regdate)  >= '$from' AND DATE(regdate) <='$to'";
 // $q = "SELECT * FROM tblregistrations";
 
           if(isset($_GET['src'])){
@@ -197,6 +198,8 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
               echo'<td> <a href="javascript:void(0);" class="view" title="View" data-toggle="tooltip" 
                     onclick="openCustom(\'../forms/form?studentid=' . secureData($rw['regid']) . '\',900,900);"><i class="material-icons">&#xE417;</i></a></td>';
             }
+            $click_me = 'openCustom(\'../forms/view_documents.php?regid='.secureData($rw['regid']).'\',900,900);';
+            echo'<td><a href="javascript:void();" onclick="'.$click_me.'">View Documents</a></td>';
             echo '</tr>';
           }
           ?>

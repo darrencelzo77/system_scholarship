@@ -9,9 +9,7 @@
       header('location: ../'); exit(0); 
     }
 
-    $email = GetData('select emailaddress from tblregistrations where regid='.$_POST['regid']);
-    $userpassword = GetData('select userpassword from tblregistrations where regid='.$_POST['regid']);
-    $name = GetData("SELECT CONCAT_WS(' ', firstname, middlename, lastname) AS name FROM tblregistrations WHERE regid=".$_POST['regid']);
+   
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
@@ -30,28 +28,16 @@
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         $mail->setFrom('scholarship941@gmail.com', 'scholarship_system');
-        $mail->addAddress($email);
+        $mail->addAddress($emailaddress);
         $mail->isHTML(true);
-        $mail->Subject = 'Schedule Details';
+        $mail->Subject = 'Pre-registration';
 
-        $trackno = GetData('select trackingnumber from tblregistrations where regid='.$_POST['regid']);
-        $mail->Body = ''.ucwords($name). ' You are accepted in your Education Assistance Application.<br><br>You
-            This is your tracking number '.$trackno.'<br><br>
 
-             This is your login credentials.<br>
-            Email: '.$email.'<br>
-            Password: '.$userpassword.'<br><br>
-
-        You can login to the website for Educational Assistance to track the status of your application.
-        <br><br>
-         <br> Go to '.$_POST['scheddate'].' at Municipality of Batanggas<br><br>
-
-         Please follow your appointment schedule. Our office is open at 8:00 am to 5:00 pm';
+        $mail->Body = 'Your Pre-registration has been received, please wait for your verification.';
         
         try {
             $mail->send();
-            mysqli_query($db_connection, 'UPDATE tblregistrations SET is_accept=1 WHERE regid='.$_POST['regid']);
-			echo '';
+            echo '';
 			
 			//$str =  '<div align="center" style="color:green;">Successfully Processed Request</div>';
 			

@@ -4,6 +4,46 @@ if (file_exists('systemconfig.inc')) { include_once('systemconfig.inc'); }
 if (file_exists('admin/includes/systemconfig.inc')) { include_once('admin/includes/systemconfig.inc'); }
 if (file_exists('../admin/includes/systemconfig.inc')) { include_once('../admin/includes/systemconfig.inc'); }
 
+
+if(isset($_GET['logout'])){
+    session_destroy();
+}
+
+if(isset($_POST['pre_register'])){
+    $levelid = mysqli_real_escape_string($db_connection, $_POST['levelid2']);
+    $lastname = mysqli_real_escape_string($db_connection, $_POST['lastname2']);
+    $firstname = mysqli_real_escape_string($db_connection, $_POST['firstname2']);
+    $middlename = mysqli_real_escape_string($db_connection, $_POST['middlename2']);
+    $emailaddress = mysqli_real_escape_string($db_connection, $_POST['emailaddress2']);
+
+     if (isset($_FILES['pic2'])) {
+                    $target_dir = "requirements/";
+                    $pic2 = basename($_FILES["pic2"]["name"]);
+                    $target_file = $target_dir . $pic2;
+                    if (move_uploaded_file($_FILES["pic2"]["tmp_name"], $target_file)) {
+                        
+                        
+                    } else {}
+                } else {$pic2 = '';}
+
+    $query = "INSERT INTO tblregistrations 
+            SET levelid='$levelid',
+                pic='$pic2',
+            lastname='$lastname', 
+            firstname='$firstname', 
+            middlename='$middlename', 
+            emailaddress='$emailaddress',
+            is_online=1 ";
+            mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
+    include('admin/email/pre_registration_email.php');
+
+}
+
+
+
+
+
+
 if (isset($_POST['register'])) {
     $levelid = mysqli_real_escape_string($db_connection, $_POST['levelid']);
     $semid = mysqli_real_escape_string($db_connection, $_POST['semid']);
@@ -29,6 +69,7 @@ if (isset($_POST['register'])) {
     $emailaddress = mysqli_real_escape_string($db_connection, $_POST['emailaddress']);
     $is_online = mysqli_real_escape_string($db_connection, $_POST['is_online']);
     $grade = mysqli_real_escape_string($db_connection, $_POST['grade']);
+    $primarykeyid = mysqli_real_escape_string($db_connection, $_POST['primarykeyid']);
    
     if($grade>=70){
                 if (isset($_FILES['cor'])) {
@@ -65,8 +106,8 @@ if (isset($_POST['register'])) {
                 } else {$indigency = '';}
 
 
-                $query = "INSERT INTO tblregistrations 
-                          SET cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
+                $query = "update tblregistrations 
+                          SET is_updated=1, cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
                               levelid='$levelid',
                               categoryid='$categoryid', 
                               lastname='$lastname', 
@@ -88,10 +129,10 @@ if (isset($_POST['register'])) {
                               senior='$senior',
                               college='$college',
                               emailaddress='$emailaddress',
-                              is_online='$is_online'";
+                              is_online='$is_online' where regid='$primarykeyid' ";
                 mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
 
-                $regid = mysqli_insert_id($db_connection);
+                $regid = $_POST['primarykeyid'];
                 include('admin/email/verify.php');
                
                 $rs = mysqli_query($db_connection, 'SELECT * FROM ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
@@ -143,7 +184,7 @@ if (isset($_POST['register'])) {
                 } else {$indigency = '';}
 
 
-                $query = "INSERT INTO tblregistrations 
+                $query = "update tblregistrations 
                           SET is_reject=1,cog='$cog',indigency='$indigency',cor='$cor',grade='$grade',semid='$semid',
                               levelid='$levelid',
                               categoryid='$categoryid', 
@@ -166,7 +207,7 @@ if (isset($_POST['register'])) {
                               senior='$senior',
                               college='$college',
                               emailaddress='$emailaddress',
-                              is_online='$is_online'";
+                              is_online='$is_online' where regid='$primarykeyid'";
                 mysqli_query($db_connection, $query) or die(mysqli_error($db_connection));
 
                 $regid = mysqli_insert_id($db_connection);
@@ -207,7 +248,7 @@ if(isset($_GET['getthis'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholarship</title>
+    <title>Educational Assistance Management System</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 	<link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
@@ -218,9 +259,33 @@ if(isset($_GET['getthis'])){
 
     <link rel="icon" type="image/x-icon" href="admin/images/logo_u.png">
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="admin/js/tinybox.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        
+        function param(w,h) {
+        var width  = w;
+        var height = h;
+        var left = (screen.width  - width)/2;
+        var top = (screen.height - height)/2;
+        var params = 'width='+width+', height='+height;
+        params += ', top='+top+', left='+left;
+        params += ', directories=no';
+        params += ', location=no';
+        params += ', resizable=no';
+        params += ', status=no';
+        params += ', toolbar=no';
+        return params;
+    }
+
+    function openWin(url){
+        myWindow=window.open(url,'mywin',param(800,500));
+        myWindow.focus();
+    }
+
+    function openCustom(url,w,h){
+        myWindow=window.open(url,'mywin',param(w,h));
+        myWindow.focus();
+    }
        function loadPage(url,elementId) {
         if (window.XMLHttpRequest) {
                 xmlhttp=new XMLHttpRequest();
@@ -256,7 +321,22 @@ if(isset($_GET['getthis'])){
         visibility: visible;
         }
     }
-  
+.tbox {position:absolute;  display:none; padding:14px 17px; z-index:900}
+    .tinner {padding:15px; -moz-border-radius:5px; border-radius:5px; background:#fff url(admin/images/preload.gif) no-repeat 50% 50%; border-right:1px solid #333; border-bottom:1px solid #333;}
+    .tmask {position:absolute; display:none; top:0px; left:0px; height:100%; width:100%; background:#000; z-index:800}
+    .tclose {position:absolute; top:0px; right:0px; width:30px; height:30px; cursor:pointer; background:url(admin/images/close.png) no-repeat}
+    .tclose:hover {background-position:0 -30px}
+    
+    #error {background:#ff6969; color:#fff; text-shadow:1px 1px #cf5454; border-right:1px solid #000; border-bottom:1px solid #000; padding:0}
+    #error .tcontent {padding:10px 14px 11px; border:1px solid #ffb8b8; -moz-border-radius:5px; border-radius:5px}
+    #success {background:#2ea125; color:#fff; text-shadow:1px 1px #1b6116; border-right:1px solid #000; border-bottom:1px solid #000; padding:10; -moz-border-radius:0; border-radius:0}
+    #bluemask {background:#4195aa}
+    #frameless {padding:0}
+    #frameless .tclose {left:6px}
+    
+    #body-overlay { text-align:center; background-color: rgba(0, 0, 0, 0.6);z-index: 99999;position:fixed;left: 0;top: 0;width: 100%;height: 100%; display:none; }
+    #body-overlay div {position:absolute;left:40%;top:20%;} 
+
   </style>
 </body>
 </head>
@@ -284,9 +364,21 @@ if(isset($_GET['getthis'])){
                 <li class="nav-item"><a href="#application" class="nav-link">Application</a></li>
            
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+<?
+$link = "TINY.box.show({url:'login.php',width:500,height:300 })";
 
+?>
           	<!-- SEARCH FORM -->
-				<form class="form-inline ml-0 ml-md-3">
+            <form  class="form-inline ml-0 ml-md-3">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-append">
+                            <a class="btn btn-secondary" href="login">Login
+                            
+                            </a>
+                        </div>
+                    </div>
+                </form>
+				<!-- <form hidden class="form-inline ml-0 ml-md-3">
 					<div class="input-group input-group-sm">
 						<input class="form-control form-control-navbar" id="trackingnumber"  placeholder="Tracking Number...." aria-label="Search">
 						<div class="input-group-append">
@@ -296,7 +388,7 @@ if(isset($_GET['getthis'])){
 							</a><? if($rrrr){echo $rrrr;} ?>
 						</div>
 					</div>
-				</form>
+				</form> -->
             </ul>
 			
         </div>
@@ -351,9 +443,7 @@ if(isset($_GET['getthis'])){
                         <span class="hbr-1-lbl">Welcome to Educational Assistance Program!</span>
                         <span class="hbr-2-lbl">What is Scholarship?</span>
                         <p>Educational Assistance Program is dedicated to supporting students who demonstrate academic excellence, leadership potential, and a commitment to their communities. Our mission is to provide financial assistance to help you achieve your educational goals and make a positive impact on the world.</p>
-                        <button class="home-btn">
-                            <a href="#application" class="h-help">APPLY NOW!</a>
-                        </button>
+                       
                     </div>
                 </div>
             </div>
@@ -367,7 +457,7 @@ if(isset($_GET['getthis'])){
                         <h6><strong>Community Involvement: </strong>Demonstrated commitment to community service.</h6>
                         <h6><strong>Enrollment Status: </strong>Must be a undergraduate student (minimum of 30 units).</h6>
                         <h6><strong>Residency: </strong>Must be a Filipino citizen.</h6>
-                        <button class="home-btn">
+                        <button hidden class="home-btn">
                             <a href="#application" class="h-help">APPLY NOW!</a>
                         </button>
                     </div>
@@ -406,7 +496,7 @@ if(isset($_GET['getthis'])){
 
 								</div>
 <br>
-								<a href="application" class="home-btn btn-sm mt-2">Apply Now!</a>
+								<a href="register" class="home-btn btn-sm mt-2">Register Now!</a>
 							</div>
 						</div>
         </div>
@@ -456,7 +546,7 @@ if(isset($_GET['getthis'])){
 
 <footer class="main-footer">
 		<div class="float-right d-none d-sm-inline">
-			Scholarship Management System
+			Educational Assistance Management System
 		</div>
 		<strong>Clarence & Patrick &copy; 2024 <a href="javascript:void();"></a>.</strong> All rights reserved.
 	</footer>

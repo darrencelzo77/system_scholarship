@@ -168,11 +168,15 @@ $rw = mysqli_fetch_array($qr);
 
     <table width="20%" align="right">
         <tr>
-            <td width="100%" style="height: 150px; border: 1px solid black; text-align: center; font-size: 14px;">
-                <span>Picture</span><br>
-                <span>2x2</span><br>
-                <span style="color: red">*White or Blue Background</span>
-            </td>
+            <?
+            if($rw['pic']){
+                echo' <span><img style="border:1px solid black;" src="../../requirements/'.$rw['pic'].'" width="150" height="160"';
+            } else {
+                 echo' <span><img style="border:1px solid black;" src="" width="150" height="160"';
+            }
+            ?>
+
+           /></span>
         </tr>
     </table>
 

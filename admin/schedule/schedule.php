@@ -9,8 +9,6 @@ if (isset($_SESSION['accountid'])){
 }
 
 
-$jscript = 'ajax_new(\'schedule_tmp.php?str=\'+object(\'str\').value,\'tmp_show\');';
-
 
 if(isset($_POST['regid'])){
     mysqli_query($db_connection,'insert into tblschedule_details set regid='.
@@ -42,6 +40,17 @@ if(isset($_POST['edit'])){
 
     include('../email/schedule_message_edit.php');
 }
+
+
+$from = date('Y-m-d', strtotime('-31 days'));
+$to = date('Y-m-d');
+
+$jscript = 'ajax_new(\'schedule_tmp.php?str=\'+object(\'str\').value
+                +\'&from_=\'+object(\'from_\').value
+                +\'&to_=\'+object(\'to_\').value,\'tmp_show\');';
+
+
+
 ?>
 
 
@@ -51,6 +60,14 @@ if(isset($_POST['edit'])){
 
 <div align="right">
     <table>
+
+<!-- <div>
+  FROM:&nbsp;
+  <input onchange="<?=$jscript?>" type="date" id="from_" value="<?=$from?>"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  TO:&nbsp;
+  <input onchange="<?=$jscript?>" type="date" id="to_" value="<?=$to?>"/>
+</div> -->
         <tr>
             <td>Search here:&nbsp;</td>
             <td><input onkeyup="<?=$jscript?>" type="text" id="str" style="width:250px;" placeholder="Search by Tracking # or name..." /></td>

@@ -37,6 +37,9 @@ if (isset($_SESSION['accountid'])){
         $category = '';
         $account = '';
         $schedule = '';
+        $view_schedule = '';
+        $manage_slot = '';
+        $student_verification = '';
 
         if ($current_page == 'dashboard') { 
             $dashboard = 'active';
@@ -50,8 +53,14 @@ if (isset($_SESSION['accountid'])){
             $category = 'active';
         } else if ($current_page == 'account') {
             $account = 'active';
-        }else if ($current_page == 'schedule') {
+        } else if ($current_page == 'schedule') {
             $schedule = 'active';
+        } else if ($current_page == 'view_schedule') {
+            $view_schedule = 'active';
+        } else if ($current_page == 'manage_slot') {
+            $manage_slot = 'active';
+        } else if ($current_page == 'student_verification') {
+            $student_verification = 'active';
         }
         ?>
 
@@ -65,6 +74,13 @@ if (isset($_SESSION['accountid'])){
 
         <? if($_SESSION['typeid']==1){ ?>
 
+        <!-- student_verification -->
+        <li class="nav-item <?=$student_verification?>">
+            <a class="nav-link" href="../student_verification">
+                <span class="menu-title">Student Verification</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
 
         <li class="nav-item <?=$registration?>">
             <a class="nav-link" href="../registration">
@@ -76,6 +92,13 @@ if (isset($_SESSION['accountid'])){
         <li class="nav-item <?=$schedule?>">
             <a class="nav-link" href="../schedule">
                 <span class="menu-title">Schedule</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
+
+         <li class="nav-item <?=$view_schedule?>">
+            <a class="nav-link" href="../view_schedule">
+                <span class="menu-title">View Schedule</span>
                 <i hidden class="icon-chart menu-icon"></i>
             </a>
         </li>
@@ -96,6 +119,14 @@ if (isset($_SESSION['accountid'])){
         <li class="nav-item <?=$category?>">
             <a class="nav-link" href="../category">
                 <span class="menu-title">Category Setup</span>
+                <i hidden class="icon-chart menu-icon"></i>
+            </a>
+        </li>
+
+        <!-- manage_slot -->
+        <li class="nav-item <?=$manage_slot?>">
+            <a class="nav-link" href="../manage_slot">
+                <span class="menu-title">Manage Slots</span>
                 <i hidden class="icon-chart menu-icon"></i>
             </a>
         </li>
@@ -122,6 +153,9 @@ if (isset($_SESSION['accountid'])){
                 <i hidden class="icon-chart menu-icon"></i>
             </a>
         </li>
+
+         
+
 
           <li class="nav-item <?=$scholarship?>">
             <a class="nav-link" href="../scholarship">
