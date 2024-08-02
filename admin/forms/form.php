@@ -49,10 +49,16 @@ $rw = mysqli_fetch_array($qr);
             font-size: 10px;
             vertical-align:top;
         }
+		
+		 @media print {
+            #printButton {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    
+<div align="center"><button id="printButton" style="cursor:pointer;" onclick="window.print();">Print</button></div><br>
 <div class="container">
     <table width="22%" align="right" style="font-size: 12px;">
         <tr>

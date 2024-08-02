@@ -76,7 +76,7 @@ $_SESSION['token'] = rand(1, 100);
                 <div class="brand-logo">
                   <img hidden src="images/logo.svg">
                 </div>
-                <h4>Scholarship Management System</h4>
+                <h4>Educational Assistance System</h4>
                 <h6 class="font-weight-light">Sign in to continue.</h6>
                 <form class="pt-3" method="POST">
                   <input hidden type="text" value="<?=$_SESSION['token'];?>" name="token">  

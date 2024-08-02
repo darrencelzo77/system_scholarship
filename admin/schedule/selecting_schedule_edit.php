@@ -17,7 +17,9 @@ $to = date('Y-m-d');
 
 
 $jss = 'ajax_new(\'selecting_schedule_tmp.php?from=\'+object(\'from\').value
-                                            +\'&to=\'+object(\'to\').value,\'tmp_kkk\');'
+                                            +\'&to=\'+object(\'to\').value
+											+\'&regid=\'+object(\'regid\').value
+											+\'&fullname=\'+object(\'fullname\').value,\'tmp_kkk\');'
 
 
 

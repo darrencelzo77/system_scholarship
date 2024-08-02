@@ -372,9 +372,10 @@ $link = "TINY.box.show({url:'login.php',width:500,height:300 })";
             <form  class="form-inline ml-0 ml-md-3">
                     <div class="input-group input-group-sm">
                         <div class="input-group-append">
-                            <a class="btn btn-secondary" href="login">Login
-                            
-                            </a>
+                            <a class="btn btn-secondary" href="login">Login</a>
+                        </div>&nbsp;
+                        <div class="input-group-append">
+                            <a class="btn btn-secondary" href="register">Sign Up</a>
                         </div>
                     </div>
                 </form>
@@ -441,7 +442,7 @@ $link = "TINY.box.show({url:'login.php',width:500,height:300 })";
 					
                     <div class="home-box-info">
                         <span class="hbr-1-lbl">Welcome to Educational Assistance Program!</span>
-                        <span class="hbr-2-lbl">What is Scholarship?</span>
+                        <span class="hbr-2-lbl">What is Educational Assistance?</span>
                         <p>Educational Assistance Program is dedicated to supporting students who demonstrate academic excellence, leadership potential, and a commitment to their communities. Our mission is to provide financial assistance to help you achieve your educational goals and make a positive impact on the world.</p>
                        
                     </div>

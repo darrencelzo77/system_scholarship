@@ -105,7 +105,7 @@ if (isset($_SESSION['accountid'])){
 
           <li class="nav-item <?=$scholarship?>">
             <a class="nav-link" href="../scholarship">
-                <span class="menu-title">Scholarship List</span>
+                <span class="menu-title">Student List</span>
                 <i hidden class="icon-chart menu-icon"></i>
             </a>
         </li>
@@ -159,7 +159,7 @@ if (isset($_SESSION['accountid'])){
 
           <li class="nav-item <?=$scholarship?>">
             <a class="nav-link" href="../scholarship">
-                <span class="menu-title">Scholarship List</span>
+                <span class="menu-title">Student List</span>
                 <i hidden class="icon-chart menu-icon"></i>
             </a>
         </li>

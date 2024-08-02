@@ -44,10 +44,12 @@ if (!isset($_GET['to'])) {$to = date('Y-m-d', strtotime('7 days'));}
                     echo'<td>'.$rw['slot'].'</td>';
                     echo'<td>'.$rw['slot_count'].'</td>';
                     echo'<input type="hidden" value="'.date("F d, Y", strtotime($rw['scheddate'])).'" id="dddd'.$rw['schedid'].'"/>';
+					
+					echo'<input type="hidden" value="'.$regid.'" id="regid"/>';
                     if($rw['slot']==$rw['slot_count']){
                       echo'<td><label class="badge badge-primary">FULL</label></td>';
                     } else {
-                      echo'<td><a href="javascript:void(0);" onclick="schedule_it('.$rw['schedid'].','.$_GET['regid'].',\''.$_GET['fullname'].'\');">Select</a></td>';
+                      echo'<td><a href="javascript:void(0);" onclick="schedule_it('.$rw['schedid'].',\''.$_GET['fullname'].'\');">Select</a></td>';
                     }
                     echo'</tr>';
               }

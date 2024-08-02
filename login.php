@@ -13,7 +13,9 @@ if(isset($_POST['signin'])) {
     header('location: application');
     exit(0);
   } else {
-    $err =  '<span style="color:red; font-size:16pm;" class="blink">Invalid Username or Password</span>';
+    $err =  '<span style="color:red; font-size:16pm;" class="blink">
+      This account in not register. <a href="register">Click here to sign up.</a>
+    </span>';
   }
 } 
 if(isset($_SESSION['regid'])) {
@@ -38,7 +40,7 @@ if(isset($_SESSION['regid'])) {
   <!-- Theme style -->
   <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
    <style>
-    .blink {
+    /*.blink {
       animation: 2s linear infinite condemned_blink_effect;
     }
     @keyframes condemned_blink_effect {
@@ -51,7 +53,7 @@ if(isset($_SESSION['regid'])) {
         100% {
         visibility: visible;
         }
-    }
+    }*/
   
   </style>
 </head>

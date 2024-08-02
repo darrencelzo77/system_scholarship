@@ -71,7 +71,7 @@ if (!isset($_GET['date2'])) {$to = date('Y-m-d', strtotime('7 days'));}
         <thead> 
           <tr>
             <th>#</th>
-            <th>Reg Date</th>
+            <th>Registration Date</th>
             <th>Category</th>
             <th>Tracking Number</th>
             <th>Fullname</th>

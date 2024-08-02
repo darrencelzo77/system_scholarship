@@ -14,7 +14,7 @@ if (isset($_SESSION['accountid'])){
     <span class="text-white">San Jose Batangas</span>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
-    <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Educational Assistance Management System</h5>
+    <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Educational Assistance Management System (<? echo Type($_SESSION['typeid']); ?>)</h5>
     <ul class="navbar-nav navbar-nav-right ml-auto">
       <form class="search-form d-none d-md-block" action="#">
         <i class="icon-magnifier"></i>

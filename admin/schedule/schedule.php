@@ -69,9 +69,9 @@ $jscript = 'ajax_new(\'schedule_tmp.php?str=\'+object(\'str\').value
   <input onchange="<?=$jscript?>" type="date" id="to_" value="<?=$to?>"/>
 </div> -->
         <tr>
-            <td>Search here:&nbsp;</td>
-            <td><input onkeyup="<?=$jscript?>" type="text" id="str" style="width:250px;" placeholder="Search by Tracking # or name..." /></td>
-            <td><button onclick="<?=$jscript?>" class="btn btn-sm btn-secondary">Search</button></td>
+            <td hidden>Search here:&nbsp;</td>
+            <td hidden><input onkeyup="<?=$jscript?>" type="text" id="str" style="width:250px;" placeholder="Search by Tracking # or name..." /></td>
+            <td hidden><button onclick="<?=$jscript?>" class="btn btn-sm btn-secondary">Search</button></td>
        </tr>
     </table>
     <div id="tmp_show">

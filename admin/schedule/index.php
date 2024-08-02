@@ -19,8 +19,9 @@ if (isset($_SESSION['accountid'])){
 <? include('../nav/header.php'); ?>
 <script>
     //schedule_it
-    function schedule_it(schedid,regid,fullname){
+    function schedule_it(schedid,fullname){
         var scheddate = object('dddd'+schedid).value;
+        var regid = object('regid').value;
             let myForm = new FormData();
             myForm.append('regid', regid);
             myForm.append('scheddate', scheddate);
@@ -47,6 +48,9 @@ if (isset($_SESSION['accountid'])){
                             $("#maincontent").css('opacity', '1');
                             $("#body-overlay").hide();
                              swal('Success', 'Successfully Processed Request', 'success');
+							 console.log(regid);
+							 console.log(scheddate);
+							 console.log(schedid);
 
                         },
                         error: function () {
@@ -58,8 +62,9 @@ if (isset($_SESSION['accountid'])){
     }
 
 
-     function schedule_it_edit(schedid,regid,fullname){
+     function schedule_it_edit(schedid,fullname){
         var scheddate = object('dddd'+schedid).value;
+		   var regid = object('regid').value;
             let myForm = new FormData();
             myForm.append('regid2', regid);
             myForm.append('scheddate2', scheddate);

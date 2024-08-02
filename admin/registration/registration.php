@@ -219,7 +219,7 @@ if(isset($_POST['reject_a'])){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div align="left">
-  <h3>Registration</h3>
+  <h3>Registrations</h3>
 </div>
 <table width="100%">
   <tr>
