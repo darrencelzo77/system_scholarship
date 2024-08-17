@@ -453,7 +453,7 @@ $link = "TINY.box.show({url:'login.php',width:500,height:300 })";
                     <span id="home" style="margin-top:-200px;"></span>
                     <div class="home-box-info">
                         <span class="hbr-1-lbl">Eligibility Criteria</span>
-                        <span class="hbr-2-lbl">Are you eligible for the ___ Scholarship? Review the criteria below:</span>
+                        <span class="hbr-2-lbl">Are you eligible for the Educational Assistance? Review the criteria below:</span>
                         <h6 class="mt-5"><strong>Academic Achievement: </strong>Minimum GPA of 3.5.</h6>
                         <h6><strong>Community Involvement: </strong>Demonstrated commitment to community service.</h6>
                         <h6><strong>Enrollment Status: </strong>Must be a undergraduate student (minimum of 30 units).</h6>
@@ -479,7 +479,13 @@ $link = "TINY.box.show({url:'login.php',width:500,height:300 })";
 								<h5 class="card-title">Application</h5>
 
 								<div class="card-text mt-5">
-									<h6>Applying for the student assistance. Follow these steps:</h6>
+									<h6>Applying for the student assistance. Follow these steps:</h6><br>
+                                    <h6>
+                                        Important Notice to All Students:<br><br>
+
+Please be <b>vigilant in checking your email regularly</b>. Updates regarding your educational assistance, will be communicated via email. Staying informed will help you track your progress and ensure you don't miss any important information.
+
+                                    </h6>
 
 									<h6 class="mt-5"><strong>1. Register an account: </strong>Create an account to start your application.</h6>
 									<h6><strong>2. Complete the application form: </strong>Fill out your personal, academic, and extracurricular details.</h6>
@@ -497,7 +503,7 @@ $link = "TINY.box.show({url:'login.php',width:500,height:300 })";
 
 								</div>
 <br>
-								<a href="register" class="home-btn btn-sm mt-2">Register Now!</a>
+								<a href="register" class="home-btn btn-sm mt-2">Apply Now!</a>
 							</div>
 						</div>
         </div>

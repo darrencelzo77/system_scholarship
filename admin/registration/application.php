@@ -242,11 +242,13 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 
 function toggleSections() {
         var levelid1 = document.getElementById('levelid1');
+        var levelid4 = document.getElementById('levelid4');
+        var levelid3 = document.getElementById('levelid3');
         var seniorSection = document.getElementById('seniorSection');
         var collegeSection = document.getElementById('collegeSection');
         var semesterSelectContainer = document.getElementById('semesterSelectContainer');
 
-        if (levelid1.checked) {
+        if (levelid1.checked || levelid4.checked || levelid3.checked) {
             seniorSection.style.display = 'none';
             collegeSection.style.display = 'none';
             semesterSelectContainer.style.display = 'none';
@@ -353,8 +355,15 @@ $(document).ready(function() {
                                 <div id="page_1" class="tabcontent" style="display:block;">
                                     <div class="row">
                                     <div class="col-12 mb-3">
-                                    <input type="radio" id="levelid1" name="levelid" value="1" onclick="toggleSections();" /> Elementary Student/High school
-                                    <input type="radio" id="levelid2" name="levelid" value="2" onclick="toggleSections();" /> College
+
+                                    <input type="radio" id="levelid1" name="levelid" value="1" onclick="toggleSections();" /> Elementary Student&nbsp;&nbsp;
+                                   
+
+                                     <input type="radio" id="levelid4"  name="levelid" value="4" onclick="toggleSections();"/> Junior High School&nbsp;&nbsp;
+                                                              
+                                  <input type="radio" id="levelid3"  name="levelid" value="3" onclick="toggleSections();"/> Senior High School&nbsp;&nbsp;
+
+                                    <input type="radio" id="levelid2" name="levelid" value="2" onclick="toggleSections();" /> College&nbsp;&nbsp;
                                 </div>
 
                                 <div class="col-6 mb-3" id="semesterSelectContainer">
@@ -382,7 +391,10 @@ $(document).ready(function() {
                                             echo '</div>';
                                         }
                                         ?>
+ <i>Are you a member of a 4PC? <a href="https://car.dswd.gov.ph/programs-services/core-programs/pantawid-pamilyang-pilipino-program-4ps/" target="_blank">Click here for more information</a></i>
                                     </div>
+<br>
+                                    
 
                                         <br>
                                         <div class="col-6 mb-3">

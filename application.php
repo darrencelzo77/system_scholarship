@@ -188,7 +188,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
             }
 
 
-            if (levelid && levelid.value !== '1') {
+            if (levelid && levelid.value !== '1' ) {
                 if (semid == 0) {
                     swal('Error on Required Field', 'Please select semester', 'error');
                     return;
@@ -455,9 +455,16 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                         <div class="col-12 mb-3">
                                                             <? $stat = GetData('select levelid from tblregistrations where regid='.$_SESSION['regid']); ?>
                                                             <input type="radio" id="levelid1"  name="levelid" value="1" 
-                                                            <? if($stat==1){echo'checked';} ?>/> Elementary Student/High school
+                                                            <? if($stat==1){echo'checked';} ?>/> Elementary Student&nbsp;&nbsp;&nbsp;
+
+                                                            <input type="radio" id="levelid4"  name="levelid" value="4" 
+                                                              <? if($stat==4){echo'checked';} ?>/> Junior High School&nbsp;&nbsp;&nbsp;
+                                                              
+                                                              <input type="radio" id="levelid3"  name="levelid" value="3" 
+                                                              <? if($stat==3){echo'checked';} ?>/> Senior High School&nbsp;&nbsp;&nbsp;
+
                                                             <input type="radio" id="levelid2" name="levelid" value="2" 
-                                                            <? if($stat==2){echo'checked';} ?>/> College
+                                                            <? if($stat==2){echo'checked';} ?>/> College&nbsp;&nbsp;&nbsp;
                                                         </div>
                                                         <div class="col-6 mb-3">
                                                             <select class="form-control" id="semid" name="semid">
@@ -472,6 +479,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                             </select>
                                                         </div>
 
+                                                       
                                                         <div class="col-12 mb-3">
                                                             <?php
                                                             $rs = mysqli_query($db_connection, 'SELECT categoryid, cat, category FROM tblcategory ORDER BY categoryid');
@@ -485,7 +493,13 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                                 echo '</div>';
                                                             }
                                                             ?>
+                                                            <div>
+                                                            <i>Are you a member of a 4PC? <a href="https://car.dswd.gov.ph/programs-services/core-programs/pantawid-pamilyang-pilipino-program-4ps/" target="_blank">Click here for more information</a></i>
                                                         </div>
+                                                        </div>
+                                                         
+<br>
+
                                                         <div class="col-6 mb-3">
                                                             <label for="emailaddress">Email Address:</label>
                                                             <input type="text" id="emailaddress" name="emailaddress" value="<?=GetData('select emailaddress from tblregistrations where regid='.$_SESSION['regid'])?>" class="form-control">
@@ -774,7 +788,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                         radios.forEach(function(radio) {
                             radio.addEventListener('change', function() {
                                 var levelid = this.value;
-                                if (levelid === '1') {
+                                if (levelid === '1' || levelid === '3' || levelid === '4') {
                                     document.getElementById('semid').style.display = 'none';
                                     seniorSection.style.display = 'none';
                                     collegeSection.style.display = 'none';

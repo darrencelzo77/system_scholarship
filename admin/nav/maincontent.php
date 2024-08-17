@@ -94,8 +94,48 @@ if (isset($_SESSION['accountid'])){
 </div>
 
 
+
 <div class="card">
-  <div class="card-body">
+  <div class="card-body">  
+    <h4>Statistics</h4>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Category Name</th>
+            <th>Applicants</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <?php
+          $rs = mysqli_query($db_connection, 'SELECT a.categoryid, a.category, a.cat, 
+              COUNT(b.categoryid) as ccc
+            FROM tblcategory a
+            LEFT JOIN tblregistrations b ON a.categoryid = b.categoryid
+            GROUP BY a.categoryid
+            ORDER BY a.category');
+          while($row = mysqli_fetch_array($rs)) {
+            echo '<tr>
+                    <td>'.$row['cat'].'</td>
+                    <td>'.$row['ccc'].'</td>
+                  </tr>';
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<br>
+
+
+
+<div class="card">
+  <div class="card-body"> <h4>Recent</h4>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
         <tr>
