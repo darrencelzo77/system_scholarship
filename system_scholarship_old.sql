@@ -12,6 +12,10 @@ MySQL - 5.5.5-10.4.32-MariaDB : Database - system_scholarship
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`system_scholarship` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+
+USE `system_scholarship`;
+
 /*Table structure for table `tblaccount` */
 
 DROP TABLE IF EXISTS `tblaccount`;
@@ -57,11 +61,11 @@ CREATE TABLE `tblactivity` (
   `activitydate` datetime DEFAULT NULL,
   `activity` varchar(128) DEFAULT '',
   PRIMARY KEY (`activityid`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblactivity` */
 
-insert  into `tblactivity`(`activityid`,`accountid`,`activitydate`,`activity`) values (1,1,'2024-07-30 23:28:53','Login'),(2,1,'2024-07-30 23:29:00','Logout'),(3,1,'2024-07-31 00:09:27','Login'),(4,1,'2024-07-31 00:19:27','Logout'),(5,1,'2024-07-31 00:20:04','Login'),(6,1,'2024-07-31 00:23:16','Logout'),(7,1,'2024-07-31 09:35:59','Login'),(8,1,'2024-07-31 09:56:20','Login'),(9,1,'2024-07-31 10:13:33','Login'),(10,1,'2024-08-02 11:03:46','Login'),(11,1,'2024-08-02 11:03:54','Logout'),(12,1,'2024-08-12 22:09:19','Login'),(13,1,'2024-08-12 22:41:02','Logout'),(14,1,'2024-08-14 17:40:51','Login'),(15,1,'2024-08-14 17:40:59','Logout'),(16,1,'2024-08-15 11:15:45','Login'),(17,1,'2024-08-17 22:10:23','Login'),(18,1,'2024-08-17 22:10:46','Logout'),(19,1,'2024-08-18 07:15:34','Login'),(20,1,'2024-08-18 07:26:18','Logout'),(21,1,'2024-08-18 07:36:18','Login'),(22,1,'2024-08-18 07:41:01','Logout'),(23,1,'2024-08-18 07:49:11','Login'),(24,1,'2024-08-26 22:13:40','Login'),(25,1,'2024-08-26 22:22:15','Logout'),(26,1,'2024-08-27 22:29:38','Login'),(27,1,'2024-08-27 22:29:45','Logout'),(28,1,'2024-09-03 09:54:15','Login'),(29,1,'2024-09-03 09:54:34','Logout'),(30,1,'2024-09-05 09:59:52','Login'),(31,1,'2024-09-05 10:16:14','Logout'),(32,1,'2024-09-05 21:34:58','Login'),(33,1,'2024-09-05 21:35:39','Logout'),(34,1,'2024-09-05 21:41:19','Login'),(35,1,'2024-09-05 21:41:57','Logout'),(36,1,'2024-09-14 14:03:48','Login'),(37,1,'2024-09-14 14:23:22','Logout'),(38,1,'2024-10-30 20:14:11','Login'),(39,1,'2024-10-30 20:14:20','Logout'),(40,1,'2024-11-17 11:40:11','Login'),(41,1,'2024-11-17 11:40:27','Logout');
+insert  into `tblactivity`(`activityid`,`accountid`,`activitydate`,`activity`) values (1,1,'2024-07-30 23:28:53','Login'),(2,1,'2024-07-30 23:29:00','Logout'),(3,1,'2024-07-31 00:09:27','Login'),(4,1,'2024-07-31 00:19:27','Logout'),(5,1,'2024-07-31 00:20:04','Login'),(6,1,'2024-07-31 00:23:16','Logout'),(7,1,'2024-07-31 09:35:59','Login'),(8,1,'2024-07-31 09:56:20','Login'),(9,1,'2024-07-31 10:13:33','Login'),(10,1,'2024-08-02 11:03:46','Login'),(11,1,'2024-08-02 11:03:54','Logout'),(12,1,'2024-08-12 22:09:19','Login'),(13,1,'2024-08-12 22:41:02','Logout'),(14,1,'2024-08-14 17:40:51','Login'),(15,1,'2024-08-14 17:40:59','Logout'),(16,1,'2024-08-15 11:15:45','Login'),(17,1,'2024-08-17 22:10:23','Login'),(18,1,'2024-08-17 22:10:46','Logout'),(19,1,'2024-08-18 07:15:34','Login'),(20,1,'2024-08-18 07:26:18','Logout'),(21,1,'2024-08-18 07:36:18','Login'),(22,1,'2024-08-18 07:41:01','Logout'),(23,1,'2024-08-18 07:49:11','Login'),(24,1,'2024-08-26 22:13:40','Login'),(25,1,'2024-08-26 22:22:15','Logout'),(26,1,'2024-08-27 22:29:38','Login'),(27,1,'2024-08-27 22:29:45','Logout'),(28,1,'2024-09-03 09:54:15','Login'),(29,1,'2024-09-03 09:54:34','Logout'),(30,1,'2024-09-05 09:59:52','Login'),(31,1,'2024-09-05 10:16:14','Logout'),(32,1,'2024-09-05 21:34:58','Login'),(33,1,'2024-09-05 21:35:39','Logout'),(34,1,'2024-09-05 21:41:19','Login'),(35,1,'2024-09-05 21:41:57','Logout'),(36,1,'2024-09-14 14:03:48','Login'),(37,1,'2024-09-14 14:23:22','Logout');
 
 /*Table structure for table `tblbranch` */
 
