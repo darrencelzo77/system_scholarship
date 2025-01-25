@@ -27,7 +27,7 @@ if (isset($_SESSION['accountid'])){
 				text: "Are you sure want to send the the credentials?",
 				icon: "info",
 				buttons: true,
-				dangerMode: true,
+				dangerMode: false,
 			})
 			.then((willAdd) => {
 				if (willAdd) {

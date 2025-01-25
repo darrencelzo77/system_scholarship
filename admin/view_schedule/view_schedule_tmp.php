@@ -8,7 +8,7 @@ if (isset($_SESSION['accountid'])){
   header('location: ../'); exit(0); 
 }
 
-if (!isset($_GET['from_'])) {$from = date('Y-m-d', strtotime('-31 days'));}
+if (!isset($_GET['from_'])) {$from = date('Y-m-d', strtotime('-9 days'));}
 if (!isset($_GET['to_'])) {$to = date('Y-m-d', strtotime('7 days'));}
 
 

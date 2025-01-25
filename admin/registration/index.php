@@ -30,7 +30,7 @@ if (isset($_SESSION['accountid'])){
 				text: "Are you sure want to accept the application of "+regid_x+"?",
 				icon: "info",
 				buttons: true,
-				dangerMode: true,
+				dangerMode: false,
 			})
 			.then((willAdd) => {
 				if (willAdd) {
@@ -70,7 +70,7 @@ if (isset($_SESSION['accountid'])){
         text: "Are you sure you want to reject the application of " + reject_a + "?",
         icon: "info",
         buttons: true,
-        dangerMode: true,
+        dangerMode: false,
     })
     .then((willAdd) => {
         if (willAdd) {

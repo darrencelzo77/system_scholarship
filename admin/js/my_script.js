@@ -62,7 +62,7 @@ function fillSubContent(loc,eid) {
 		text: "Are you sure to Logout?",
 		icon: "warning",
 		buttons: true,
-		dangerMode: true,
+		dangerMode: false,
 	})
 	*/
 
@@ -72,7 +72,7 @@ function fillSubContent(loc,eid) {
 			text: "Are you sure to logout?",
 			icon: "warning",
 			buttons: true,
-			dangerMode: true,
+			dangerMode: false,
 		}).then((willSave) => {
 			if (willSave) {
 				window.location.href = '../dashboard/logout.php';

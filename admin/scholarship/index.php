@@ -21,7 +21,7 @@ if (isset($_SESSION['accountid'])){
         text: "Are you sure that this application has been completed?",
         icon: "info",
         buttons: true,
-        dangerMode: true,
+        dangerMode: false,
       })
       .then((willAdd) => {
         if (willAdd) {

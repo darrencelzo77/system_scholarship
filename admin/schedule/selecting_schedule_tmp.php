@@ -9,8 +9,8 @@ if (isset($_SESSION['accountid'])){
 }
 
 
-if (!isset($_GET['from'])) {$from = date('Y-m-d', strtotime('-31 days'));}
-if (!isset($_GET['to'])) {$to = date('Y-m-d', strtotime('7 days'));}
+if (!isset($_GET['from'])) {$from = date('Y-m-d');}
+if (!isset($_GET['to'])) {$to = date('Y-m-d', strtotime('+31 days'));}
 
 
 

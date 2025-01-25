@@ -22,7 +22,7 @@ if (isset($_SESSION['accountid'])){
         text: "Are you sure you want to update your slot?",
         icon: "info",
         buttons: true,
-        dangerMode: true,
+        dangerMode: false,
     })
     .then((willAdd) => {
         if (willAdd) {

@@ -162,3 +162,115 @@ if (isset($_SESSION['accountid'])){
     </div>
   </div>
 </div>
+
+
+<br>
+<div class="">
+  <div class="">
+    <div class="card flex-fill w-100">
+      <div class="card-header">
+        <h5 class="card-title">Barangay</h5>
+        <h6 class="card-subtitle text-muted">Statistics: Count of accepted applicants per barangay</h6>
+      </div>
+      <div class="card-body">
+        <div class="chart">
+          <canvas id="chartjs-line"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<?php
+// Ensure the database connection is valid
+if (!$db_connection) {
+    die("Database connection failed.");
+}
+
+// Query to count category occurrences
+$query = "
+    SELECT b.barangay, COUNT(r.regid) AS count
+    FROM tblloc_barangay b
+    LEFT JOIN tblregistrations r ON b.brgyid = r.brgyid
+    WHERE b.cityid = 370
+    GROUP BY b.barangay
+    HAVING COUNT(r.regid) > 0
+";
+
+$rs = mysqli_query($db_connection, $query);
+
+$categories = [];
+$counts = [];
+
+while($rw = mysqli_fetch_array($rs)) {
+    $categories[] = $rw['barangay'] ?? 'Unknown'; // Handle potential null values
+    $counts[] = (int) $rw['count']; // Ensure count is an integer
+}
+
+$categories_json = json_encode($categories);
+$counts_json = json_encode($counts);
+?>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Function to generate random colors
+    function generateRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // Generate an array of random colors for each bar
+    const randomColors = <?php echo json_encode($categories); ?>.map(() => generateRandomColor());
+
+    // Line chart
+    new Chart(document.getElementById("chartjs-line"), {
+        type: "bar", // Bar chart to display counts
+        data: {
+            labels: <?php echo $categories_json; ?>,
+            datasets: [{
+                label: "Accepted Applicants",
+                fill: false,
+                backgroundColor: randomColors, // Random colors for each bar
+                borderColor: "rgba(0, 0, 0, 0.1)", // Light border color
+                borderWidth: 1,
+                data: <?php echo $counts_json; ?>
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                x: {
+                    grid: {
+                        color: "rgba(0,0,0,0.1)"
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1, // Adjust this based on your expected data range
+                    },
+                    grid: {
+                        color: "rgba(0,0,0,0.1)"
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: "top"
+                },
+                tooltip: {
+                    intersect: false,
+                    mode: "index"
+                }
+            }
+        }
+    });
+});
+</script>

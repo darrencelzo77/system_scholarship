@@ -55,7 +55,7 @@ if(session_id()==''){session_start();}
                 text: 'Are you sure that all your information is correct?',
                 icon: 'info',
                 buttons: true,
-                dangerMode: true,
+                dangerMode: false,
             }).then((willAdd) => {
                 if (willAdd) {
                     $.ajax({
@@ -227,7 +227,7 @@ if(session_id()==''){session_start();}
                             </div>
                         </div>
                         <!----END----->
-                    </div>
+                    </div></div>
                 </div>
                 <aside class="control-sidebar control-sidebar-dark"></aside>
                 <footer class="main-footer">

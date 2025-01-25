@@ -11,7 +11,7 @@ if (isset($_SESSION['accountid'])){
 
 
 
-$from = date('Y-m-d', strtotime('-31 days'));
+$from = date('Y-m-d', strtotime('-9 days'));
 $to = date('Y-m-d', strtotime('7 days'));
 
 $jscript = 'ajax_new(\'view_schedule_tmp.php?str=\'+object(\'str\').value

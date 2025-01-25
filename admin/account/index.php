@@ -37,7 +37,7 @@ if (isset($_SESSION['accountid'])){
         text: "Are you sure you to add new account?",
         icon: "info",
         buttons: true,
-        dangerMode: true,
+        dangerMode: false,
         }).then((willAdd) => {
             if (willAdd) {
                 $.ajax({
@@ -91,7 +91,7 @@ if (isset($_SESSION['accountid'])){
         text: "Are you sure you to add new account?",
         icon: "info",
         buttons: true,
-        dangerMode: true,
+        dangerMode: false,
         }).then((willAdd) => {
             if (willAdd) {
                 $.ajax({

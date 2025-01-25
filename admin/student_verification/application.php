@@ -212,7 +212,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                 text: 'Are you sure that all your information is correct?',
                 icon: 'info',
                 buttons: true,
-                dangerMode: true,
+                dangerMode: false,
             }).then((willAdd) => {
                 if (willAdd) {
                     $.ajax({

@@ -33,7 +33,7 @@ function update_acc(accountid){
         text: "Are you sure you want to update your information?",
         icon: "info",
         buttons: true,
-        dangerMode: true,
+        dangerMode: false,
     })
     .then((willAdd) => {
         if (willAdd) {

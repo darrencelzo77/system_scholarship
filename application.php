@@ -1,19 +1,28 @@
 <?php
 
-if(session_id()==''){session_start();} 
-if (isset($_SESSION['regid'])){ 
-    if (file_exists('systemconfig.inc')) {include_once('systemconfig.inc'); }
-    if (file_exists('admin/includes/systemconfig.inc')) {include_once('admin/includes/systemconfig.inc'); }
-    if (file_exists('../admin/includes/systemconfig.inc')) {include_once('../admin/includes/systemconfig.inc'); }
+if (session_id() == '') {
+    session_start();
+}
+if (isset($_SESSION['regid'])) {
+    if (file_exists('systemconfig.inc')) {
+        include_once('systemconfig.inc');
+    }
+    if (file_exists('admin/includes/systemconfig.inc')) {
+        include_once('admin/includes/systemconfig.inc');
+    }
+    if (file_exists('../admin/includes/systemconfig.inc')) {
+        include_once('../admin/includes/systemconfig.inc');
+    }
 } else {
-    header('location: ./'); exit(0); 
+    header('location: ./');
+    exit(0);
 }
 
-$rs = mysqli_query($db_connection,'select * from tblregistrations');
+$rs = mysqli_query($db_connection, 'select * from tblregistrations');
 $rw = mysqli_fetch_array($rs);
 // $xxx = GenerateRandomString();
 
-$_SESSION['tmp_registrations_family'] = 'tmp_registrations_family'.$_SESSION['regid'];
+$_SESSION['tmp_registrations_family'] = 'tmp_registrations_family' . $_SESSION['regid'];
 $result = mysqli_query($db_connection, 'DROP TABLE IF EXISTS ' . $_SESSION['tmp_registrations_family']) or die(mysqli_error($db_connection));
 
 $str = "CREATE TABLE " . $_SESSION['tmp_registrations_family'] . " (
@@ -33,6 +42,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,8 +59,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="admin/js/sweetalert.min.js"></script>
     <script>
-
-        function log_out(){
+        function log_out() {
             window.location.href = "index?logout";
         }
 
@@ -69,31 +78,33 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
             });
         });
 
-        function loadPage(url,elementId) {
+        function loadPage(url, elementId) {
             if (window.XMLHttpRequest) {
-                xmlhttp=new XMLHttpRequest();
+                xmlhttp = new XMLHttpRequest();
             } else {
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-            }   
-            xmlhttp.onreadystatechange=function() {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                    document.getElementById(elementId).innerHTML="";
-                    document.getElementById(elementId).innerHTML=xmlhttp.responseText;	
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById(elementId).innerHTML = "";
+                    document.getElementById(elementId).innerHTML = xmlhttp.responseText;
                 }
-            }  
-            xmlhttp.open("GET",url,true);
-            xmlhttp.send();	   
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
         }
 
         function ajax_new_v2(url_, tmp_add_customer) {
             $.ajax({
                 url: url_,
                 method: "POST",
-                data: {record: 1},
+                data: {
+                    record: 1
+                },
                 success: function(data) {
                     $('#' + tmp_add_customer).html(data);
                     $('#myTable').DataTable();
-                    openContainer(tmp_add_customer); 
+                    openContainer(tmp_add_customer);
                 }
             });
         }
@@ -130,12 +141,14 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                     object('income').value = '';
                 },
                 error: function() {
-                    Swal('Error', 'Error Processing Request ' , 'error');
+                    Swal('Error', 'Error Processing Request ', 'error');
                 }
             });
         }
 
-        function object(id) { return document.getElementById(id); }
+        function object(id) {
+            return document.getElementById(id);
+        }
 
         function register(regid) {
             var levelid = document.querySelector('input[name="levelid"]:checked');
@@ -182,19 +195,21 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                 return;
             }
 
-            if (g<70) {
-                swal('Error on Grade', 'The grade must be 70 and above', 'error');
+            if (g < 75) {
+                swal('Error on Grade', 'The grade must be atleast 75 and above', 'error');
                 return;
             }
 
 
-            if (levelid && levelid.value !== '1' ) {
+            if (levelid.value === '2') {
+                // Validate the semester selection
                 if (semid == 0) {
                     swal('Error on Required Field', 'Please select semester', 'error');
                     return;
                 }
-
             }
+
+
             if (!categoryid) {
                 swal('Error on Required Field', 'Please select a category', 'error');
                 return;
@@ -245,25 +260,25 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                 text: 'Are you sure that all your information is correct?',
                 icon: 'info',
                 buttons: true,
-                dangerMode: true,
+                dangerMode: false,
             }).then((willAdd) => {
                 if (willAdd) {
                     $.ajax({
                         url: 'index.php',
                         type: 'POST',
                         data: myForm,
-                        beforeSend: function () {
+                        beforeSend: function() {
                             $('#body-overlay').show();
                         },
                         contentType: false,
                         processData: false,
-                        success: function (data) {
+                        success: function(data) {
                             $('#maincontent').html(data);
                             $('#maincontent').css('opacity', '1');
                             $('#body-overlay').hide();
                             swal('Success', 'Successfully Processed Request', 'success');
                         },
-                        error: function () {
+                        error: function() {
                             swal('Error', 'Error Processing Request', 'error');
                         },
                     });
@@ -272,13 +287,10 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                 }
             });
         }
-
-
     </script>
 
 </head>
 <style>
-
     .radio-option input[type="radio"] {
         display: none;
     }
@@ -313,15 +325,33 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
         margin-left: 10px;
         color: #6c757d;
     }
-#body-overlay { text-align:center; background-color: rgba(0, 0, 0, 0.6);z-index: 99999;position:fixed;left: 0;top: 0;width: 100%;height: 100%; display:none; }
-    #body-overlay div {position:absolute;left:40%;top:20%;} 
 
+    #body-overlay {
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 99999;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    #body-overlay div {
+        position: absolute;
+        left: 40%;
+        top: 20%;
+    }
 </style>
 <div id="maincontent">
 
 
 
-    <div id="body-overlay"><div><img src="admin/images/processing.gif" width="80%" /></div></div>
+    <div id="body-overlay">
+        <div><img src="admin/images/processing.gif" width="80%" /></div>
+    </div>
+
     <body class="hold-transition layout-top-nav">
         <div class="wrapper">
             <nav hidden class="main-header navbar navbar-expand-md navbar-light navbar-white sticky-top">
@@ -408,35 +438,35 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
 
 
 
-                   <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title" >Application</h5>&nbsp;&nbsp;Hi <?=$rw['firstname'].' '.$rw['lastname']?>
-                            <div class="card-text mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Application</h5>&nbsp;&nbsp;Hi <?= $rw['firstname'] . ' ' . $rw['lastname'] ?>
+                                <div class="card-text mt-5">
 
-                            <?
-                            if($rw['is_accept']==0 && $rw['is_complete']==0) {
-                                echo'<h6>Your application has been pending.</h6>
+                                    <?
+                                    if ($rw['is_accept'] == 0 && $rw['is_complete'] == 0) {
+                                        echo '<h6>Your application has been pending.</h6>
                                 <h6>Kindly fill out the Educational Assistance Form.</h6>';
-                            } else if($rw['is_accept']==1 && $rw['is_complete']==0){
-                                 echo'<h6>Your application has accepted.</h6>
+                                    } else if ($rw['is_accept'] == 1 && $rw['is_complete'] == 0) {
+                                        echo '<h6>Your pre-registration has been accepted.</h6>
                                 <h6>Kindly wait for further announcement and your appointment schedule.</h6>';
-                            } else if($rw['is_accept']==1 && $rw['is_complete']==2){
-                                 echo'<h6>Your application has been accepted.</h6>
+                                    } else if ($rw['is_accept'] == 1 && $rw['is_complete'] == 2) {
+                                        echo '<h6>Your application has been accepted.</h6>
                                 <h6>Please come to the office to settle your concern.</h6>';
-                            } else if($rw['is_accept']==1 && $rw['is_complete']==1){
-                                 echo'<h6>Your application has done.</h6>
+                                    } else if ($rw['is_accept'] == 1 && $rw['is_complete'] == 1) {
+                                        echo '<h6>Your application has done.</h6>
                                 <h6>You have successfully avail the educational assistance program. Thank you.</h6>';
-                            }
+                                    }
 
-                            ?>
+                                    ?>
 
-                               <!--  <h6>Your tracking number is <?=$rw['trackingnumber']?>.</h6>
+                                    <!--  <h6>Your tracking number is <?= $rw['trackingnumber'] ?>.</h6>
                                 <h6>Your application has been approved. Kindly wait for further announcement.</h6> -->
+                                </div>
+                                <br>
+                                <div align="right"><a href="./" class="home-btn btn-sm mt-2">Back</a></div>
                             </div>
-                            <br>
-                            <div align="right"><a href="./" class="home-btn btn-sm mt-2">Back</a></div>
                         </div>
-                    </div>
 
 
 
@@ -448,23 +478,31 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                     <div class="card-body">
                                         <h4 class="card-title">Scholarship Application Form</h4>
                                         <div class="mt-5">
-                                            <form method="POST" id="myForm"  enctype="multipart/form-data">
+                                            <form method="POST" id="myForm" enctype="multipart/form-data">
                                                 <input hidden type="text" value="1" id="is_online" name="is_online" class="form-control">
                                                 <div id="page_1" class="tabcontent" style="display:block;">
                                                     <div class="row">
                                                         <div class="col-12 mb-3">
-                                                            <? $stat = GetData('select levelid from tblregistrations where regid='.$_SESSION['regid']); ?>
-                                                            <input type="radio" id="levelid1"  name="levelid" value="1" 
-                                                            <? if($stat==1){echo'checked';} ?>/> Elementary Student&nbsp;&nbsp;&nbsp;
+                                                            <? $stat = GetData('select levelid from tblregistrations where regid=' . $_SESSION['regid']); ?>
+                                                            <input type="radio" id="levelid1" name="levelid" value="1"
+                                                                <? if ($stat == 1) {
+                                                                    echo 'checked';
+                                                                } ?> /> Elementary Student&nbsp;&nbsp;&nbsp;
 
-                                                            <input type="radio" id="levelid4"  name="levelid" value="4" 
-                                                              <? if($stat==4){echo'checked';} ?>/> Junior High School&nbsp;&nbsp;&nbsp;
-                                                              
-                                                              <input type="radio" id="levelid3"  name="levelid" value="3" 
-                                                              <? if($stat==3){echo'checked';} ?>/> Senior High School&nbsp;&nbsp;&nbsp;
+                                                            <input type="radio" id="levelid4" name="levelid" value="4"
+                                                                <? if ($stat == 4) {
+                                                                    echo 'checked';
+                                                                } ?> /> Junior High School&nbsp;&nbsp;&nbsp;
 
-                                                            <input type="radio" id="levelid2" name="levelid" value="2" 
-                                                            <? if($stat==2){echo'checked';} ?>/> College&nbsp;&nbsp;&nbsp;
+                                                            <input type="radio" id="levelid3" name="levelid" value="3"
+                                                                <? if ($stat == 3) {
+                                                                    echo 'checked';
+                                                                } ?> /> Senior High School&nbsp;&nbsp;&nbsp;
+
+                                                            <input type="radio" id="levelid2" name="levelid" value="2"
+                                                                <? if ($stat == 2) {
+                                                                    echo 'checked';
+                                                                } ?> /> College&nbsp;&nbsp;&nbsp;
                                                         </div>
                                                         <div class="col-6 mb-3">
                                                             <select class="form-control" id="semid" name="semid">
@@ -479,7 +517,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                             </select>
                                                         </div>
 
-                                                       
+
                                                         <div class="col-12 mb-3">
                                                             <?php
                                                             $rs = mysqli_query($db_connection, 'SELECT categoryid, cat, category FROM tblcategory ORDER BY categoryid');
@@ -494,27 +532,27 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                             }
                                                             ?>
                                                             <div>
-                                                            <i>Are you a member of a 4PC? <a href="https://car.dswd.gov.ph/programs-services/core-programs/pantawid-pamilyang-pilipino-program-4ps/" target="_blank">Click here for more information</a></i>
+                                                                <i>Are you a member of a 4Ps? <a href="https://car.dswd.gov.ph/programs-services/core-programs/pantawid-pamilyang-pilipino-program-4ps/" target="_blank">Click here for more information</a></i>
+                                                            </div>
                                                         </div>
-                                                        </div>
-                                                         
-<br>
+
+                                                        <br>
 
                                                         <div class="col-6 mb-3">
                                                             <label for="emailaddress">Email Address:</label>
-                                                            <input type="text" id="emailaddress" name="emailaddress" value="<?=GetData('select emailaddress from tblregistrations where regid='.$_SESSION['regid'])?>" class="form-control">
+                                                            <input type="text" id="emailaddress" name="emailaddress" value="<?= GetData('select emailaddress from tblregistrations where regid=' . $_SESSION['regid']) ?>" class="form-control">
                                                         </div>
                                                         <div class="col-6 mb-3">
                                                             <label for="lastname">Lastname:</label>
-                                                            <input type="text" id="lastname" name="lastname" value="<?=GetData('select lastname from tblregistrations where regid='.$_SESSION['regid'])?>" class="form-control">
+                                                            <input type="text" id="lastname" name="lastname" value="<?= GetData('select lastname from tblregistrations where regid=' . $_SESSION['regid']) ?>" class="form-control">
                                                         </div>
                                                         <div class="col-6 mb-3">
                                                             <label for="firstname">Firstname:</label>
-                                                            <input type="text" id="firstname" name="firstname" value="<?=GetData('select firstname from tblregistrations where regid='.$_SESSION['regid'])?>" class="form-control">
+                                                            <input type="text" id="firstname" name="firstname" value="<?= GetData('select firstname from tblregistrations where regid=' . $_SESSION['regid']) ?>" class="form-control">
                                                         </div>
                                                         <div class="col-6 mb-3">
                                                             <label for="middlename">Middlename:</label>
-                                                            <input type="text" id="middlename" name="middlename" value="<?=GetData('select middlename from tblregistrations where regid='.$_SESSION['regid'])?>" class="form-control">
+                                                            <input type="text" id="middlename" name="middlename" value="<?= GetData('select middlename from tblregistrations where regid=' . $_SESSION['regid']) ?>" class="form-control">
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <label for="namext">Name EXT.:</label>
@@ -739,13 +777,13 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                                             <input type="file" id="cog" class="form-control">
                                                         </div>
 
-                                                         <div class="col-6 mb-3" id="collegeSection">
+                                                        <div class="col-6 mb-3" id="collegeSection">
                                                             <label for="college">Picture of Indigency:</label>
                                                             <input type="file" id="indigency" class="form-control">
                                                         </div>
                                                     </div>
 
-                                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm float-right mb-3" onclick="register(<?=$_SESSION['regid']?>);">Submit</a>
+                                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm float-right mb-3" onclick="register(<?= $_SESSION['regid'] ?>);">Submit</a>
                                                 </div>
                                             </form>
                                         </div>
@@ -768,7 +806,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                 <script src="admin/dist/js/adminlte.min.js"></script>
                 <script>
                     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                        anchor.addEventListener('click', function (e) {
+                        anchor.addEventListener('click', function(e) {
                             e.preventDefault();
                             document.querySelector(this.getAttribute('href')).scrollIntoView({
                                 behavior: 'smooth'
@@ -808,10 +846,8 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                             });
                         });
                     });
-
-
-
                 </script>
-            </body>
-        </div>
-        </html>
+    </body>
+</div>
+
+</html>

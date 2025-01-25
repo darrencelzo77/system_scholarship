@@ -24,7 +24,7 @@ if (isset($_SESSION['accountid'])){
         text: "Are you sure want to update your information?",
         icon: "info",
         buttons: true,
-        dangerMode: true,
+        dangerMode: false,
       })
       .then((willAdd) => {
         if (willAdd) {
@@ -60,7 +60,7 @@ if (isset($_SESSION['accountid'])){
         text: "Are you sure want to update your information?",
         icon: "info",
         buttons: true,
-        dangerMode: true,
+        dangerMode: false,
       })
       .then((willAdd) => {
         if (willAdd) {
