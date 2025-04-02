@@ -18,7 +18,7 @@ if (isset($_SESSION['regid'])) {
     exit(0);
 }
 
-$rs = mysqli_query($db_connection, 'select * from tblregistrations');
+$rs = mysqli_query($db_connection, 'select * from tblregistrations where regid='.$_SESSION['regid']);
 $rw = mysqli_fetch_array($rs);
 // $xxx = GenerateRandomString();
 
