@@ -111,7 +111,7 @@ if(session_id()==''){session_start();}
                     <div class="collapse navbar-collapse order-3" id="navbarCollapse">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="system_scholarship/" class="nav-link">Home</a>
+                                <a href="../" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#about" class="nav-link">Contact</a>
@@ -163,7 +163,7 @@ if(session_id()==''){session_start();}
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="../system_scholarship/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="../">Home</a></li>
                                     <li class="breadcrumb-item active">Menu</li>
                                 </ol>
                             </div>

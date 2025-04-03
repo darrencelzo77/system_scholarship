@@ -369,7 +369,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                     <div class="collapse navbar-collapse order-3" id="navbarCollapse">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="system_scholarship/" class="nav-link">Home</a>
+                                <a href="../" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#about" class="nav-link">Contact</a>
@@ -421,7 +421,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="../system_scholarship/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="../">Home</a></li>
                                     <li class="breadcrumb-item active">Menu</li>
                                     <li onclick="log_out();" class="breadcrumb-item active" style="cursor:pointer;">Logout</li>
                                 </ol>
@@ -464,7 +464,7 @@ mysqli_query($db_connection, $str) or die(mysqli_error($db_connection));
                                 <h6>Your application has been approved. Kindly wait for further announcement.</h6> -->
                                 </div>
                                 <br>
-                                <div align="right"><a href="./" class="home-btn btn-sm mt-2">Back</a></div>
+                                <div align="right"><a href="../" class="home-btn btn-sm mt-2">Back</a></div>
                             </div>
                         </div>
 

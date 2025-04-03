@@ -9,7 +9,6 @@ MySQL - 5.5.5-10.4.32-MariaDB : Database - system_scholarship
 /*!40101 SET SQL_MODE=''*/;
 
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 /*Table structure for table `tblaccount` */
@@ -57,11 +56,11 @@ CREATE TABLE `tblactivity` (
   `activitydate` datetime DEFAULT NULL,
   `activity` varchar(128) DEFAULT '',
   PRIMARY KEY (`activityid`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblactivity` */
 
-insert  into `tblactivity`(`activityid`,`accountid`,`activitydate`,`activity`) values (1,1,'2024-07-30 23:28:53','Login'),(2,1,'2024-07-30 23:29:00','Logout'),(3,1,'2024-07-31 00:09:27','Login'),(4,1,'2024-07-31 00:19:27','Logout'),(5,1,'2024-07-31 00:20:04','Login'),(6,1,'2024-07-31 00:23:16','Logout'),(7,1,'2024-07-31 09:35:59','Login'),(8,1,'2024-07-31 09:56:20','Login'),(9,1,'2024-07-31 10:13:33','Login'),(10,1,'2024-08-02 11:03:46','Login'),(11,1,'2024-08-02 11:03:54','Logout'),(12,1,'2024-08-12 22:09:19','Login'),(13,1,'2024-08-12 22:41:02','Logout'),(14,1,'2024-08-14 17:40:51','Login'),(15,1,'2024-08-14 17:40:59','Logout'),(16,1,'2024-08-15 11:15:45','Login'),(17,1,'2024-08-17 22:10:23','Login'),(18,1,'2024-08-17 22:10:46','Logout'),(19,1,'2024-08-18 07:15:34','Login'),(20,1,'2024-08-18 07:26:18','Logout'),(21,1,'2024-08-18 07:36:18','Login'),(22,1,'2024-08-18 07:41:01','Logout'),(23,1,'2024-08-18 07:49:11','Login'),(24,1,'2024-08-26 22:13:40','Login'),(25,1,'2024-08-26 22:22:15','Logout'),(26,1,'2024-08-27 22:29:38','Login'),(27,1,'2024-08-27 22:29:45','Logout'),(28,1,'2024-09-03 09:54:15','Login'),(29,1,'2024-09-03 09:54:34','Logout'),(30,1,'2024-09-05 09:59:52','Login'),(31,1,'2024-09-05 10:16:14','Logout'),(32,1,'2024-09-05 21:34:58','Login'),(33,1,'2024-09-05 21:35:39','Logout'),(34,1,'2024-09-05 21:41:19','Login'),(35,1,'2024-09-05 21:41:57','Logout'),(36,1,'2024-09-14 14:03:48','Login'),(37,1,'2024-09-14 14:23:22','Logout'),(38,1,'2024-10-30 20:14:11','Login'),(39,1,'2024-10-30 20:14:20','Logout'),(40,1,'2024-11-17 11:40:11','Login'),(41,1,'2024-11-17 11:40:27','Logout');
+insert  into `tblactivity`(`activityid`,`accountid`,`activitydate`,`activity`) values (1,1,'2024-07-30 23:28:53','Login'),(2,1,'2024-07-30 23:29:00','Logout'),(3,1,'2024-07-31 00:09:27','Login'),(4,1,'2024-07-31 00:19:27','Logout'),(5,1,'2024-07-31 00:20:04','Login'),(6,1,'2024-07-31 00:23:16','Logout'),(7,1,'2024-07-31 09:35:59','Login'),(8,1,'2024-07-31 09:56:20','Login'),(9,1,'2024-07-31 10:13:33','Login'),(10,1,'2024-08-02 11:03:46','Login'),(11,1,'2024-08-02 11:03:54','Logout'),(12,1,'2024-08-12 22:09:19','Login'),(13,1,'2024-08-12 22:41:02','Logout'),(14,1,'2024-08-14 17:40:51','Login'),(15,1,'2024-08-14 17:40:59','Logout'),(16,1,'2024-08-15 11:15:45','Login'),(17,1,'2024-08-17 22:10:23','Login'),(18,1,'2024-08-17 22:10:46','Logout'),(19,1,'2024-08-18 07:15:34','Login'),(20,1,'2024-08-18 07:26:18','Logout'),(21,1,'2024-08-18 07:36:18','Login'),(22,1,'2024-08-18 07:41:01','Logout'),(23,1,'2024-08-18 07:49:11','Login'),(24,1,'2024-08-26 22:13:40','Login'),(25,1,'2024-08-26 22:22:15','Logout'),(26,1,'2024-08-27 22:29:38','Login'),(27,1,'2024-08-27 22:29:45','Logout'),(28,1,'2024-09-03 09:54:15','Login'),(29,1,'2024-09-03 09:54:34','Logout'),(30,1,'2024-09-05 09:59:52','Login'),(31,1,'2024-09-05 10:16:14','Logout'),(32,1,'2024-09-05 21:34:58','Login'),(33,1,'2024-09-05 21:35:39','Logout'),(34,1,'2024-09-05 21:41:19','Login'),(35,1,'2024-09-05 21:41:57','Logout'),(36,1,'2024-09-14 14:03:48','Login'),(37,1,'2024-09-14 14:23:22','Logout'),(38,1,'2024-10-30 20:14:11','Login'),(39,1,'2024-10-30 20:14:20','Logout'),(40,1,'2024-11-17 11:40:11','Login'),(41,1,'2024-11-17 11:40:27','Logout'),(42,1,'2025-04-01 23:31:26','Login');
 
 /*Table structure for table `tblbranch` */
 
@@ -273,11 +272,11 @@ CREATE TABLE `tblregistrations` (
   `is_verify` tinyint(1) DEFAULT 0,
   `is_updated` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`regid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblregistrations` */
 
-insert  into `tblregistrations`(`regid`,`grade`,`levelid`,`trackingnumber`,`regdate`,`categoryid`,`middlename`,`firstname`,`lastname`,`dob`,`emailaddress`,`userpassword`,`namextid`,`provid`,`cityid`,`brgyid`,`street`,`birthplace`,`citizenshipid`,`civilid`,`sexid`,`contact`,`semid`,`elementary`,`junior`,`senior`,`college`,`cor`,`cog`,`indigency`,`pic`,`is_reject`,`is_accept`,`is_online`,`is_complete`,`is_verify`,`is_updated`) values (4,90,2,'3767441599','2024-09-14 14:06:05',1,'Sebastian','Darren','Acuna','0000-00-00','darrencelzo77@gmail.com','6A923',0,0,0,0,'','',0,0,0,'',1,'','','','','_.png','_.png','Resume.pdf','IMG_20210921_092304.jpg',0,1,1,2,1,1);
+insert  into `tblregistrations`(`regid`,`grade`,`levelid`,`trackingnumber`,`regdate`,`categoryid`,`middlename`,`firstname`,`lastname`,`dob`,`emailaddress`,`userpassword`,`namextid`,`provid`,`cityid`,`brgyid`,`street`,`birthplace`,`citizenshipid`,`civilid`,`sexid`,`contact`,`semid`,`elementary`,`junior`,`senior`,`college`,`cor`,`cog`,`indigency`,`pic`,`is_reject`,`is_accept`,`is_online`,`is_complete`,`is_verify`,`is_updated`) values (4,90,2,'3767441599','2024-09-14 14:06:05',1,'Sebastian','Darren','Acuna','0000-00-00','darrencelzo77@gmail.com','6A923',0,0,0,0,'','',0,0,0,'',1,'','','','','_.png','_.png','Resume.pdf','IMG_20210921_092304.jpg',0,1,1,2,1,1),(5,0,2,'','2025-04-01 18:04:04',0,'Celzo','Darren','Sebastian',NULL,'dacuna@qmdsi.com','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'','','','','','','','0f6736e3-0845-4a80-9fc3-fdece94da48c.jpg',0,0,1,0,0,0),(6,0,2,'','2025-04-01 23:30:48',0,'','Clarence','Flores',NULL,'neust.darrencelzo.acuna@gmail.com','A79C8',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'','','','','','','','0f6736e3-0845-4a80-9fc3-fdece94da48c.jpg',0,0,1,0,1,0);
 
 /*Table structure for table `tblregistrations_family` */
 
@@ -490,7 +489,26 @@ CREATE TABLE `tmp_registrations_family5` (
 
 /*Data for the table `tmp_registrations_family5` */
 
+/*Table structure for table `tmp_registrations_family6` */
+
+DROP TABLE IF EXISTS `tmp_registrations_family6`;
+
+CREATE TABLE `tmp_registrations_family6` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `family_lastname` varchar(128) DEFAULT '',
+  `family_firstname` varchar(128) DEFAULT '',
+  `family_middleinitial` varchar(128) DEFAULT '',
+  `relationshipid` int(11) DEFAULT 0,
+  `family_age` varchar(128) DEFAULT '',
+  `familycivilid` int(11) DEFAULT 0,
+  `educationid` int(11) DEFAULT 0,
+  `occupation` varchar(128) DEFAULT '',
+  `income` varchar(128) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `tmp_registrations_family6` */
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

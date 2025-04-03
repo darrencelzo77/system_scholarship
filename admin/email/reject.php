@@ -33,7 +33,7 @@
         $mail->setFrom('scholarship941@gmail.com', 'scholarship_system');
         $mail->addAddress($email);
         $mail->isHTML(true);
-        $mail->Subject = 'Accept';
+        $mail->Subject = 'Rejected';
 
 
         $mail->Body = "Your Application for Scholarhip is rejected because of the following reason: <br> $reason";

@@ -44,7 +44,7 @@
 
         You can login to the website for Educational Assistance to track the status of your application.
         <br><br>
-         <br> This is the updated schedule. Please go to '.$_POST['scheddate2'].' at Municipality of Batanggas<br><br>
+         <br> This is the updated schedule. Please go to '.$_POST['scheddate2'].'. Visit in Municipality of San Jose Batangas<br><br>
 
          Please follow your appointment schedule. Our office is open at 8:00 am to 5:00 pm';
         
